@@ -1,4 +1,10 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import PantallaAdministrador from './components/PantallaAdministrador.vue'
 
-createApp(App).mount('#app')
+import DatosConcurso from './components/Administrador/DatosConcurso.vue';
+import BotonesAdministrador from './components/Administrador/BotonesAdministrador.vue';
+
+createApp(BotonesAdministrador).mount('#botonesAdministrador');
+createApp(DatosConcurso).mount('#datosConcurso');
+createApp(PantallaAdministrador).mount('#pantallaAdministrador')
+
