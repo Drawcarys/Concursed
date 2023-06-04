@@ -1,5 +1,6 @@
 
 <template>
+  <Barnav/>
   <BotonesAdministrador></BotonesAdministrador>
   <!-- <RegistroJuez id="registroCategoria"></RegistroJuez>-->
 </template>
@@ -7,13 +8,17 @@
 <script>
 //import RegistroJuez from './Administrador/RegistroJuez.vue';
 import BotonesAdministrador from './Administrador/BotonesAdministrador.vue';
+import Barnav from './BarNav.vue';
 
 export default {
   name: 'App',
-  components: {
-    //  RegistroJuez,
-    BotonesAdministrador
-  }
+    methods: {
+        handleTabClick: function (tabNames) {
+            this.activeTabName = tabNames;
+            this.currentTab = this.tabs[tabNames];
+        }
+    },
+    components: { BotonesAdministrador,Barnav }
 }
 
 </script>

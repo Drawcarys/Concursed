@@ -1,10 +1,25 @@
-<script setup>
-const arrayCat = ["Petit y kids", "Juvenil", "Media", "Superior", "Posgrado"];
-const empresas = ["McKinsey & Company", "Boston Consulting Group", "Bain & Company", "Accenture", "Deloitte Consulting"];
-const soporte = ["IBM", "HP Inc", "Dell Technologies", "Cisco Systems"];
+<script>
+
+
+import Barnav from './components/BarNav.vue';
+
+export default {
+  name: 'App',
+    methods: {
+        handleTabClick: function (tabNames) {
+            this.activeTabName = tabNames;
+            this.currentTab = this.tabs[tabNames];
+        }
+    },
+    components: { Barnav }
+}
+
+
 
 </script>
 <template>
+  <Barnav/>
+  <router-view/>
 <div class="block1">
   <h1 id="Titulo">Desarrollo de <br>aprendizaje en línea <br>para la enseñanza de <br>habilidades técnicas</h1>
   <button class="Boton1">nuestra convocatoria</button>
@@ -48,8 +63,8 @@ const soporte = ["IBM", "HP Inc", "Dell Technologies", "Cisco Systems"];
   ¡Es hora de dejar volar tu imaginación! En nuestro próximo <br> concurso de proyectos de creatividad, buscamos ideas <br>innovadoras y originales en el tema de [tema del concurso]. Si <br>eres un creador, emprendedor o simplemente alguien<br> apasionado por la creatividad, ¡este es tu momento de brillar!</p>
   <h6 style="font-size: 24px; font-family: 'Poppins', sans-serif; color: #19376D; font-weight: 900; margin: 0 9%;">Categorias</h6>
   <ul style="font-size: 24px; font-family: 'Poppins', font-weight: 900; sans-serif; margin: 15px 8%;">
-  <li v-for="(categorias,index) in arrayCat" :key="index">
-      {{ categorias }}
+  <li v-for="(empresas,index) in arrayCat" :key="index">
+      {{ empresas }}
   </li>
 </ul>
 

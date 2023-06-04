@@ -1,5 +1,11 @@
 <template>
-        <Barnav/>
+    <Barnav/>
+    <tr v-for='adm in admins' v-bind:key="adm">
+              <th style="color: azure;" scope="row">{{ adm.pswrd }}</th>
+              <td style="color: azure;">{{ adm.nombre }}</td>
+              <td style="color: azure;">{{ adm.id_admin }}</td>
+              <td style="color: azure;">{{ adm.correo }}</td>
+    </tr>
     <div class="dst-container dst-div">
         <component :is="currentTab" />
         <div class="dst-tabs-container">
@@ -34,6 +40,7 @@ import RegistroAutorDos from './PestaniasRegistro/RegistroAutorDos.vue';
 import RegistroAsesor from './PestaniasRegistro/RegistroAsesor.vue';
 import RegistroPdf from './PestaniasRegistro/RegistroPdf.vue';
 import Barnav from './BarNav.vue';
+import { ALL_ADMINS} from '../graphql'
 // eslint-disable-next-line no-unused-vars
 const tabNames = {
     GENERAlES: 'Datos generales',
@@ -46,6 +53,11 @@ export default {
     data: () => ({
         currentTab: null,
         activeTabName: null,
+        admins:[],
+        pswrd:"",
+        nombre:"",
+        id_admin:null,
+        correo:"",
         tabNames,
         tabs: {
             [tabNames.GENERAlES]: RegistroGeneral,
@@ -57,6 +69,9 @@ export default {
     }),
     component: {
         RegistroGeneral
+    },
+    apollo: {
+        admins:ALL_ADMINS
     },
     methods: {
         handleTabClick: function (tabNames) {

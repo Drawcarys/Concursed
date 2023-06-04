@@ -14,15 +14,18 @@
   </div> 
   <a href="#">Contactanos</a>
   <a href="#">Convocatoria</a>
-  <a href="#">Acerca</a>
-  <a href="#">Inicio</a>
+  <router-link to="/RegistrarProyecto"><span>Acerca</span></router-link>
+  <a href="#" @click="goToHome()">Inicio</a>
 </nav>
 </header>
+<router-view />
 <LoginModal ref="modal">
 </LoginModal>
+
 </template>
 <script>
 import LoginModal from './LoginModal.vue'
+import router from '../router';
 
 export default{
   name: 'BarNav',
@@ -34,12 +37,19 @@ export default{
      const modal = document.getElementById("modal");
      modal.classList.add("show");
     },
+    goToHome(){
+      router.push('/RegistrarProyecto')
+    }
+    // goToHome:()=>{
+    //   this.$router.push('/RegistrarProyecto')
+    // }
   },
  
 }
+
 </script>
 
-<style>
+<style scoped>
 body{
   background: linear-gradient(180deg, #BDD9FF 0%, #F7F7FF 21.67%);
 }
