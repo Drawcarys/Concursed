@@ -18,7 +18,7 @@ export default {
 <template>
   <Barnav/>
 <div class="block1">
-  <h1 id="Titulo">Desarrollo de <br>aprendizaje en línea <br>para la enseñanza de <br>habilidades técnicas</h1>
+  <p id="Titulo" class="Titulo2">Desarrollo de   <br>aprendizaje en línea<br>para la enseñanza de<br>habilidades técnicas</p>
   <button class="Boton1">nuestra convocatoria</button>
 <p id="Parrafo1">
   ¡Bienvenido a Concursed! La plataforma donde la creatividad y la <br>competencia se unen para brindarte la oportunidad de demostrar tus <br>habilidades y ganar grandes premios. Participa en nuestros concursos de <br>proyectos de creatividad, donde podrás presentar tus ideas y proyectos <br>para que sean evaluados por nuestros jueces expertos.</p>
@@ -128,19 +128,54 @@ body{
 
 }
 
+@media (min-width: 250px) {
   #Titulo{
     position: relative;
-    font-size: 40px;
+    font-size: 15px;
     font-family: 'Roboto', sans-serif;
-    top: 20%;
-    left: 9%;
-
+    font-weight: 900;
+    top: 10%;
+    left: 5%;
   }
+
+  .Boton1{
+    position: relative;
+    border: 0px;
+    color: white;
+    font-size: 18px;
+    background-color: #19376D;
+    height: 50px;
+    width: 200px;
+    top: 15%;
+    left: 5%;
+    border-radius: 10px;
+  }
+
+  #Parrafo1{
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    top: 26%;
+    left: 5%;
+    font-size: 10px;
+    text-align: center;
+  }
+
   .camp1{
-   position: relative;
-   top: -300px;
-   left: 60%;
-   width: 550px;
+    position: relative;
+    top: 100px;
+    left: 7%;
+    width: 400px;
+   }
+}
+
+@media (min-width: 1000px) {
+  #Titulo{
+    position: relative;
+    font-size: 35px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    top: 20%;
+    left: -25%;
   }
 
   .Boton1{
@@ -152,16 +187,68 @@ body{
     height: 50px;
     width: 200px;
     top: 23%;
-    left: 150px;
+    left: -34%;
     border-radius: 10px;
   }
 
   #Parrafo1{
     position: relative;
     font-family: 'Poppins', sans-serif;
+    font-size: 20px;
     top: 26%;
-    left: 150px;
+    left: -10%;
   }
+
+  .camp1{
+    position: relative;
+    top: -450px;
+    left: 20%;
+    width: 550px;
+   }
+}
+
+@media (min-width: 1200px) {
+  #Titulo{
+    position: relative;
+    font-size: 35px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    top: 20%;
+    left: -25%;
+  }
+
+  .Boton1{
+    position: relative;
+    border: 0px;
+    color: white;
+    font-size: 18px;
+    background-color: #19376D;
+    height: 50px;
+    width: 200px;
+    top: 23%;
+    left: -30%;
+    border-radius: 10px;
+  }
+
+  #Parrafo1{
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    top: 26%;
+    left: -20%;
+  }
+
+  .camp1{
+    position: relative;
+    top: -400px;
+    left: 20%;
+    width: 650px;
+   }
+}
+
+
+
+  
 
 
   #plan1{
