@@ -11,7 +11,7 @@ const soporte = ["IBM", "HP Inc", "Dell Technologies", "Cisco Systems"];
 <p id="Parrafo1">
   ¡Bienvenido a Concursed! La plataforma donde la creatividad y la <br>competencia se unen para brindarte la oportunidad de demostrar tus <br>habilidades y ganar grandes premios. Participa en nuestros concursos de <br>proyectos de creatividad, donde podrás presentar tus ideas y proyectos <br>para que sean evaluados por nuestros jueces expertos.</p>
     <img src="./assets/camp1.png" class="camp1">
-  
+
 </div>
 
 <div class="block2">
@@ -34,11 +34,12 @@ const soporte = ["IBM", "HP Inc", "Dell Technologies", "Cisco Systems"];
         <img src="./assets/ecologia-y-medioambiente.png" id="icon3">
   </div>
 
-  <h1 style="font-weight: 800; font-family: 'Roboto', sans-serif; position: relative; left: 45%; top: 30%;">Categorias</h1>
+    <h1 style="font-weight: 800; font-family: 'Roboto', sans-serif; position: relative; left: 45%; top: 30%;">Categorias</h1> 
 
-  <div style="width: 100px; color: #D9D9D9; background-color: #D9D9D9; border-radius: 10px; position: relative; top: 40%; left: 48%;">
+
+  <!-- <div style="width: 100px; color: #D9D9D9; background-color: #D9D9D9; border-radius: 10px; position: relative; top: 40%; left: 48%;">
     <p>Holaa</p>
-  </div>
+  </div> -->
 
 </div>
 
@@ -46,8 +47,8 @@ const soporte = ["IBM", "HP Inc", "Dell Technologies", "Cisco Systems"];
   <h1 id="Titulo2">Convocatoria</h1>
 <p id="Parrafo2">
   ¡Es hora de dejar volar tu imaginación! En nuestro próximo <br> concurso de proyectos de creatividad, buscamos ideas <br>innovadoras y originales en el tema de [tema del concurso]. Si <br>eres un creador, emprendedor o simplemente alguien<br> apasionado por la creatividad, ¡este es tu momento de brillar!</p>
-  <h6 style="font-size: 24px; font-family: 'Poppins', sans-serif; color: #19376D; font-weight: 900; margin: 0 9%;">Categorias</h6>
-  <ul style="font-size: 24px; font-family: 'Poppins', font-weight: 900; sans-serif; margin: 15px 8%;">
+  <h6 class="title">Categorias</h6>
+  <ul class="category-list">
   <li v-for="(categorias,index) in arrayCat" :key="index">
       {{ categorias }}
   </li>
@@ -185,14 +186,15 @@ body{
     box-shadow: 6px 6px 5px #D9D9D9;
   }
 
+
   #icon1{
     position: relative;
     width: 70px;
     left: 78%;
     top: -70%;
     background-color: #4D96FF;
-    border-radius: 5px;
-    
+    border-radius: 5px;  
+  
   }
   #icon2{
     position: relative;
@@ -323,6 +325,90 @@ body{
     height: 190px;
     background-color: #19376D;
   }
+
+  .title{
+    font-size: 24px; font-family: 'Poppins', sans-serif; color: #19376D; font-weight: 900; margin: 0 9%;
+  }
+
+  .category-list{
+    font-size: 24px; font-family: 'Poppins', sans-serif; font-weight: 900; margin: 15px 8%;
+  }
+
+  @media (max-width: 768px){
+
+    .block1{
+      width:auto;
+      height:1050px;
+    }
+
+    #Parrafo1{
+      flex:1;
+      left:20%;
+      width: 450px;
+    }
+    .camp1{
+    flex:1;
+    top:250px;
+    width: 250px;
+    left: 35%;
+    }
+
+
+    .block2{
+      width: auto;
+      height: 500px;
+    }
+
+ #plan1,#plan2,#plan3{
+    left:10%;
+    flex:1;
+    top:15%;
+    width: 500px;
+  }
+
+  .block3{
+    width: auto;
+    height: 800px;
+  }
+
+  #Titulo2{
+    font-size: 50px;
+  }
+
+  #Parrafo2{
+    top:20px;
+      flex:1;
+      left:15%;
+      width: 450px;
+      font-size: 20px;
+  }
+
+
+  .Boton2{
+    top:15px;
+    left: 215px;
+  }
+
+  .title{
+    margin: 10% 15%;
+  }
+
+  .category-list{
+    margin: -5% 15%;
+    font-size: 20px;
+  }
+
+  .camp2{
+    top:-175px;
+    width: 250px;
+    left: 15%;
+  }
+
+  .block4{
+    background: #6BCB77;
+  }
+
+}
 </style>
 
 
