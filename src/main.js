@@ -15,7 +15,7 @@ createApp(PantallaAdministrador).mount('#pantallaAdministrador')
 import App from './App.vue'
 import PantallaPrincipal from './PantallaPrincipal.vue'
 import JuezPantalla_principal from './JuezPantalla_principal.vue'
-createApp(App).mount('#app')
+
 createApp(PantallaPrincipal).mount('#pantallaPrincipal')
 createApp(JuezPantalla_principal).mount('#juezPantallaPrincipal')
 import RegistroProyecto from './components/RegistroProyecto.vue'
@@ -74,5 +74,6 @@ const app = createApp({
 });
 app.use(apolloProvider);
 
-app.use(router);
 app.use(vueRouter);
+
+createApp(App).use(router).mount('#app')

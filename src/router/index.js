@@ -1,56 +1,25 @@
-/* import { createRouter, createWebHistory } from 'vue-router'
-import App from '../App.vue'
-
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: App
-    },
-    {
-      path: '/RegistrarProyecto',
-      name: 'RegistrarProyecto',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../components/RegistroProyecto.vue')
-    },
-    {
-      path: '/PantallaAdministrador',
-      name: 'PantallaAdministrador',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../components/PantallaAdministrador.vue')
-    }
-  ]
-})
-
-export default router */
-
 import { createRouter, createWebHistory } from 'vue-router'
-    import Home from '../components/RegistroProyecto.vue'
-    import Proy from '../components/PantallaAdministrador.vue'
+    //import Home from '../PantallaPrincipal.vue'
+    //import Proy from '../components/RegistroProyecto.vue'
     //import Admin from '../components/PantallaAdministrador.vue'
     const routes = [
       {
-        path: '/',
+        path: '/PantallaPrincipal',
         name: 'home',
-        component: Home
+        //component: Home
+        component: () => import(/* webpackChunkName: "about" */ '../PantallaPrincipal.vue')
+
       },
       {
         path: '/RegistrarProyecto',
         name: 'RegistrarProyecto',
-        component: Proy,
+        //component: Proy,
+        component: () => import(/* webpackChunkName: "about" */ '../components/RegistroProyecto.vue')
       },
       {
         path: '/PantallaAdministrador',
         name: 'PantallaAdministrador',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
+
         component: () => import(/* webpackChunkName: "about" */ '../components/PantallaAdministrador.vue')
       }
     ]

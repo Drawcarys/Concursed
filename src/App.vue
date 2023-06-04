@@ -1,16 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Barnav/>
+  <router-view/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+    methods: {
+        handleTabClick: function (tabNames) {
+            this.activeTabName = tabNames;
+            this.currentTab = this.tabs[tabNames];
+        }
+    },
+
+    components: {  }
 }
+
+
+
 </script>
 
 <style>

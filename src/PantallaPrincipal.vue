@@ -1,10 +1,22 @@
-<script setup>
-const arrayCat = ["Petit y kids", "Juvenil", "Media", "Superior", "Posgrado"];
-const empresas = ["McKinsey & Company", "Boston Consulting Group", "Bain & Company", "Accenture", "Deloitte Consulting"];
-const soporte = ["IBM", "HP Inc", "Dell Technologies", "Cisco Systems"];
+<script>
+import Barnav from './components/BarNav.vue';
+
+export default {
+  name: 'App',
+    methods: {
+        handleTabClick: function (tabNames) {
+            this.activeTabName = tabNames;
+            this.currentTab = this.tabs[tabNames];
+        }
+    },
+    components: { Barnav }
+}
+
+
 
 </script>
 <template>
+  <Barnav/>
 <div class="block1">
   <h1 id="Titulo">Desarrollo de <br>aprendizaje en línea <br>para la enseñanza de <br>habilidades técnicas</h1>
   <button class="Boton1">nuestra convocatoria</button>
