@@ -15,7 +15,10 @@
   <router-link to="/PantallaAdministrador"><span>Contactanos</span></router-link>
   <router-link to="/RegistrarProyecto"><span>Convocatoria</span></router-link>
   <router-link to="/RegistrarProyecto"><span>Acerca</span></router-link>
-  <router-link to="/PantallaPrincipal"><span>Inicio</span></router-link>
+  <router-link to="/"><span>Inicio</span></router-link>
+  
+  
+  
   <!-- <a href="#" @click="goToHome()">Inicio</a> -->
 </nav>
 </header>
