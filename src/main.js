@@ -72,8 +72,14 @@ const apolloProvider = createApolloProvider({defaultClient:client})
 const app = createApp({
   render: () => h(App),
 });
-app.use(apolloProvider);
-
 app.use(vueRouter);
 
-createApp(App).use(router).mount('#app')
+
+
+const AppCA = createApp(App).use(router);
+
+AppCA.use(vueRouter);
+
+AppCA.use(apolloProvider);
+
+AppCA.mount('#app');

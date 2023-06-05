@@ -1,5 +1,101 @@
+<script>
+import RegistroGeneral from './PestaniasRegistro/RegistroGeneral.vue';
+import RegistroAutorUno from './PestaniasRegistro/RegistroAutorUno.vue';
+import RegistroAutorDos from './PestaniasRegistro/RegistroAutorDos.vue';
+import RegistroAsesor from './PestaniasRegistro/RegistroAsesor.vue';
+import RegistroPdf from './PestaniasRegistro/RegistroPdf.vue';
+import Barnav from './BarNav.vue';
+import { ALL_ADMINS} from '../graphql'
+import gql from 'graphql-tag'
+
+// eslint-disable-next-line no-unused-vars
+const tabNames = {
+    GENERAlES: 'Datos generales',
+    AUTORUNO: 'Autor 1',
+    AUTORDOS: 'Autor 2',
+    ASESOR: 'Asesor',
+    PDF: 'PDF'
+}
+
+export default {
+    name: 'RegistroProyecto',
+    data(){
+        return{
+        currentTab: null,
+        activeTabName: null,
+        admin: [],
+        pswrd:"123",
+        nombre:"aaaaa",
+        correo:"23232",
+        tabNames,
+        tabs: {
+            [tabNames.GENERAlES]: RegistroGeneral,
+            [tabNames.AUTORUNO]: RegistroAutorUno,
+            [tabNames.AUTORDOS]: RegistroAutorDos,
+            [tabNames.ASESOR]: RegistroAsesor,
+            [tabNames.PDF]: RegistroPdf
+        }
+        }
+    },
+    computed:{
+        console: ()=> console
+    },
+    component: {
+        RegistroGeneral
+    },
+    apollo: {
+        admin:ALL_ADMINS
+    },
+    methods: {
+        handleTabClick: function (tabNames) {
+            this.activeTabName = tabNames;
+            this.currentTab = this.tabs[tabNames];
+        },
+
+        InsertAdmin() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insert_admin_one($correo:String!,$nombre:String!,$pswrd:String!) {
+                insert_admin_one(object: {correo: $correo, nombre: $nombre, pswrd: $pswrd}) {
+                correo
+                nombre
+                pswrd
+            }
+        }`,
+        variables: {
+            correo: this.correo, nombre: this.nombre, pswrd: this.pswrd
+        },
+
+      })
+      this.refreshCount++;
+    },
+    },
+    components: { Barnav }
+}
+</script>
+
 <template>
     <Barnav/>
+    <hr/>
+    <!-- <table v-bind:key="refreshCount">
+          <thead>
+            <tr>
+              <th scope="col">Correo</th>
+              <th scope="col">Pass</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for='adm in admin' v-bind:key="adm">
+              <th scope="row">{{ adm.correo }}</th>
+              <td>{{ adm.pswrd }}</td>
+              <td>{{ adm.nombre }}</td>
+              <td>{{ adm.id_admin }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {{InsertAdmin(correo, nombre, pswrd) }} -->
+    <hr/>
     <div class="dst-container dst-div">
         <component :is="currentTab" />
         <div class="dst-tabs-container">
@@ -25,64 +121,8 @@
             </div>
         </div>
     </div>
-    <tr v-for='adm in admins' v-bind:key="adm">
-              <th style="color: azure;" scope="row">Admins</th>
-              <td style="color: azure;">{{ adm.pswrd }}</td>
-              <td style="color: azure;">{{ adm.nombre }}</td>
-              <td style="color: azure;">{{ adm.id_admin }}</td>
-              <td style="color: azure;">{{ adm.correo }}</td>
-    </tr>
+    
 </template>
-
-<script>
-import RegistroGeneral from './PestaniasRegistro/RegistroGeneral.vue';
-import RegistroAutorUno from './PestaniasRegistro/RegistroAutorUno.vue';
-import RegistroAutorDos from './PestaniasRegistro/RegistroAutorDos.vue';
-import RegistroAsesor from './PestaniasRegistro/RegistroAsesor.vue';
-import RegistroPdf from './PestaniasRegistro/RegistroPdf.vue';
-import Barnav from './BarNav.vue';
-import { ALL_ADMINS} from '../graphql'
-// eslint-disable-next-line no-unused-vars
-const tabNames = {
-    GENERAlES: 'Datos generales',
-    AUTORUNO: 'Autor 1',
-    AUTORDOS: 'Autor 2',
-    ASESOR: 'Asesor',
-    PDF: 'PDF'
-}
-export default {
-    data: () => ({
-        currentTab: null,
-        activeTabName: null,
-        admins:[],
-        pswrd:"",
-        nombre:"",
-        id_admin:null,
-        correo:"",
-        tabNames,
-        tabs: {
-            [tabNames.GENERAlES]: RegistroGeneral,
-            [tabNames.AUTORUNO]: RegistroAutorUno,
-            [tabNames.AUTORDOS]: RegistroAutorDos,
-            [tabNames.ASESOR]: RegistroAsesor,
-            [tabNames.PDF]: RegistroPdf
-        }
-    }),
-    component: {
-        RegistroGeneral
-    },
-    apollo: {
-        admins:ALL_ADMINS
-    },
-    methods: {
-        handleTabClick: function (tabNames) {
-            this.activeTabName = tabNames;
-            this.currentTab = this.tabs[tabNames];
-        }
-    },
-    components: { Barnav }
-}
-</script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');

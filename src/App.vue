@@ -1,25 +1,30 @@
-<template>
-  <Barnav/>
-  <router-view/>
-</template>
-
 <script>
 
 export default {
   name: 'App',
+  data(){
+        return{
+
+        }
+      },
     methods: {
         handleTabClick: function (tabNames) {
             this.activeTabName = tabNames;
             this.currentTab = this.tabs[tabNames];
         }
     },
+    apollo: {
 
+    },
     components: {  }
 }
 
-
-
 </script>
+
+<template>
+  <Barnav/>
+  <router-view/>
+</template>
 
 <style>
 #app {
