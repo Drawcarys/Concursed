@@ -72,21 +72,21 @@ export default {
 </div>
 
 <div class="block4">
-  <h4 style="font-size: 35px; font-family: 'Poppins', sans-serif; font-weight: 900; position: relative; left: 40%; ">Acerca de nosotros</h4>
-  <h4 style="font-size: 30px; font-family: 'Poppins', sans-serif; position: relative; left: 10%; color: #333D48;">Objetivo</h4>
-  <img src="./assets/present.png" class="img1">
-  <h4 style="font-size: 30px; font-family: 'Poppins', sans-serif; position: relative; left: 47%; top: -49%; color: #333D48;">Seguridad</h4>
-  <img src="./assets/present2.png" class="img2">
-  <h4 style="font-size: 30px; font-family: 'Poppins', sans-serif; position: relative; left: 82%; top: -98%; color: #333D48;">Fechas</h4>
-  <img src="./assets/present3.png" class="img3">
+  <h4  id="acercaALRL">Acerca de nosotros</h4>
+  <h4 id="objeALRL" >Objetivo</h4>
+  <img id="img1ALRL" src="./assets/present.png" class="img1">
+  <h4 id="seguALRL" >Seguridad</h4>
+  <img id="img2ALRL" src="./assets/present2.png" class="img2">
+  <h4 id="fechaALRL" >Fechas</h4>
+  <img id="img3ALRL" src="./assets/present3.png" class="img3">
   
-  <p style="font-size: 16px; font-family: 'Poppins', sans-serif;  position: relative; left: 7%; top: -100%;">El objetivo general es impulsar la <br> creatividad y la innovación, <br>mediante la organización de un <br>concurso de proyectos de <br>creatividad que fomente la <br>presentación de ideas originales <br>e innovadoras en diferentes <br>áreas. </p>
+  <p id="text1ALRL">El objetivo general es impulsar la <br> creatividad y la innovación, <br>mediante la organización de un <br>concurso de proyectos de <br>creatividad que fomente la <br>presentación de ideas originales <br>e innovadoras en diferentes <br>áreas. </p>
   
-  <p style="font-size: 16px; font-family: 'Poppins', sans-serif;  position: relative; left: 43%; top: -122%;"> la gestión de acceso a la <br>información, la vigilancia de la red y <br>la formación de los empleados sobre<br> la importancia de la seguridad de la <br>información. Al asegurar la <br>confidencialidad de los datos, se <br> protege la información sensible de la <br>empresa de accesos no autorizados, <br>lo que puede reducir el riesgo de <br>pérdida financiera o de reputación <br>para la organización.</p>
+  <p id="text2ALRL"> la gestión de acceso a la <br>información, la vigilancia de la red y <br>la formación de los empleados sobre<br> la importancia de la seguridad de la <br>información. Al asegurar la <br>confidencialidad de los datos, se <br> protege la información sensible de la <br>empresa de accesos no autorizados, <br>lo que puede reducir el riesgo de <br>pérdida financiera o de reputación <br>para la organización.</p>
  
-  <p style="font-size: 16px; font-family: 'Poppins', sans-serif;  position: relative; left: 75%; top: -151%;">completar un proyecto antes de la <br>fecha límite establecida. Para lograr <br>este objetivo, se pueden establecer<br> plazos intermedios y objetivos <br>específicos a lo largo del proyecto <br>para garantizar que se esté <br>avanzando de manera constante y <br>que se cumpla con la fecha límite <br>final. Además, se puede asignar <br>recursos adecuados, identificar y <br>abordar problemas de manera <br>oportuna, y tener un plan de <br>contingencia en caso de que surjan <br>problemas imprevistos.</p>
+  <p id="text3ALRL">completar un proyecto antes de la <br>fecha límite establecida. Para lograr <br>este objetivo, se pueden establecer<br> plazos intermedios y objetivos <br>específicos a lo largo del proyecto <br>para garantizar que se esté <br>avanzando de manera constante y <br>que se cumpla con la fecha límite <br>final. Además, se puede asignar <br>recursos adecuados, identificar y <br>abordar problemas de manera <br>oportuna, y tener un plan de <br>contingencia en caso de que surjan <br>problemas imprevistos.</p>
  
-    <div style="width: 90%; background-color: #BBC1C8; margin: 0 5%; border-radius: 15px; color: #BBC1C8; position: relative; top: -145%; height: 5px;">
+    <div id="lineALRL">
       <p>.</p>
     </div>
 </div>
@@ -318,8 +318,6 @@ body{
   
 }
 
-
-
 #plan3{
   position: relative;
   top: 40%;
@@ -447,8 +445,6 @@ body{
   border-radius: 5px;
   
 }
-
-
 
 #plan3{
   position: relative;
@@ -578,8 +574,6 @@ body{
   
 }
 
-
-
 #plan3{
   position: relative;
   top: 20%;
@@ -694,6 +688,96 @@ body{
     left: -9%;
    }
 
+  @media (min-width: 400px) {
+    #acercaALRL{
+      font-size: 35px; 
+      font-family: 'Poppins', sans-serif; 
+      font-weight: 900; 
+      position: relative; 
+      left: 10%;
+      top: 1%;
+    }
+    #objeALRL{
+      font-size: 30px; 
+      font-family: 'Poppins', sans-serif; 
+      position: relative; 
+      left: 15%; 
+      color: #333D48;
+      top: 4%;
+    }
+    .img1{
+      position: relative;
+      top: 1%;
+      left: 15%;
+      width: 200px;
+     }
+    #seguALRL{
+      font-size: 30px; 
+      font-family: 'Poppins', sans-serif; 
+      position: relative; 
+      left: 15%; 
+      top: 1%; 
+      color: #333D48;
+    }
+  
+    .img2{
+      position: relative;
+      top: -5%;
+      left: 15%;
+      width: 250px;
+     }
+    
+    #fechaALRL{
+      font-size: 30px; 
+      font-family: 'Poppins', sans-serif; 
+      position: relative; 
+      left: 15%; 
+      top: -10%; 
+      color: #333D48;
+    }
+    
+    .img3{
+      position: relative;
+      top: -15%;
+      left: 15%;
+      width: 250px;
+     }
+      
+    #lineALRL{
+      width: 50%; 
+      background-color: #BBC1C8; 
+      border-radius: 15px; 
+      color: #BBC1C8; 
+      position: relative; 
+      top: -145%; 
+      height: 5px;
+      left: 40%;
+    }
+  }  
+
+@media (min-width: 1000px) {
+  #acercaALRL{
+    font-size: 35px; 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 900; 
+    position: relative; 
+    left: 10%;
+    top: 1%;
+  }
+  #objeALRL{
+    font-size: 30px; 
+    font-family: 'Poppins', sans-serif; 
+    position: relative; 
+    left: -25%; 
+    color: #333D48;
+    top: 4%;
+  }
+  .img1{
+    position: relative;
+    top: 1%;
+    left: -25%;
+    width: 250px;
+   }
 
   }
 
@@ -705,6 +789,22 @@ body{
     font-family: 'Roboto', sans-serif;
     top: 20px;
     padding: 0 150px;
+  }
+   #text1ALRL{
+    font-size: 16px; 
+    font-family: 'Poppins', sans-serif;  
+    position: relative; 
+    left: -25%; 
+    top: -70%;
+  }
+  
+  #seguALRL{
+    font-size: 30px; 
+    font-family: 'Poppins', sans-serif; 
+    position: relative; 
+    left: 10%; 
+    top: -35%; 
+    color: #333D48;
   }
 
   #Parrafo2{
@@ -745,6 +845,153 @@ body{
     left: -200px;
     border-radius: 10px;
   }
+  .img2{
+    position: relative;
+    top: -40%;
+    left: 10%;
+    width: 250px;
+   }
+
+   #text2ALRL{
+    font-size: 16px; 
+    font-family: 'Poppins', sans-serif;  
+    position: relative; 
+    left: 10%; 
+    top: -100%;
+  }
+  
+  #fechaALRL{
+    font-size: 30px; 
+    font-family: 'Poppins', sans-serif; 
+    position: relative; 
+    left: 42%; 
+    top: -74%; 
+    color: #333D48;
+  }
+  
+  .img3{
+    position: relative;
+    top: -80%;
+    left: 42%;
+    width: 250px;
+   }
+  
+  #text3ALRL{
+    font-size: 16px; 
+    font-family: 'Poppins', sans-serif;  
+    position: relative; 
+    left: 40%; 
+    top: -145%;
+  }
+    
+  #lineALRL{
+    width: 50%; 
+    background-color: #BBC1C8;
+    border-radius: 15px; 
+    color: #BBC1C8; 
+    position: relative; 
+    top: -145%; 
+    height: 5px;
+    left: 30%;
+  }
+}
+
+@media (min-width: 1400px) {
+  #acercaALRL{
+    font-size: 35px; 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 900; 
+    position: relative; 
+    left: 1%;
+    top: 1%;
+  }
+  #objeALRL{
+    font-size: 30px; 
+    font-family: 'Poppins', sans-serif; 
+    position: relative; 
+    left: -30%; 
+    color: #333D48;
+    top: 4%;
+  }
+  .img1{
+    position: relative;
+    top: 1%;
+    left: -30%;
+    width: 250px;
+   }
+
+   #text1ALRL{
+    font-size: 16px; 
+    font-family: 'Poppins', sans-serif;  
+    position: relative; 
+    left: -30%; 
+    top: -70%;
+  }
+  
+  #seguALRL{
+    font-size: 30px; 
+    font-family: 'Poppins', sans-serif; 
+    position: relative; 
+    left: 1%; 
+    top: -35%; 
+    color: #333D48;
+  }
+
+  .img2{
+    position: relative;
+    top: -40%;
+    left: 1%;
+    width: 250px;
+   }
+
+   #text2ALRL{
+    font-size: 16px; 
+    font-family: 'Poppins', sans-serif;  
+    position: relative; 
+    left: 1%; 
+    top: -100%;
+  }
+  
+  #fechaALRL{
+    font-size: 30px; 
+    font-family: 'Poppins', sans-serif; 
+    position: relative; 
+    left: 35%; 
+    top: -74%; 
+    color: #333D48;
+  }
+  
+  .img3{
+    position: relative;
+    top: -80%;
+    left: 35%;
+    width: 250px;
+   }
+  
+  #text3ALRL{
+    font-size: 16px; 
+    font-family: 'Poppins', sans-serif;  
+    position: relative; 
+    left: 35%; 
+    top: -145%;
+  }
+    
+  #lineALRL{
+    width: 50%; 
+    background-color: #BBC1C8;
+    border-radius: 15px; 
+    color: #BBC1C8; 
+    position: relative; 
+    top: -145%; 
+    height: 5px;
+    left: 30%;
+  }
+}
+
+
+
+
+
 
   .camp2{
     position: relative;
@@ -811,7 +1058,6 @@ body{
     left: 15%;
     width: 550px;
    }
-
 
   }
 
@@ -896,6 +1142,9 @@ body{
     left: 20%;
   }
   }
+  
+
+   
 
   @media (min-width: 700px){
     
@@ -1059,16 +1308,6 @@ body{
     width: 500px;
   }
   }
-
-  
-
-
-  
-
-  
-
-  
-  
   
 
    .img1{
@@ -1078,22 +1317,7 @@ body{
     width: 250px;
    }
 
-   .img2{
-    position: relative;
-    top: -50%;
-    left: 44%;
-    width: 250px;
-   }
 
-   .img3{
-    position: relative;
-    top: -100%;
-    left: 75%;
-    width: 250px;
-   }
-
-   
-  
 
   .block1{
     width: 100%;
