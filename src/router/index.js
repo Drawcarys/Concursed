@@ -16,9 +16,11 @@ const routes = [
     name: 'PantallaAdministrador',
     component: () => import(/* webpackChunkName: "about" */ '../components/PantallaAdministrador.vue')
   },
+   
   {
-    
+
   }
+    
 ]
 
 const router = createRouter({
