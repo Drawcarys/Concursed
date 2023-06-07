@@ -67,6 +67,10 @@ export default {
             }
         }`,
 
+    })
+      this.refreshCount++;
+    },
+
         InsertArea() {
             this.$apollo.mutate({
                 mutation: gql`mutation insert_area_one($nombreArea:String!) {
@@ -74,6 +78,10 @@ export default {
                 nombreArea
             }
         }`,
+
+    })
+      this.refreshCount++;
+    },
 
         InsertAsesor() {
             this.$apollo.mutate({
@@ -97,6 +105,10 @@ export default {
             }
         }`,
 
+    })
+      this.refreshCount++;
+    },
+
         InsertCategoria() {
             this.$apollo.mutate({
                 mutation: gql`mutation insert_categoria_one($nombreCategoria:String!) {
@@ -104,6 +116,10 @@ export default {
                 nombreCategoria
             }
         }`,
+
+    })
+      this.refreshCount++;
+    },
 
         InsertJuez() {
             this.$apollo.mutate({
@@ -132,6 +148,10 @@ export default {
             }
         }`,
 
+    })
+      this.refreshCount++;
+    },
+
         InsertParticipante() {
             this.$apollo.mutate({
                 mutation: gql`mutation insert_participante_one($nombre:String!,$apellido1:String!, $apellido2:String!, $colonia:String!, $cp:Int!, $domicilio:String!, $institucion:String!, $localidad:String!, $municipio:String!, $sexo:Boolean!, $telefono:Int!, $curp:String!) {
@@ -156,6 +176,10 @@ export default {
             }
         }`,
 
+    })
+      this.refreshCount++;
+    },
+
         InsertProyecto() {
             this.$apollo.mutate({
                 mutation: gql`mutation insert_proyecto_one($nombreProyecto:String!, $areaProyecto:Int!, $categoriaProyecto:Int!, $modalidad:Int!, $sedeProyecto:Int!) {
@@ -167,6 +191,11 @@ export default {
                 sedeProyecto
             }
         }`,
+
+    })
+      this.refreshCount++;
+    },
+        
 
         InsertSede() {
             this.$apollo.mutate({
