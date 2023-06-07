@@ -15,18 +15,24 @@
                 <input class="dst-campo-login" type="password" id="dst-pass" pattern=".+@globex\.com" size="30" required>
                 <br>
                 <button class="dst-button-entrar" type="submit">Entrar</button>
-                <h5 class="modal-close" @click="hide()" style="padding-top: 1% ">Olvidaste tu contraseña?</h5>
+                <h5 class="modal-close" @click="show2()" style="padding-top: 1% ">Olvidaste tu contraseña?</h5>
 
             </div>
         </div>
     </div>
    </form>
+   <RegistroModal ref="registro">
+   </RegistroModal>
+
 </template>
 
 <script>
-
+import RegistroModal from './PestaniasRegistro/RegistroModal.vue'
 export default {
     name: 'LoginModal',
+    components:{
+    RegistroModal
+    },
     methods: {
         show() {
             const modal = document.getElementById('modal');
@@ -37,9 +43,12 @@ export default {
             modal.classList.remove('show');
         },
 
-    }
+        show2(){
+            const registro = document.getElementById('registro');
+            registro.classList.add('show');
+        }
 
-    
+    }
 
 };
 </script>
