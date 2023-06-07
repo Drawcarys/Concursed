@@ -19,7 +19,7 @@ function cerrar() {
         <h1 id="nombALRL" >Nombre_categoria</h1>
         <ul id="listALRL">
             <li v-for="(categorias,index) in arrayCat" :key="index">
-               {{ categorias }} <button class="button1ALRL">Calificar</button> <div id="sepaALRL"></div>
+               {{ categorias }} <button class="button1ALRL" @mousedown="abrir">Calificar</button> <div id="sepaALRL"></div>
             </li>
         </ul>
 
