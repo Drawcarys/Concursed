@@ -58,8 +58,8 @@ export default {
   <h1 id="Titulo2">Convocatoria</h1>
 <p id="Parrafo2">
   ¡Es hora de dejar volar tu imaginación! En nuestro próximo <br> concurso de proyectos de creatividad, buscamos ideas <br>innovadoras y originales en el tema de [tema del concurso]. Si <br>eres un creador, emprendedor o simplemente alguien<br> apasionado por la creatividad, ¡este es tu momento de brillar!</p>
-  <h6 style="font-size: 24px; font-family: 'Poppins', sans-serif; color: #19376D; font-weight: 900; margin: 0 9%;">Categorias</h6>
-  <ul style="font-size: 24px; font-family: 'Poppins', font-weight: 900; sans-serif; margin: 15px 8%;">
+  <h6 id="text-cat">Categorias</h6>
+  <ul id="list-cat">
   <li v-for="(categorias,index) in arrayCat" :key="index">
       {{ categorias }}
   </li>
@@ -92,12 +92,12 @@ export default {
 </div>
 
 <div class="block5">
-  <h1 style="font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 30px; position: relative; left: 20%; top: 10%;">Contactanos</h1>
-  <input id="input" type="Nombre" style="border: 2px solid #D9D9D9; border-radius: 10px; width: 250px; height: 50px; font-size: 15px; position: relative; left: 15%; top: 20%;" placeholder="Nombre" >
-  <input id="input" type="Nombre" style="border: 2px solid #D9D9D9; border-radius: 10px; width: 250px; height: 50px; font-size: 15px; position: relative; left: 20%; top: 20%;" placeholder="Apellidos" >
-  <input id="input" type="Nombre" style="border: 2px solid #D9D9D9; border-radius: 10px; width: 600px; height: 50px; font-size: 15px; position: relative; left: -12.5%; top: 40%;" placeholder="Correo electronico" >
-  <input id="input" type="Nombre" style="border: 2px solid #D9D9D9; border-radius: 10px; width: 600px; height: 150px; font-size: 15px; position: relative; left: -44.4%; top: 65%;" placeholder="Escribe tu mensaje ..." >
-  <img src="./assets/Notifications_Isometric.png" style="position: relative; left: 55%;">
+  <h1 id="cont">Contactanos</h1>
+  <input id="input1" type="Nombre" placeholder="Nombre" >
+  <input id="input2" type="Nombre" placeholder="Apellidos" >
+  <input id="input3" type="Nombre" placeholder="Correo electronico" >
+  <input id="input4" type="Nombre" placeholder="Escribe tu mensaje ..." >
+  <img src="./assets/Notifications_Isometric.png" class="camp3">
   <button id="boton2">Enviar</button>
 </div>
   
@@ -168,7 +168,7 @@ body{
    }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 700px) {
   #Titulo{
     position: relative;
     font-size: 35px;
@@ -207,7 +207,7 @@ body{
    }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1300px) {
   #Titulo{
     position: relative;
     font-size: 35px;
@@ -318,8 +318,6 @@ body{
   
 }
 
-
-
 #plan3{
   position: relative;
   top: 40%;
@@ -376,7 +374,7 @@ body{
 
   }
 
-@media (min-width: 1000px) {
+@media (min-width: 700px) {
   #plan1{
     position: relative;
     top: 20%;
@@ -448,8 +446,6 @@ body{
   
 }
 
-
-
 #plan3{
   position: relative;
   top: 40%;
@@ -506,7 +502,7 @@ body{
 
   }
 
-@media (min-width: 1200px) {
+@media (min-width: 1300px) {
   #plan1{
     position: relative;
     top: 20%;
@@ -578,8 +574,6 @@ body{
   
 }
 
-
-
 #plan3{
   position: relative;
   top: 20%;
@@ -636,6 +630,63 @@ body{
 
   }
 
+  @media (min-width: 250px) {
+    #Titulo2{
+    position: relative;
+    color: #577399;
+    font-size: 50px;
+    font-family: 'Roboto', sans-serif;
+    top: 20px;
+    padding: 0 150px;
+  }
+
+  #Parrafo2{
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    top: 10%;
+    text-align: center;
+  }
+
+  #text-cat{
+    position: relative;
+    font-size: 20px; 
+    font-family: 'Poppins', sans-serif; 
+    color: #19376D;
+    font-weight: 900; 
+    margin: 2% 5%;
+    top:10%;
+    text-align: center;
+  }
+
+  #list-cat{
+    font-size: 24px; 
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;  
+    margin: 15px 8%;
+    text-align: center;
+  }
+
+  .Boton2{
+    position:relative;
+    border: 0px;
+    color: white;
+    background-color: #19376D;
+    font-size: 15px;
+    height: 50px;
+    width: 100px;
+    top: 45%;
+    border-radius: 10px;
+    left: 12%;
+  }
+
+  .camp2{
+    position: relative;
+    top: 200px;
+    width: 250px;
+    align-items: center;
+    left: -9%;
+   }
 
   @media (min-width: 400px) {
     #acercaALRL{
@@ -728,6 +779,17 @@ body{
     width: 250px;
    }
 
+  }
+
+  @media (min-width: 700px) {
+    #Titulo2{
+    position: relative;
+    color: #577399;
+    font-size: 70px;
+    font-family: 'Roboto', sans-serif;
+    top: 20px;
+    padding: 0 150px;
+  }
    #text1ALRL{
     font-size: 16px; 
     font-family: 'Poppins', sans-serif;  
@@ -745,6 +807,44 @@ body{
     color: #333D48;
   }
 
+  #Parrafo2{
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    top: 10%;
+    left: -20%;
+  }
+
+  #text-cat{
+    position: relative;
+    font-size: 20px; 
+    font-family: 'Poppins', sans-serif; 
+    color: #19376D;
+    font-weight: 900; 
+    margin: 2% 5%;
+    top:10%;
+    left:-35%;
+  }
+
+  #list-cat{
+    font-size: 24px; 
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;  
+    margin: 15px 8%;
+  }
+
+  .Boton2{
+    position: relative;
+    border: 0px;
+    color: white;
+    background-color: #19376D;
+    font-size: 15px;
+    height: 40px;
+    width: 150px;
+    top: 20%;
+    left: -200px;
+    border-radius: 10px;
+  }
   .img2{
     position: relative;
     top: -40%;
@@ -893,10 +993,21 @@ body{
 
 
 
-  #Titulo2{
+  .camp2{
+    position: relative;
+    top: -250px;
+    left: 20%;
+    width: 450px;
+   }
+
+
+  }
+
+  @media (min-width: 1300px) {
+    #Titulo2{
     position: relative;
     color: #577399;
-    font-size: 96px;
+    font-size: 94px;
     font-family: 'Roboto', sans-serif;
     top: 20px;
     padding: 0 150px;
@@ -905,9 +1016,27 @@ body{
   #Parrafo2{
     position: relative;
     font-family: 'Poppins', sans-serif;
-    font-size: 25px;
-    top: 1%;
-    left: 150px;
+    font-size: 20px;
+    top: 10%;
+    left: -20%;
+  }
+
+  #text-cat{
+    position: relative;
+    font-size: 24px; 
+    font-family: 'Poppins', sans-serif; 
+    color: #19376D;
+    font-weight: 900; 
+    margin: 2% 5%;
+    top:10%;
+    left:-30%;
+  }
+
+  #list-cat{
+    font-size: 24px; 
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;  
+    margin: 15px 8%;
   }
 
   .Boton2{
@@ -918,25 +1047,161 @@ body{
     font-size: 15px;
     height: 50px;
     width: 200px;
-    top: -60%;
-    left: 150px;
+    top: 0%;
+    left: -100px;
     border-radius: 10px;
   }
 
   .camp2{
     position: relative;
-    top: -300px;
-    left: 35%;
+    top: -250px;
+    left: 15%;
     width: 550px;
    }
 
-   
+  }
 
+
+  @media (min-width: 250px){
+    #cont{
+      position: relative; 
+      font-size: 60px; 
+      font-family: 'Poppins', sans-serif; 
+      font-weight: 900;
+      top: 5%;
+      text-align: center;
+    }
+
+    #input1{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 455px; 
+      height: 40px; 
+      font-size: 15px; 
+      position: relative; 
+      left: 22%;
+      top: 10%;
+    }
+
+    #input2{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 455px; 
+      height: 40px; 
+      font-size: 15px; 
+      position: relative; 
+      left: 22%; 
+      top: 12%;
+    }
+
+    #input3{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 455px; 
+      height: 40px; 
+      font-size: 15px; 
+      position: relative; 
+      left: 22%; 
+      top: 15%;
+    }
+
+    #input4{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 455px; 
+      height: 200px; 
+      font-size: 15px; 
+      position: relative; 
+      left: 22%; 
+      top: 20%;
+    }
+
+    #input1::placeholder,#input2::placeholder,#input3::placeholder,#input4::placeholder{
+    position: relative;
+    left: 5%;
+    color: #C2C2C2;
+   }
+
+   #boton2{
+    position: relative;
+    border: 0px;
+    color: white;
+    font-size: 18px;
+    background-color: #19376D;
+    height: 50px;
+    width: 200px;
+    top: 35%;
+    left: -15%;
+    border-radius: 10px;
+  }
+
+  .camp3{
+    position: relative;
+    width: 300px;
+    top: 18%;
+    left: 20%;
+  }
+  }
   
 
    
 
-   #input::placeholder{
+  @media (min-width: 700px){
+    
+    #cont{
+      position: relative; 
+      font-size: 60px; 
+      font-family: 'Poppins', sans-serif; 
+      font-weight: 900;
+      top: 15%;
+      left: -22%;
+    }
+
+    #input1{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 200px; 
+      height: 40px; 
+      font-size: 15px; 
+      position: relative; 
+      left: 8%;
+      top: 20%;
+    }
+
+    #input2{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 200px; 
+      height: 40px; 
+      font-size: 15px; 
+      position: relative; 
+      left: 33%; 
+      top: 15.8%;
+    }
+
+    #input3{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 455px; 
+      height: 40px; 
+      font-size: 15px; 
+      position: relative; 
+      left: 8%; 
+      top: 20%;
+    }
+
+    #input4{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 455px; 
+      height: 200px; 
+      font-size: 15px; 
+      position: relative; 
+      left: 8%; 
+      top: 25%;
+    }
+
+    #input1::placeholder,#input2::placeholder,#input3::placeholder,#input4::placeholder{
     position: relative;
     left: 5%;
     color: #C2C2C2;
@@ -951,10 +1216,108 @@ body{
     height: 50px;
     width: 200px;
     top: 20%;
-    left: 15%;
+    left: -15%;
     border-radius: 10px;
   }
+
+  .camp3{
+    position: relative;
+    left: 35%;
+    width: 400px;
+    top: -15%;
+  }
+  }
   
+  @media (min-width: 1300px){
+
+    #cont{
+      position: relative; 
+      font-size: 60px; 
+      font-family: 'Poppins', sans-serif; 
+      font-weight: 900;
+      top: 15%;
+      left: -25%;
+    }
+
+    #input1{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 250px; 
+      height: 50px; 
+      font-size: 15px; 
+      position: relative; 
+      left: 10%; 
+      top: 20%;
+    }
+
+    #input2{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 250px; 
+      height: 50px; 
+      font-size: 15px; 
+      position: relative; 
+      left: 15%; 
+      top: 20%;
+    }
+
+    #input3{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 600px; 
+      height: 50px; 
+      font-size: 15px; 
+      position: relative; 
+      left: -16.5%; 
+      top: 35%;
+    }
+
+    #input4{
+      border: 2px solid #D9D9D9; 
+      border-radius: 10px; 
+      width: 600px; 
+      height: 150px; 
+      font-size: 15px; 
+      position: relative; 
+      left: -48.4%; 
+      top: 55%;
+    }
+
+    #input1::placeholder,#input2::placeholder,#input3::placeholder,#input4::placeholder{
+    position: relative;
+    left: 5%;
+    color: #C2C2C2;
+   }
+
+   #boton2{
+    position: relative;
+    border: 0px;
+    color: white;
+    font-size: 18px;
+    background-color: #19376D;
+    height: 50px;
+    width: 200px;
+    top: 30%;
+    left: 5%;
+    border-radius: 10px;
+  }
+
+  .camp3{
+    position: relative;
+    left: 25%;
+    width: 500px;
+  }
+  }
+  
+
+   .img1{
+    position: relative;
+    top: 1%;
+    left: 5%;
+    width: 250px;
+   }
+
+
 
   .block1{
     width: 100%;
