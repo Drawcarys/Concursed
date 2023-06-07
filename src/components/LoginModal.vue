@@ -15,7 +15,7 @@
                 <input class="dst-campo-login" type="password" id="dst-pass" pattern=".+@globex\.com" size="30" required>
                 <br>
                 <button class="dst-button-entrar" type="submit">Entrar</button>
-                <h5 class="modal-close" @click="hide()" style="padding-top: 1% ">Olvidaste tu contraseña?</h5>
+                <h5 class="modal-close" @click="redireccionarRegistrarUsuario()" style="padding-top: 1% ">No tienes cuenta? Crea una</h5>
 
             </div>
         </div>
@@ -36,6 +36,9 @@ export default {
             const modal = document.getElementById('modal');
             modal.classList.remove('show');
         },
+        redireccionarRegistrarUsuario() {
+      this.$router.push('/RegistroModal');
+    }
 
     }
 

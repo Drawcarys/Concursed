@@ -5,13 +5,25 @@
   <div class="vbmcol2">
     <form>
       <p>
-        Nombre del área: <br> </p><input type="text" name="nombreConcurso" id="vbmnombreCategoria" />
-
+        Nombre del área: <br> </p><input id="nombreArea" type="text" name="registroArea" v-model="nombreArea"/>
         
       <button type="submit" id="vbminiciar">Guardar cambios</button>
-  </form>
-</div></template>
+    </form>
+  </div>
+</template>
 
+<script>
+import { gql } from 'apollo-boost';
+
+export default {
+  data() {
+    return {
+      nombreArea: '',
+    };
+  },
+  
+};
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap');

@@ -5,25 +5,24 @@
   <div class="vbmCol2">
     <form>
       <p>
-        Nombre del concurso: <br> </p><input type="text" name="nombreConcurso" id="vbmnombreConcurso" />
+        Nombre del concurso: <br> </p><input type="text" name="nombreConcurso" id="vbmNombreConcurso" v-model="nombreConcurso" />
       <div class="vbmFechasContenedor">
         <div class="vbmfechas">
           <p>
             Fecha de inicio: <br> </p>
 
-          <input type="date" name="nombreConcurso" />
+          <input type="date" name="fechaInicio" v-model="fechaInicio" />
         </div>
         <div class="vbmfechas">
           <p>
             Fecha de termino:<br> </p>
-          <input type="date" name="nombreConcurso" />
+          <input type="date" name="fechaTermino" v-model="fechaTermino" />
         </div>
       </div>
 
       <div class="vbmconvocatoria">
         <p>
-          Adjuntar convocatoria: <br> </p><input type="file" name="nombreConcurso" placeholder="Nombre"
-          class="form-control" />
+          Adjuntar convocatoria: <br> </p><input type="file" name="adjuntarConvocatoria" class="form-control" @change="onConvocatoriaChange" />
       </div>
 
       <button type="submit" id="vbmIniciar">Guardar cambios</button>
@@ -31,6 +30,28 @@
   </div>
 </template>
 
+
+<script>
+
+export default {
+  data() {
+    return {
+      nombreConcurso: '',
+      fechaInicio: '',
+      fechaTermino: '',
+      convocatoria: null
+    };
+  },
+  methods: {
+    onConvocatoriaChange(event) {
+      const file = event.target.files[0];
+      this.convocatoria = file;
+    }
+  }
+}
+
+
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap');

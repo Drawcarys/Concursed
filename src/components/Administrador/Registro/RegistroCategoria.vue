@@ -5,10 +5,24 @@
   <div class="vbmCol2">
     <form>
       <p>
-        Nombre de la categoría: <br> </p><input type="text" name="nombreConcurso" id="vbmNombreCategoria" />
+        Nombre de la categoría: <br> </p><input type="text" name="nombreCategoria" id="vbmNombreCategoria" v-model="nombreCategoria" />
       <button type="submit" id="vbmIniciar">Guardar cambios</button>
-  </form>
-</div></template>
+    </form>
+  </div>
+</template>
+
+
+<script>
+export default {
+  data() {
+    return {
+      nombreCategoria: ''
+    };
+  }
+}
+</script>
+
+
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');

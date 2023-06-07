@@ -2,29 +2,63 @@
 
 </script>
 <template>
-
-<table id="vbmEditarArea">
-         
-         <tr>
-           <td>John Doe</td>
-           <td><button id="vbmBotonEditarArea">Editar</button></td>
-           <td><button id="vbmBotonEditarArea">Eliminar</button></td>
-         </tr>
-         <tr>
-           <td>John Doe</td>
-           <td><button id="vbmBotonEditarArea">Editar</button></td>
-           <td><button id="vbmBotonEditarArea">Eliminar</button></td>
-         </tr>
-         <tr>
-           <td>John Doe</td>
-           <td><button id="vbmBotonEditarArea">Editar</button></td>
-           <td><button id="vbmBotonEditarArea">Eliminar</button></td>
-         </tr>
-       
-       
-       </table>
-
+  <table id="vbmEditarArea">
+    <tr v-for="registro in registros" :key="registro.id">
+      <td>{{ registro.nombre }}</td>
+      <td>
+        <button @click="editarRegistro(registro.id)">Editar</button>
+      </td>
+      <td>
+        <button @click="eliminarRegistro(registro.id)">Eliminar</button>
+      </td>
+    </tr>
+  </table>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      registros: [], // guardar los registros obtenidos de la base de datos
+    };
+  },
+  methods: {
+    cargarRegistros() {
+      // obtener los registros desde la base de datos
+     
+      axios.get('/.../registros')
+        .then(response => {
+          this.registros = response.data; // Asigna los registros obtenidos al arreglo "registros"
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    editarRegistro(id) {
+      // redireccionar a la página de "EditarRegistro"
+      
+      this.$router.push(`/EditarArea/${id}`);
+    },
+    eliminarRegistro(id) {
+      //  eliminar el registro desde la base de datos
+      
+      axios.delete(`/api/registros/${id}`)
+        .then(() => {
+          // Actualizamos la lista de registros después de eliminar
+          this.registros = this.registros.filter(registro => registro.id !== id);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+  },
+  mounted() {
+    // Cargamos los registros al montar el componente
+    this.cargarRegistros();
+  },
+};
+</script>
+
 
 <style>
  #vbmEditarArea {

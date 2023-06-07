@@ -24,9 +24,9 @@ export default {
         currentTab: null,
         activeTabName: null,
         admin: [],
-        pswrd:"123",
+        pswrd:"12345678",
         nombre:"aaaaa",
-        correo:"23232",
+        correo:"cervantesenriquez@globex.com",
         tabNames,
         tabs: {
             [tabNames.GENERAlES]: RegistroGeneral,

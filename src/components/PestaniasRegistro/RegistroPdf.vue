@@ -1,17 +1,32 @@
 <template>
-  <div class="dst-container-form ">
+  <div class="dst-container-form">
     <div class="dst-col2">
-        <p>
-      Adjuntar el archivo PDF del proyecto
-      <br />
-    </p>
-    <input type="file" name="proyecto" placeholder="proyecto" /><br />
+      <p>
+        Adjuntar el archivo PDF del proyecto
+        <br />
+      </p>
+      <input type="file" name="proyecto" placeholder="proyecto" @change="adjuntarArchivo" /><br />
 
-    <button class="dst-button-format" id="dst-guardar" type="submit">Guardar avance</button>
-    <button class="dst-button-subir" id="dst-finalizar" type="submit">Finalizar registro</button>
+      <button class="dst-button-format" id="dst-guardar" type="submit">Guardar avance</button>
+      <button class="dst-button-subir" id="dst-finalizar" type="submit">Finalizar registro</button>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      archivoAdjuntoPDF: null,
+    };
+  },
+  methods: {
+    adjuntarArchivo(event) {
+      this.archivoAdjuntoPDF = event.target.files[0];
+    },
+  },
+};
+</script>
 
 <style>
 .dst-button-subir {

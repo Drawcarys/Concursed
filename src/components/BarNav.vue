@@ -14,8 +14,8 @@
 
      
       <router-link to="/"><span></span></router-link>
-      <a href="#Titulo" @click="scrollToSectio">Inicio</a>
-       <a href="#Titulo2" @click="scrollToSectio">Convocatoria</a>
+      <a href="#Titulo" @click="scrollToSection">Inicio</a>
+       <a href="#Titulo2" @click="scrollToSection">Convocatoria</a>
        <a href=".block4" @click="scrollToSection">Acerca</a>
        <a href=".block5" @click="scrollToSection">Contactanos</a>
       
@@ -47,16 +47,16 @@ export default{
     // goToHome:()=>{
     //   this.$router.push('/RegistrarProyecto')
     // }
-   scrollToSection(event) {
+    scrollToSection(event) {
   event.preventDefault();
 
   let sectionId = event.target.getAttribute('href');
-
-  // Comprobar si la URL contiene una ruta adicional
+  
   const currentPath = window.location.pathname;
+  
+  // Redirigir a la página de inicio si la ruta no es la página principal
   if (currentPath !== '/') {
-    const basePath = currentPath.substring(0, currentPath.lastIndexOf('/'));
-    sectionId = basePath + sectionId;
+    return router.push('/');
   }
 
   const element = document.querySelector(sectionId);
@@ -65,6 +65,7 @@ export default{
     element.scrollIntoView({ behavior: 'smooth' });
   }
 }
+
 
   },
   
