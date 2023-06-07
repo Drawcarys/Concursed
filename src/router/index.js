@@ -7,7 +7,7 @@ import { createRouter, createWebHistory } from 'vue-router'
         path: '/PantallaPrincipal',
         name: 'home',
         //component: Home
-        component: () => import(/* webpackChunkName: "about" */ '../PantallaPrincipal.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../JuezPantalla_principal.vue')
 
       },
       {
