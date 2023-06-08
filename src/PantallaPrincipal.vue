@@ -121,7 +121,7 @@ export default {
 </div>
 </template>
 
-<style>
+<style scope>
 body{
 	margin: 0 ;
 	padding: 0 ;
