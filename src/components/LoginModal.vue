@@ -78,7 +78,6 @@ export default {
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
-
 }
 
 .modal.show {
