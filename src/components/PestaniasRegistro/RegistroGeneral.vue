@@ -1,59 +1,80 @@
 <template>
-  <div class="dst-container-form ">
+  <div class="dst-container-form">
     <div class="dst-col2">
       <form>
         <p class="dst-p-general">
           Nombre del proyecto:
-          <input class="dst-campo" type="text" name="dst-nombreProyecto" id="dst-nombreProyecto" />
+          <input class="dst-campo" type="text" name="dst-nombreProyecto" id="dst-nombreProyecto" v-model="nombreProyecto" />
         </p>
 
         <p class="dst-p-general">
           Sede:
-          <select class="dst-select" name="dst-sede" id="dst-sede">
+          <select class="dst-select" name="dst-sede" id="dst-sede" v-model="sede">
             <option value="sede1">Sede 1</option>
           </select>
         </p>
 
         <p class="dst-p-general">
-          Categoria:
-          <select class="dst-select" name="dst-categoria" id="dst-categoria">
-            <option value="categoria1">categoria 1</option>
+          Categoría:
+          <select class="dst-select" name="dst-categoria" id="dst-categoria" v-model="categoria">
+            <option value="categoria1">Categoría 1</option>
           </select>
         </p>
 
         <p class="p-general">
           Autores del proyecto:
-          <select class="dst-select" name="dst-autores" id="dst-autores">
-            <option value="autores1">autores 1</option>
+          <select class="dst-select" name="dst-autores" id="dst-autores" v-model="autores">
+            <option value="autores1">Autores 1</option>
           </select>
         </p>
 
-
         <p class="dst-p-general">
           Área:
-          <select class="dst-select" name="dst-area" id="dst-area">
-            <option value="area1">area 1</option>
+          <select class="dst-select" name="dst-area" id="dst-area" v-model="area">
+            <option value="area1">Área 1</option>
           </select>
         </p>
 
         <p class="dst-p-general">
           Asesor de proyecto:
-          <input class="dst-radio" type="radio" id="dst-asesor" name="dst-asesor" value="si">
+          <input class="dst-radio" type="radio" id="dst-asesor" name="dst-asesor" value="si" v-model="asesor">
           <label for="dst-asesor">Si</label>
-          <input class="dst-radio" type="radio" id="dst-asesor" name="dst-asesor" value="no">
+          <input class="dst-radio" type="radio" id="dst-asesor" name="dst-asesor" value="no" v-model="asesor">
           <label for="dst-asesor">No</label><br>
         </p>
 
-        <p class="dst-p-general" >
+        <p class="dst-p-general">
           Adjuntar Foto del proyecto
-          Formato jpg, png, gif tamaño maximo, 2mg <br> </p><input type="file" name="dst-proyecto"
-          placeholder="proyecto" /><br>
+          Formato jpg, png, gif tamaño máximo, 2mg <br>
+          <input type="file" name="dst-proyecto" placeholder="proyecto" @change="adjuntarArchivo" /><br>
+        </p>
 
         <button class="dst-button-format" id="dst-guardar" type="submit">Guardar avance</button>
       </form>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      nombreProyecto: '',
+      sede: '',
+      categoria: '',
+      autores: '',
+      area: '',
+      asesor: '',
+      archivoAdjunto: null,
+    };
+  },
+  methods: {
+    adjuntarArchivo(event) {
+      this.archivoAdjunto = event.target.files[0];
+    },
+  },
+};
+</script>
 
 <style>
 .dst-container-form {

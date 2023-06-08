@@ -5,44 +5,71 @@
   <form>
     <div class="vbmmitades">
       <div class="vbmizquierdo">
-        <p> Nombre(s): <br> </p><input type="text" name="nombreConcurso" class="vbmcamposIzquierdo" />
+  <p> Nombre(s): <br> </p><input type="text" name="nombreConcurso" class="vbmcamposIzquierdo" v-model="nombres" />
 
-        <p> Primer apellido: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposIzquierdo" />
+  <p> Primer apellido: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposIzquierdo" v-model="primerApellido" />
 
-        <p> Segundo apellido: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposIzquierdo" />
+  <p> Segundo apellido: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposIzquierdo" v-model="segundoApellido" />
 
-        <p> Fecha de nacimiento: <br> </p><input type="date" name="nombreConcurso" class="vbmcamposIzquierdo" />
+  <p> Fecha de nacimiento: <br> </p><input type="date" name="nombreConcurso" class="vbmcamposIzquierdo" v-model="fechaNacimiento" />
 
-        <p> Teléfono <br> </p><input type="tel" name="nombreConcurso" class="vbmcamposIzquierdo" />
+  <p> Teléfono <br> </p><input type="tel" name="nombreConcurso" class="vbmcamposIzquierdo" v-model="telefono" />
 
-        <p> Correo electrónico <br> </p><input type="email" name="nombreConcurso" class="vbmcamposIzquierdo" />
+  <p> Correo electrónico <br> </p><input type="email" name="nombreConcurso" class="vbmcamposIzquierdo" v-model="correoElectronico" />
 
-        <p> Sede: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposIzquierdo" />
+  <p> Sede: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposIzquierdo" v-model="sede" />
 
-        <p> Categoría: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposIzquierdo" />
-     
-      </div>
+  <p> Categoría: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposIzquierdo" v-model="categoria" />
+</div>
 
-      <div class="izquierdo">
-        <p> Domicilio: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposDerecho" />
 
-        <p> Colonia: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposDerecho" />
+<div class="izquierdo">
+  <p> Domicilio: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposDerecho" v-model="domicilio" />
 
-        <p> Código postal: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposDerecho" />
+  <p> Colonia: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposDerecho" v-model="colonia" />
 
-        <p> Municipio: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposDerecho" />
+  <p> Código postal: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposDerecho" v-model="codigoPostal" />
 
-        <p> Localidad: <br> </p><input type="tel" name="nombreConcurso" class="vbmcamposDerecho" />
+  <p> Municipio: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposDerecho" v-model="municipio" />
 
-        <p> Escuela o Institución: <br> </p><input type="email" name="nombreConcurso" class="vbmcamposDerecho" />
+  <p> Localidad: <br> </p><input type="tel" name="nombreConcurso" class="vbmcamposDerecho" v-model="localidad" />
 
-        <p> Area: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposDerecho" />
-      </div>
+  <p> Escuela o Institución: <br> </p><input type="email" name="nombreConcurso" class="vbmcamposDerecho" v-model="escuelaInstitucion" />
+
+  <p> Área: <br> </p><input type="text" name="nombreConcurso" class="vbmcamposDerecho" v-model="area" />
+</div>
+
     </div>
     <button type="submit" id="vbminiciar">Guardar cambios</button>
   </form>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      nombres: '',
+      primerApellido: '',
+      segundoApellido: '',
+      fechaNacimiento: '',
+      telefono: '',
+      correoElectronico: '',
+      sede: '',
+      categoria: '',
+      domicilio: '',
+      colonia: '',
+      codigoPostal: '',
+      municipio: '',
+      localidad: '',
+      escuelaInstitucion: '',
+      area: ''
+    };
+  }
+}
 
+
+
+
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap');
