@@ -1,11 +1,12 @@
 <template> 
-<header>
+<header class="dst-color">
 <nav class="navbar">
+  <router-link to="/PantallaPrincipal"><span>Inicio</span></router-link>
+  <router-link to="/RegistrarProyecto"><span>Acerca</span></router-link>
+  <router-link to="/RegistrarProyecto"><span>Convocatoria</span></router-link>
+  <router-link to="/PantallaAdministrador"><span>Contactanos</span></router-link>
   <div class="dropdown">
     <button @click="openModal()" class="dropbtn">Login 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <button @click="openRegistro()" class="dropbtn2">Registro 
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
@@ -14,10 +15,6 @@
       <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-box-multiple-outline</title><path d="M20 2H8C6.9 2 6 2.9 6 4V16C6 17.11 6.9 18 8 18H20C21.11 18 22 17.11 22 16V4C22 2.9 21.11 2 20 2M20 16H8V4H20V16M4 6V20H18V22H4C2.9 22 2 21.11 2 20V6H4M9.77 12.84L12.6 10L9.77 7.15L11.17 5.75L14 8.6L16.84 5.77L18.24 7.17L15.4 10L18.23 12.84L16.83 14.24L14 11.4L11.17 14.24L9.77 12.84Z" /></svg>Cerrar sesión</a>
     </div>
   </div> 
-  <router-link to="/PantallaAdministrador"><span>Contactanos</span></router-link>
-  <router-link to="/RegistrarProyecto"><span>Convocatoria</span></router-link>
-  <router-link to="/RegistrarProyecto"><span>Acerca</span></router-link>
-  <router-link to="/PantallaPrincipal"><span>Inicio</span></router-link>
   <!-- <a href="#" @click="goToHome()">Inicio</a> -->
 </nav>
 </header>
@@ -60,11 +57,14 @@ export default{
 </script>
 
 <style scoped>
-@media (min-width: 1400px) {
-  .navbar {
 
+@media (min-width: 1400px) {
+  .dst-color{
+    background-color: #BDD9FF;
+  }
+  .navbar {
     overflow: hidden;
-    padding-right: 2%;
+    margin-left: 50%;
    
   }
   
@@ -73,7 +73,7 @@ export default{
     font-size: 16px;
     color: black;
     text-align: right;
-    padding: 10px 50px;
+    margin-top: 0%;
     text-decoration: none;
     font-family: 'Ubuntu', sans-serif;
     font-size: 20px;
@@ -81,9 +81,10 @@ export default{
   }
   
   .dropdown {
-    padding-top:.2%;
-    padding-right: 2%;
+    padding-top:.02%;
+    padding-right:10%;
     float: right ;
+    margin: 0% 2%;
     overflow: hidden;
   }
   
@@ -147,13 +148,9 @@ export default{
   }
   
   svg{
-   width: 25%;
-   height: 25%;
+   width: 20%;
+   height: 20%;
    padding: 2%;
   }
-}
-
-body{
-  background: linear-gradient(180deg, #BDD9FF 0%, #F7F7FF 21.67%);
 }
 </style>
