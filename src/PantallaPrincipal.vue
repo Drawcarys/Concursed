@@ -794,8 +794,6 @@ body{
     font-size: 16px; 
     font-family: 'Poppins', sans-serif;  
     position: relative; 
-    left: -25%; 
-    top: -70%;
   }
   
   #seguALRL{
@@ -856,8 +854,6 @@ body{
     font-size: 16px; 
     font-family: 'Poppins', sans-serif;  
     position: relative; 
-    left: 10%; 
-    top: -100%;
   }
   
   #fechaALRL{
@@ -880,8 +876,6 @@ body{
     font-size: 16px; 
     font-family: 'Poppins', sans-serif;  
     position: relative; 
-    left: 40%; 
-    top: -145%;
   }
     
   #lineALRL{
@@ -924,8 +918,6 @@ body{
     font-size: 16px; 
     font-family: 'Poppins', sans-serif;  
     position: relative; 
-    left: -30%; 
-    top: -70%;
   }
   
   #seguALRL{
@@ -948,8 +940,6 @@ body{
     font-size: 16px; 
     font-family: 'Poppins', sans-serif;  
     position: relative; 
-    left: 1%; 
-    top: -100%;
   }
   
   #fechaALRL{
@@ -972,8 +962,6 @@ body{
     font-size: 16px; 
     font-family: 'Poppins', sans-serif;  
     position: relative; 
-    left: 35%; 
-    top: -145%;
   }
     
   #lineALRL{
