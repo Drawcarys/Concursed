@@ -24,9 +24,24 @@ export default {
         currentTab: null,
         activeTabName: null,
         admin: [],
-        pswrd:"1234",
-        nombre:"oziel",
-        correo:"12345",
+        pswrd:"",
+        nombre:"",
+        correo:"",
+        nombreArea:"",
+        apellido1: "" , 
+        apellido2: "" , 
+        colonia: "", 
+        cp: 0, 
+        domicilio: "", 
+        fechaNac: new Date(2001,2,3), 
+        institucion: "", 
+        localidad: "", 
+        municipio: "", 
+        sexo: true, 
+        telefono: 0, 
+        rfc: "",
+        id_categoria:0,
+        id_sede:0,
         tabNames,
         tabs: {
             [tabNames.GENERAlES]: RegistroGeneral,
@@ -81,6 +96,9 @@ export default {
                 nombreArea
             }
         }`,
+        variables: {
+            nombreArea: this.nombreArea
+        },
 
     })
       this.refreshCount++;
@@ -107,6 +125,9 @@ export default {
                 rfc
             }
         }`,
+        variables: {
+            nombre: this.nombre, apellido1: this.apellido1 , apellido2: this.apellido2 , colonia: this.colonia, cp: this.cp, domicilio: this.domicilio, fechaNac: this.fechaNac, institucion: this.institucion, localidad: this.localidad, municipio: this.municipio, sexo: this.sexo, telefono: this.telefono, rfc: this.rfc
+        },
 
     })
       this.refreshCount++;
@@ -119,6 +140,9 @@ export default {
                 nombreCategoria
             }
         }`,
+        variables: {
+            nombreCategoria: this.nombreCategoria
+        },
 
     })
       this.refreshCount++;
@@ -126,7 +150,7 @@ export default {
 
         InsertJuez() {
             this.$apollo.mutate({
-                mutation: gql`mutation insert_juez_one($nombre:String!,$apellido1:String!, $apellido2:String!, $colonia:String!, $cp:Int!, $domicilio:String!, $institucion:String!, $localidad:String!, $municipio:String!, $sexo:Boolean!, $telefono:Int!, $correo:String!, $pswrd:String!, $id_categoria:Int!, $id_sede:Int!) {
+                mutation: gql`mutation insert_juez_one($nombre:String!,$apellido1:String!, $apellido2:String!, $colonia:String!, $cp:Int!, $domicilio:String!, $fechaNac:date!, $institucion:String!, $localidad:String!, $municipio:String!, $sexo:Boolean!, $telefono:Int!, $correo:String!, $pswrd:String!, $id_categoria:Int!, $id_sede:Int!) {
                 insert_juez_one(object: {persona: {data: {nombre: $nombre, apellido1: $apellido1, apellido2: $apellido2, colonia: $colonia, cp: $cp, domicilio: $domicilio, fechaNac: $fechaNac, institucion: $institucion, localidad: $localidad, municipio: $municipio, sexo: $sexo, telefono: $telefono}}, correo: $correo, pswrd: $pswrd, juez_sede_cates: {data: {id_categoriaFJSC: $id_categoria, id_sedeFJSC: $id_sede}}}) {
                 persona {
                     nombre
@@ -150,6 +174,9 @@ export default {
                 }
             }
         }`,
+        variables: {
+            nombre: this.nombre, apellido1: this.apellido1, apellido2: this.apellido2, colonia: this.colonia, cp: this.cp, domicilio: this.domicilio, fechaNac: this.fechaNac, institucion: this.institucion, localidad: this.localidad, municipio: this.municipio, sexo: this.sexo, telefono: this.telefono, correo: this.correo, pswrd: this.pswrd, id_categoria: this.id_categoria, id_sede: this.id_sede
+        },
 
     })
       this.refreshCount++;
@@ -178,6 +205,9 @@ export default {
                 pswrd
             }
         }`,
+        variables: {
+            nombre: this.nombre, apellido1: this.apellido1, apellido2: this.apellido2, colonia: this.colonia, cp: this.cp, domicilio: this.domicilio, fechaNac: this.fechaNac, institucion: this.institucion, localidad: this.localidad, municipio: this.municipio, sexo: this.sexo, telefono: this.telefono, correo: this.correo ,curp: this.curp, pswrd: this.pswrd
+        },
 
     })
       this.refreshCount++;
@@ -194,6 +224,9 @@ export default {
                 sedeProyecto
             }
         }`,
+        variables: {
+            nombreProyecto: this.nombreProyecto, areaProyecto: this.areaProyecto, categoriaProyecto: this.categoriaProyecto, modalidad: this.modalidad, sedeProyecto: this.sedeProyecto
+        },
 
     })
       this.refreshCount++;
@@ -242,7 +275,7 @@ export default {
         </tbody>
     </table> 
     {{InsertAdmin(correo, nombre, pswrd) }} --> 
-    {{InsertAdmin(correo, nombre, pswrd) }}
+    {{ InsertJuez(nombre,apellido1, colonia, cp, domicilio, fechaNac, institucion, localidad, municipio, sexo, telefono, correo, pswrd, id_categoria, id_sede) }}
     <hr/>
     <div class="dst-container dst-div">
         <component :is="currentTab" />
