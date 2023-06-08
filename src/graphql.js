@@ -10,12 +10,14 @@ export const ALL_ADMINS = gql`query admins {
 
   export const ALL_AREAS = gql`query areas {
     area {
+      id_area
       nombreArea
     }
   }`
 
   export const ALL_CATEGORIAS = gql`query categorias {
     categoria {
+      id_categoria
       nombreCategoria
     }
   }`
@@ -49,8 +51,10 @@ export const ALL_ADMINS = gql`query admins {
       proy_parts {
         proyecto {
           nombreProyecto
+          folio
         }
       }
+      id_participante
     }
   }`
 
@@ -62,5 +66,12 @@ export const ALL_ADMINS = gql`query admins {
       folio
       modalidad
       sedeProyecto
+    }
+  }`
+
+  export const ALL_SEDES = gql`query sedes {
+    sede {
+      id_sede
+      nombreSede
     }
   }`
