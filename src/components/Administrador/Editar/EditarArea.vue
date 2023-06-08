@@ -26,30 +26,16 @@ export default {
     cargarRegistros() {
       // obtener los registros desde la base de datos
      
-      axios.get('/.../registros')
-        .then(response => {
-          this.registros = response.data; // Asigna los registros obtenidos al arreglo "registros"
-        })
-        .catch(error => {
-          console.error(error);
-        });
     },
     editarRegistro(id) {
       // redireccionar a la página de "EditarRegistro"
       
       this.$router.push(`/EditarArea/${id}`);
     },
-    eliminarRegistro(id) {
+    eliminarRegistro() {
       //  eliminar el registro desde la base de datos
       
-      axios.delete(`/api/registros/${id}`)
-        .then(() => {
-          // Actualizamos la lista de registros después de eliminar
-          this.registros = this.registros.filter(registro => registro.id !== id);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+
     },
   },
   mounted() {

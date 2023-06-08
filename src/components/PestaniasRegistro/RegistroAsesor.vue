@@ -24,7 +24,7 @@
         <p class="dst-p-autor">
           Fecha de nacimiento:
           <input class="dst-campo-autor" type="date" id="dst-fechaNacimientoAsesor" name="dst-fechaNacimientoAsesor"
-            value="2018-07-22" min="2000-01-01" max="2020-12-31" v-model="fechaNacimientoAsesor" />
+           min="2000-01-01" max="2020-12-31" v-model="fechaNacimientoAsesor" />
           Correo:
           <input class="dst-campo-autor" type="text" name="dst-correoAsesor" id="dst-correoAsesor" v-model="correoAsesor" />
           Escuela:
