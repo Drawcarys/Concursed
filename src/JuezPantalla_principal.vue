@@ -47,7 +47,7 @@ function cerrar() {
     
 </template>
 
-<style scope>
+<style scoped>
 
 @media (min-width: 800px) {
     #evaALRL{

@@ -71,7 +71,7 @@
     </form>
 </template>
  
-<script scope>
+<script scoped>
 
 export default {
     name: 'RegistroModal',
