@@ -5,7 +5,7 @@ import RegistroAutorDos from './PestaniasRegistro/RegistroAutorDos.vue';
 import RegistroAsesor from './PestaniasRegistro/RegistroAsesor.vue';
 import RegistroPdf from './PestaniasRegistro/RegistroPdf.vue';
 import Barnav from './BarNav.vue';
-import { ALL_ADMINS} from '../graphql'
+import { ALL_ADMINS, ALL_AREAS, ALL_CATEGORIAS, ALL_JUECES, ALL_PARTICIPANTES, ALL_PROYECTOS} from '../graphql'
 import gql from 'graphql-tag'
 
 // eslint-disable-next-line no-unused-vars
@@ -24,9 +24,9 @@ export default {
         currentTab: null,
         activeTabName: null,
         admin: [],
-        pswrd:"12345678",
-        nombre:"aaaaa",
-        correo:"cervantesenriquez@globex.com",
+        pswrd:"1234",
+        nombre:"oziel",
+        correo:"12345",
         tabNames,
         tabs: {
             [tabNames.GENERAlES]: RegistroGeneral,
@@ -44,7 +44,12 @@ export default {
         RegistroGeneral
     },
     apollo: {
-        admin:ALL_ADMINS
+        admin:ALL_ADMINS,
+        area:ALL_AREAS,
+        categoria:ALL_CATEGORIAS,
+        juez:ALL_JUECES,
+        participante:ALL_PARTICIPANTES,
+        proyecto:ALL_PROYECTOS
     },
     methods: {
         handleTabClick: function (tabNames) {
@@ -61,6 +66,145 @@ export default {
                 pswrd
             }
         }`,
+
+    })
+      this.refreshCount++;
+    },
+
+        InsertArea() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insert_area_one($nombreArea:String!) {
+                insert_area_one(object: {nombreArea: $nombreArea}) {
+                nombreArea
+            }
+        }`,
+
+    })
+      this.refreshCount++;
+    },
+
+        InsertAsesor() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insert_asesor_one($nombre:String!,$apellido1:String!, $apellido2:String!, $colonia:String!, $cp:Int!, $domicilio:String!, $institucion:String!, $localidad:String!, $municipio:String!, $sexo:Boolean!, $telefono:Int!, $rfc:String!) {
+                insert_asesor_one(object: {persona: {data: {nombre: $nombre, apellido1: $apellido1, apellido2: $apellido2, colonia: $colonia, cp: $cp, domicilio: $domicilio, fechaNac: $fechaNac, institucion: $institucion, localidad: $localidad, municipio: $municipio, sexo: $sexo, telefono: $telefono}}, rfc: $rfc}) {
+                persona {
+                    nombre
+                    apellido1
+                    apellido2
+                    colonia
+                    cp
+                    domicilio
+                    fechaNac
+                    institucion
+                    localidad
+                    municipio
+                    sexo
+                    telefono
+                }
+                rfc
+            }
+        }`,
+
+    })
+      this.refreshCount++;
+    },
+
+        InsertCategoria() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insert_categoria_one($nombreCategoria:String!) {
+                insert_categoria_one(object: {nombreCategoria: $nombreCategoria}) {
+                nombreCategoria
+            }
+        }`,
+
+    })
+      this.refreshCount++;
+    },
+
+        InsertJuez() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insert_juez_one($nombre:String!,$apellido1:String!, $apellido2:String!, $colonia:String!, $cp:Int!, $domicilio:String!, $institucion:String!, $localidad:String!, $municipio:String!, $sexo:Boolean!, $telefono:Int!, $correo:String!, $pswrd:String!, $id_categoria:Int!, $id_sede:Int!) {
+                insert_juez_one(object: {persona: {data: {nombre: $nombre, apellido1: $apellido1, apellido2: $apellido2, colonia: $colonia, cp: $cp, domicilio: $domicilio, fechaNac: $fechaNac, institucion: $institucion, localidad: $localidad, municipio: $municipio, sexo: $sexo, telefono: $telefono}}, correo: $correo, pswrd: $pswrd, juez_sede_cates: {data: {id_categoriaFJSC: $id_categoria, id_sedeFJSC: $id_sede}}}) {
+                persona {
+                    nombre
+                    apellido1
+                    apellido2
+                    colonia
+                    cp
+                    domicilio
+                    fechaNac
+                    institucion
+                    localidad
+                    municipio
+                    sexo
+                    telefono
+                }
+                correo
+                pswrd
+                juez_sede_cates {
+                    id_categoriaFJSC
+                    id_sedeFJSC
+                }
+            }
+        }`,
+
+    })
+      this.refreshCount++;
+    },
+
+        InsertParticipante() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insert_participante_one($nombre:String!,$apellido1:String!, $apellido2:String!, $colonia:String!, $cp:Int!, $domicilio:String!, $institucion:String!, $localidad:String!, $municipio:String!, $sexo:Boolean!, $telefono:Int!, $curp:String!) {
+                insert_participante_one(object: {persona: {data: {nombre: $nombre, apellido1: $apellido1, apellido2: $apellido2, colonia: $colonia, cp: $cp, domicilio: $domicilio, fechaNac: $fechaNac, institucion: $institucion, localidad: $localidad, municipio: $municipio, sexo: $sexo, telefono: $telefono}}, correo: $correo, curp: $curp, pswrd: $pswrd}) {
+                persona {
+                    nombre
+                    apellido1
+                    apellido2
+                    colonia
+                    cp
+                    domicilio
+                    fechaNac
+                    institucion
+                    localidad
+                    municipio
+                    sexo
+                    telefono
+                }
+                correo
+                curp
+                pswrd
+            }
+        }`,
+
+    })
+      this.refreshCount++;
+    },
+
+        InsertProyecto() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insert_proyecto_one($nombreProyecto:String!, $areaProyecto:Int!, $categoriaProyecto:Int!, $modalidad:Int!, $sedeProyecto:Int!) {
+                insert_proyecto_one(object: {nombreProyecto: $nombreProyecto, areaProyecto: $areaProyecto, categoriaProyecto: $categoriaProyecto, modalidad: $modalidad, sedeProyecto: $sedeProyecto}) {
+                nombreProyecto
+                areaProyecto
+                categoriaProyecto
+                modalidad
+                sedeProyecto
+            }
+        }`,
+
+    })
+      this.refreshCount++;
+    },
+        
+
+        InsertSede() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insert_sede_one($nombreSede:String!) {
+                insert_sede_one(object: {nombreSede: $nombreSede}) {
+                nombreSede
+            }
+        }`,
+
         variables: {
             correo: this.correo, nombre: this.nombre, pswrd: this.pswrd
         },
@@ -93,8 +237,8 @@ export default {
               <td>{{ adm.id_admin }}</td>
             </tr>
         </tbody>
-    </table>
-    {{InsertAdmin(correo, nombre, pswrd) }} -->
+    </table> 
+    {{InsertAdmin(correo, nombre, pswrd) }} --> 
     <hr/>
     <div class="dst-container dst-div">
         <component :is="currentTab" />
