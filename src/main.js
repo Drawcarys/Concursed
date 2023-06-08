@@ -45,8 +45,11 @@ import {createApolloProvider} from '@vue/apollo-option'
 
 
 
+
+
 const httpLink = createHttpLink({
  uri: 'https://saved-seahorse-42.hasura.app/v1/graphql',
+ credentials: 'include'
 });
 
 const authLink = setContext((_, { headers }) => {

@@ -1,7 +1,7 @@
 <template>
   <div class="dst-container-form">
     <div class="dst-col2">
-      <form>
+      <form action="javascript:void(0);">
         <p class="dst-p-autor">
           Nombre(s):
           <input class="dst-campo-autor" type="text" name="dst-nombreAutor1" id="dst-nombreAutor1" v-model="nombreAutor1" />

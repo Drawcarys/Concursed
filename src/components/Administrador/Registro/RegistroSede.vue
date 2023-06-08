@@ -3,7 +3,7 @@
 </script>
 <template>
   <div class="vbmCol2">
-    <form>
+    <form action="javascript:void(0);">
       <p>
         Nombre de la sede: <br> </p><input type="text" name="nombreConcurso" id="vbmNombreSede" v-model="nombreSede" />
 

@@ -54,6 +54,14 @@ export const ALL_ADMINS = gql`query admins {
     }
   }`
 
+  
+  export const ALL_SEDES = gql`query sedes {
+    sede {
+      id_sede
+      nombreSede
+    }
+  }`
+
   export const ALL_PROYECTOS = gql`query proyectos {
     proyecto {
       nombreProyecto
@@ -62,5 +70,11 @@ export const ALL_ADMINS = gql`query admins {
       folio
       modalidad
       sedeProyecto
+    }
+  }`
+
+  export const CHECK_USER = gql`query usuarios($password: String!) {
+    participante(where: {pswrd: {_eq: $password}}) {
+      correo
     }
   }`

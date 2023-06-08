@@ -1,5 +1,5 @@
 <template>
-    <form action="" id="form">
+    <form action="javascript:void(0);" id="form">
         <div class="RegistroModal dst-div" id="RegistroModal">
             <div class="registro-content">
                 <div class="modalRegistro-header"><span @click="hide()" class="modalRegistro-close">&times;</span> </div>
@@ -9,20 +9,23 @@
                     </p>
                     <p  id="text2ALRL">Nombre</p>
                     <input id="input1" type="Nombre"
-                        placeholder="Nombre">
-                    <p id="text3ALRL">Apellido</p>
+                        placeholder="Nombre" v-model="nombre">
+                    <p id="text3ALRL">Apellido Paterno</p>
                     <input id="input2"
-                        placeholder="Apellido">
+                        placeholder="Paterno" v-model="apellido1">
+                    <p id="text3ALRL">Apellido Materno</p>
+                    <input id="input2"
+                        placeholder="Materno" v-model="apellido2">
 
                     <p id="text4ALRL">Correo Electrónico</p>
-                    <input id="input3"  placeholder="Correo electrónico" >
+                    <input id="input3"  placeholder="Correo electrónico" v-model="correo">
                     <p id="text5ALRL" >Confirma tu correo electrónico</p>
-                    <input id="input4" placeholder="Confirma tu correo electrónico" >    
+                    <input id="input4" placeholder="Confirma tu correo electrónico" v-model="c_correo">    
                     
                     <p id="text6ALRL" >Contraseña</p>
-                    <input id="input5"  placeholder="Contraseña" >
+                    <input id="input5"  placeholder="Contraseña" type="password" v-model="password">
                     <p id="text7ALRL" >Confirma tu contraseña</p>
-                    <input id="input6" placeholder="Confirma tu contraseña" >
+                    <input id="input6" placeholder="Confirma tu contraseña" type="password" v-model="c_password">
                 
                     <div id="circuloALRL" >
                         <img id="imgALRL" src="@/assets/Designer.png" >
@@ -30,19 +33,19 @@
                     
                     <p id="text8ALRL">Fecha de nacimiento</p>
         
-                    <select name="dia" id="diaALRL">
+                    <select name="dia" id="diaALRL" v-model="dia">
                     <option value="" v-for="(categorias,index) in 31" :key="index">
                     {{ 31-index }}
                     </option>
                     </select>
 
-                    <select name="meses" id="mesesALRL" >
+                    <select name="meses" id="mesesALRL" v-model="mes">
                     <option value="" v-for="(categorias,index) in 12" :key="index">
                     {{ 12-index }}
                     </option>
                     </select>
 
-                    <select name="years" id="yearsALRL" >
+                    <select name="years" id="yearsALRL" v-model="año">
                     <option value="" v-for="(item, index) in 2023" :key="index">
                     {{2023-index}}
                     </option>
@@ -50,19 +53,19 @@
                     
 
                     <p id="text9ALRL">Sexo</p>
-                    <select name="sexo" id="sexoALRL">
-                    <option value="">
+                    <select name="sexo" id="sexoALRL" v-model="sexo">
+                    <option value=true>
                     Masculino
                     </option>
-                    <option value="">
+                    <option value=false>
                     Femenino
                     </option>
-                    <option value="">
+                    <option value=false>
                     Otro
                     </option>
                     </select>
                 
-                    <button class="buttonregistrerALRL">Registrarse</button>
+                    <button class="buttonregistrerALRL" @click="RegistrarPersona(apellido1, apellido2, fecha, nombre, sexo, correo, password)">Registrarse</button>
                 
                 
                 </div>
@@ -73,8 +76,23 @@
  
 <script scoped>
 
+import gql from 'graphql-tag'
+
 export default {
     name: 'RegistroModal',
+    data () {
+      return {
+        email: '',
+        nombre: '',
+        password: '',
+        apellido:'',
+        dia:0,
+        mes:0,
+        año:0,
+        sexo:true,
+        fecha:new Date(2001,2,3)
+      }
+    },
     methods: {
         show() {
             const RegistroModal = document.getElementById('RegistroModal');
@@ -84,7 +102,23 @@ export default {
             const RegistroModal = document.getElementById('RegistroModal');
             RegistroModal.classList.remove('show');
         },
-    }
+
+        RegistrarPersona(){
+            this.$apollo.mutate({
+                mutation: gql`mutation insert_persona_one($apellido1:String!, $apellido2:String! $fecha:date!, $nombre:String!, $sexo:Boolean!, $correo:String!, $password:String!) {
+                    insert_persona(objects: {apellido1: $apellido1, apellido2: $apellido2, fechaNac: $fecha, nombre: $nombre, sexo: $sexo, participantes: {data: {correo: $correo, pswrd: $password, curp: ""}}, domicilio: "", colonia: "", cp: 10, telefono: 10, municipio: "", localidad: "", institucion: ""}) {
+                    returning {
+                        id_persona
+                        }
+                    }
+                }`,
+                variables: {
+                    apellido1: this.apellido1, apellido2: this.apellido2, fecha: this.fecha, nombre: this.nombre, sexo: this.sexo, correo: this.correo, password: this.password
+                },
+            })
+        },
+
+    },
 
 };
 </script>

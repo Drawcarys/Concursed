@@ -1,7 +1,7 @@
 <template>
   <div class="dst-container-form">
     <div class="dst-col2">
-      <form>
+      <form action="javascript:void(0);">
         <p class="dst-p-general">
           Nombre del proyecto:
           <input class="dst-campo" type="text" name="dst-nombreProyecto" id="dst-nombreProyecto" v-model="nombreProyecto" />

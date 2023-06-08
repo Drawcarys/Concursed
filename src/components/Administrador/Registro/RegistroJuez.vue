@@ -2,7 +2,7 @@
 
 </script>
 <template>
-  <form>
+  <form action="javascript:void(0);">
     <div class="vbmmitades">
       <div class="vbmizquierdo">
   <p> Nombre(s): <br> </p><input type="text" name="nombreConcurso" class="vbmcamposIzquierdo" v-model="nombres" />

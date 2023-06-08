@@ -3,7 +3,7 @@
 </script>
 <template>
   <div class="vbmCol2">
-    <form>
+    <form action="javascript:void(0);">
       <p>
         Nombre de la categoría: <br> </p><input type="text" name="nombreCategoria" id="vbmNombreCategoria" v-model="nombreCategoria" />
       <button type="submit" id="vbmIniciar">Guardar cambios</button>

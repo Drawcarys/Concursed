@@ -1,5 +1,5 @@
 <template>
-   <form action="" id="form">
+   <form action="javascript:void(0);" id="form">
     <div class="modal dst-div" id="modal">
         <div class="modal-content">
             <div class="modal-header"><span @click="hide()" class="modal-close">&times;</span> </div>
@@ -10,11 +10,11 @@
                 <h4>¡Solo imagina lo que puedes lograr!</h4>
                 <br>
                 <h5>Correo Electronico</h5>
-                <input class="dst-campo-login" type="email" id="dst-email" pattern=".+@globex\.com" size="30" required>
+                <input class="dst-campo-login" type="email" id="dst-email" pattern=".+@globex\.com" size="30" v-model="correo" required>
                 <h5>Contraseña</h5>
-                <input class="dst-campo-login" type="password" id="dst-pass" pattern=".+@globex\.com" size="30" required>
+                <input class="dst-campo-login" type="password" id="dst-pass" pattern=".+@globex\.com" size="30" v-model="password" required>
                 <br>
-                <button class="dst-button-entrar" type="submit">Entrar</button>
+                <button class="dst-button-entrar" type="submit" @click="AuthUsuario()">Entrar</button>
                 <h5 class="modal-close" @click="AbrirRegistro()"  style="padding-top: 1% ">¿No tienes cuenta? Crea una</h5>
             
             </div>
@@ -27,9 +27,33 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import RegistroModal from './RegistroModal.vue'
 export default {
     name: 'LoginModal',
+    data () {
+      return {
+        correo: '',
+        login: false,
+        nombre: '',
+        password: '',
+        participante:[]
+      }
+    },
+    apollo: {
+        participante:{
+            query:gql`query loginResult($password: String!, $correo: String!) {
+                participante(where: {pswrd: {_eq: $password}, _and: {correo: {_eq: $correo}}}) {
+                    correo
+                }
+            }`,
+            variables() {
+                return {
+                    password: this.password, correo: this.correo
+                }
+            } 
+        }
+    },
     components:{
     RegistroModal
     },
@@ -50,10 +74,18 @@ export default {
             this.hide();
             const registro = document.getElementById('RegistroModal');
             registro.classList.add('show');
+        },
+        AuthUsuario(){
+        if(this.participante.length>0){
+            this.$router.push('/RegistrarProyecto');
         }
+        else{
+            console.log(this.participante.length);
+        }
+    }
 
-    } 
 
+    },
 };
 </script>
 

@@ -66,6 +66,9 @@ export default {
                 pswrd
             }
         }`,
+        variables: {
+            correo: this.correo, nombre: this.nombre, pswrd: this.pswrd
+        },
 
     })
       this.refreshCount++;
@@ -239,6 +242,7 @@ export default {
         </tbody>
     </table> 
     {{InsertAdmin(correo, nombre, pswrd) }} --> 
+    {{InsertAdmin(correo, nombre, pswrd) }}
     <hr/>
     <div class="dst-container dst-div">
         <component :is="currentTab" />

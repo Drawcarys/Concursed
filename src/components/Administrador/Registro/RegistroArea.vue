@@ -3,7 +3,7 @@
 </script>
 <template>
   <div class="vbmcol2">
-    <form>
+    <form action="javascript:void(0);">
       <p>
         Nombre del área: <br> </p><input id="nombreArea" type="text" name="registroArea" v-model="nombreArea"/>
         
