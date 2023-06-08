@@ -15,12 +15,12 @@
                 <input class="dst-campo-login" type="password" id="dst-pass" pattern=".+@globex\.com" size="30" required>
                 <br>
                 <button class="dst-button-entrar" type="submit">Entrar</button>
-                <h5 class="modal-close" @click="AbrirRegistro()" style="padding-top: 1% ">Olvidaste tu contraseña?</h5>
+                <h5 class="modal-close" @click="AbrirRegistro()"  style="padding-top: 1% ">Olvidaste tu contraseña?</h5>
             </div>
         </div>
     </div>
    </form>
-   <RegistroModal ref="registro">
+   <RegistroModal ref="RegistroModal">
    </RegistroModal>
 
 </template>
@@ -43,7 +43,7 @@ export default {
         },
 
         AbrirRegistro(){
-            const registro = document.getElementById('registro');
+            const registro = document.getElementById('RegistroModal');
             registro.classList.add('show');
         }
 
