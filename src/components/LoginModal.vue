@@ -47,6 +47,7 @@ export default {
     },
 
         AbrirRegistro(){
+            this.hide();
             const registro = document.getElementById('RegistroModal');
             registro.classList.add('show');
         }

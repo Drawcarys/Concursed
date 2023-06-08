@@ -81,7 +81,6 @@ export default{
 
 <style scoped>
 
-@media (min-width: 1400px) {
   .dst-color{
     background-color: #BDD9FF;
   }
@@ -175,5 +174,5 @@ export default{
    height: 20%;
    padding: 2%;
   }
-}
+
 </style>
