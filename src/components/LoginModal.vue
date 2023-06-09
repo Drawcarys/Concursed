@@ -18,13 +18,13 @@
                     <br>
                     <p>
                         Tipo de usuario:
-                        <select class="dst-campo-us" name="dst-tipoususario" id="dst-tipoususario" >
-                            <option value="administrador">Administrador</option>
-                            <option value="participante">Participante</option>
-                            <option value="juez">Juez</option>
+                        <select class="dst-campo-us" name="dst-tipoususario" id="dst-tipoususario" v-model="tipoUser">
+                            <option value='Participante'>Participante</option>
+                            <option value='Juez'>Juez</option>
+                            <option value='Administrador'>Administrador</option> 
                         </select>
                     </p>
-                    <button class="dst-button-entrar" type="submit" @click="AuthUsuario()">Entrar</button>
+                    <button class="dst-button-entrar" type="submit" @click="AuthChose(tipoUser)">Entrar</button>
                     <h5 class="modal-close" @click="AbrirRegistro()" style="padding-top: 1% ">¿No tienes cuenta? Crea una
                     </h5>
                 </div>
@@ -46,7 +46,8 @@ export default {
             login: false,
             nombre: '',
             password: '',
-            participante: []
+            participante: [],
+            tipoUser: 'Participante'
         }
     },
     apollo: {
@@ -90,6 +91,41 @@ export default {
             }
             else {
                 console.log(this.participante.length);
+            }
+        },
+        AuthJuez() {
+            if (this.participante.length > 0) {
+                this.$router.push('/JuezPantalla');
+            }
+            else {
+                console.log(this.participante.length);
+            }
+        },
+        AuthAdmin() {
+            if (this.participante.length > 0) {
+                this.$router.push('/PantallaAdministrador');
+            }
+            else {
+                console.log(this.participante.length);
+            }
+        },
+        AuthChose(op){
+            switch(op){
+                case 'Participante':
+                    this.AuthUsuario()
+                    console.log(op);
+                    break;
+                case 'Juez':
+                    this.AuthJuez()
+                    console.log(op);
+                    break;
+                case 'Administrador':
+                    this.AuthAdmin()
+                    console.log(op);
+                    break;
+                default:
+                    console.log(op);
+                    break;
             }
         }
 
