@@ -24,7 +24,7 @@
         <p class="dst-p-autor">
           Fecha de nacimiento:
           <input class="dst-campo-autor" type="date" id="dst-fechaNacimiento2" name="dst-fechaNacimiento2"
-           min="2000-01-01" max="2020-12-31" v-model="fechaNacimientoAutor2" />
+           min="2000-02-01" max="2020-12-31" v-model="fechaNacimientoAutor2" />
           Correo:
           <input class="dst-campo-autor" type="email" name="dst-correoAutor2" id="dst-correoAutor2" v-model="correoAutor2" />
           Escuela:
@@ -63,7 +63,7 @@
           <br />
         </p>
 
-        <button class="dst-button-format" id="dst-guardar" type="submit">Guardar avance</button>
+        <button class="dst-button-format" id="dst-guardar" type="button" @click="sendAutorDosData({'nombreAutor2':this.nombreAutor1,'primerApellidoAutor2':this.primerApellidoAutor1,'segundoApellidoAutor2':this.segundoApellidoAutor1,'coloniaAutor2':this.coloniaAutor1,'cpAutor2':this.cpAutor1,'fechaNacimientoAutor2':this.fechaNacimientoAutor1,'correoAutor2':this.correoAutor1,'escuelaAutor2':this.escuelaAutor1,'telefonoAutor2':this.telefonoAutor1,'municipioAutor2':this.municipioAutor1,'localidadAutor2':this.localidadAutor1,'sexoAutor2':this.sexoAutor1,'constanciaAutor2':this.constanciaAutor2,'identificacionAutor2':this.identificacionAutor2,'fotoAutor2':this.fotoAutor2})">Guardar avance</button>
       </form>
     </div>
   </div>
@@ -103,7 +103,10 @@ export default {
     CargarFoto(event) {
       const file = event.target.files[0];
       this.fotoAutor2 = file;
-    }
+    },
+    sendAutorDosData(args) {
+      this.$emit('argsAutorDos',args)
+    },
   }
 }
 </script>

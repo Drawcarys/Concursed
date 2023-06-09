@@ -23,6 +23,9 @@ export default {
         return{
         argsGeneral:[],
         argsAutorUno:[],
+        argsAutorDos:[],
+        argsAsesor:[],
+        argsRegistroPDF:[],
         currentTab: null,
         activeTabName: null,
         admin: [],
@@ -82,7 +85,23 @@ export default {
         },
 
         getGeneralData (value) {
-            this.args = value
+            this.argsGeneral = value
+            console.log(value)
+        },
+        getAutorUnoData (value) {
+            this.argsAutorUno = value
+            console.log(value)
+        },
+        getAutorDosData (value) {
+            this.argsAutorDos = value
+            console.log(value)
+        },
+        getAsesorData (value) {
+            this.argsAsesor = value
+            console.log(value)
+        },
+        getRegistroPDFData (value) {
+            this.argsRegistroPDF = value
             console.log(value)
         },
 
@@ -269,29 +288,8 @@ export default {
 
 <template>
     <Barnav/>
-    <hr/>
-    <!-- <table v-bind:key="refreshCount">
-          <thead>
-            <tr>
-              <th scope="col">Correo</th>
-              <th scope="col">Pass</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">ID</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for='adm in admin' v-bind:key="adm">
-              <th scope="row">{{ adm.correo }}</th>
-              <td>{{ adm.pswrd }}</td>
-              <td>{{ adm.nombre }}</td>
-              <td>{{ adm.id_admin }}</td>
-            </tr>
-        </tbody>
-    </table> 
-    {{InsertAdmin(correo, nombre, pswrd) }} --> 
-    <hr/>
     <div class="dst-container dst-div">
-        <component :is="currentTab" @argsGeneral="getGeneralData" @argsAutorUno="getGeneralData" />
+        <component :datosGeneral="argsGeneral" :datosAutorUno="argsAutorUno" :datosAutorDos="argsAutorDos" :datosAsesor="argsAsesor" :is="currentTab" @argsGeneral="getGeneralData" @argsAutorUno="getAutorUnoData" @argsAutorDos="getAutorDosData" @argsAsesor="getAsesorData" @argsRegistroPDF="getRegistroPDFData"/>
         <div class="dst-tabs-container">
             <div class="dst-tabs-item" @click="handleTabClick(tabNames.GENERAlES)"
                 :class="{ 'dst-tabs-item-active': activeTabName === tabNames.GENERAlES }">
