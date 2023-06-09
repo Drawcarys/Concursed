@@ -170,11 +170,7 @@ export default {
 }
 
 #vbmeditarCat{
-    justify-content: center;
-    border-style: solid;
-    box-sizing: border-box;
-    border: 1px solid #333d48;
-    border-radius: 17px;
+   
 }
 
 #vbmregistroCategoria{

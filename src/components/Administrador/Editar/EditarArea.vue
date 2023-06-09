@@ -3,8 +3,6 @@
 </script>
 <template>
   <div>
-    <button @click="verDatos()">Ver datos</button>
-
     <v-dialog v-model="mostrarDialogo" max-width="500px">
       <v-card>
         <v-card-title>
@@ -23,10 +21,12 @@
           </table>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" text @click="mostrarDialogo = false">Cerrar</v-btn>
+         
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <button color="primary" id="vbmBotonEditarArea" text @click="mostrarDialogo = false">Cerrar</button>
+    <button @click="verDatos()" id="vbmBotonEditarArea">Ver datos</button>
   </div>
 </template>
 

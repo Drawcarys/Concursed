@@ -10,18 +10,6 @@
       </form>
     </div>
 
-    <table id="tablaAreas">
-      <tr>
-        <th>Área</th>
-        <th>Acciones</th>
-      </tr>
-      <tr v-for="area in areasRegistradas" :key="area.id">
-        <td>{{ area.nombreArea }}</td>
-        <td>
-          <button @click="eliminarArea(area.id)">Eliminar área</button>
-        </td>
-      </tr>
-    </table>
   </div>
 </template>
 

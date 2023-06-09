@@ -4,8 +4,8 @@
 <template>
   <div class="vbmCol2">
     <form @submit.prevent="guardarCategoria" v-if="!editar">
-      <p>Nombre de la categoría:</p>
-      <input type="text" name="nombreCategoria" id="vbmNombreCategoria" v-model="nombreCategoria" />
+
+    
       <button type="submit" id="vbmIniciar">Guardar cambios</button>
     </form>
 
@@ -29,8 +29,8 @@
           <td>{{ categoria.id_categoria }}</td>
           <td>{{ categoria.nombreCategoria }}</td>
           <td>
-            <button @click="editarCategoria(categoria)">Editar</button>
-            <button @click="eliminarCategoria(categoria.id_categoria)">Eliminar</button>
+            <button @click="editarCategoria(categoria)" id="vbmbotonesTabla">Editar</button>
+            <button @click="eliminarCategoria(categoria.id_categoria)" id="vbmbotonesTabla">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -176,7 +176,7 @@ export default {
 
 #vbmtablaCategoria td,
 #vbmtablaCategoria th {
-    padding: 8px;
+    padding: 10px;
     width: 300px;
     height: 80px;
 }
@@ -188,6 +188,8 @@ export default {
 #vbmbotonesTabla {
     width: 150px;
     height: 50px;
+
+    padding: 2%;
 
     font-family: Poppins;
     background: #30649D;
