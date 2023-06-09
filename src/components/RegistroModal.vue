@@ -64,15 +64,15 @@ export default {
 
         RegistrarPersona() {
             this.$apollo.mutate({
-                mutation: gql`mutation insert_persona_one($apellido1:String!, $apellido2:String! $fecha:date!, $nombre:String!, $sexo:Boolean!, $correo:String!, $password:String!) {
-                    insert_persona(objects: {apellido1: $apellido1, apellido2: $apellido2, fechaNac: $fecha, nombre: $nombre, sexo: $sexo, participantes: {data: {correo: $correo, pswrd: $password, curp: ""}}, domicilio: "", colonia: "", cp: 10, telefono: 10, municipio: "", localidad: "", institucion: ""}) {
+                mutation: gql`mutation insert_usuario($correo:String!, $password:String!) {
+                    insert_usuario(objects: {correo: $correo, pswrd: $password}) {
                     returning {
-                        id_persona
+                        correo
                         }
                     }
                 }`,
                 variables: {
-                    apellido1: this.apellido1, apellido2: this.apellido2, fecha: this.fecha, nombre: this.nombre, sexo: this.sexo, correo: this.correo, password: this.password
+                    correo: this.correo, password: this.password
                 },
             })
         },
