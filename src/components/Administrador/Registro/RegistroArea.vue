@@ -1,24 +1,45 @@
 <script setup>
-
 </script>
 <template>
-  <div class="vbmcol2">
-    <form @submit.prevent="guardarArea">
-      <p>Nombre del área:</p>
-      <input id="nombreArea" type="text" name="registroArea" v-model="nombreArea" />
-      <button type="submit" id="vbminiciar">Guardar cambios</button>
-    </form>
+  <div>
+    <div class="vbmcol2">
+      <form @submit.prevent="guardarArea">
+        <p>Nombre del área:</p>
+        <input id="nombreArea" type="text" name="registroArea" v-model="nombreArea" />
+        <button type="submit" id="vbminiciar">Guardar cambios</button>
+      </form>
+    </div>
+
+    <table id="tablaAreas">
+      <tr>
+        <th>Área</th>
+        <th>Acciones</th>
+      </tr>
+      <tr v-for="area in areasRegistradas" :key="area.id">
+        <td>{{ area.nombreArea }}</td>
+        <td>
+          <button @click="eliminarArea(area.id)">Eliminar área</button>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
 <script>
 import { gql } from 'graphql-tag';
 
-const guardarAreaMutation = gql`
-  mutation guardarArea($nombreArea: String!) {
-    guardarArea(nombreArea: $nombreArea) {
-      id
+const insertAreaMutation = gql`
+  mutation InsertArea($nombreArea: String!) {
+    insert_area_one(object: { nombreArea: $nombreArea }) {
       nombreArea
+    }
+  }
+`;
+
+const deleteAreaMutation = gql`
+  mutation DeleteArea($id: Int!) {
+    delete_area_by_pk(id: $id) {
+      id
     }
   }
 `;
@@ -27,27 +48,74 @@ export default {
   data() {
     return {
       nombreArea: '',
+      areasRegistradas: [],
     };
   },
   methods: {
     guardarArea() {
-      this.$apollo.mutate({
-        mutation: guardarAreaMutation,
-        variables: {
-          nombreArea: this.nombreArea
-        }
-      })
-      .then(response => {
-        console.log('Área guardada:', response.data.guardarArea);
-        // Restablecer el campo de nombre del área después de guardar
-        this.nombreArea = '';
-      })
-      .catch(error => {
-        console.error('Error al guardar el área:', error);
-      });
-    }
-  }
-}
+      this.$apollo
+        .mutate({
+          mutation: insertAreaMutation,
+          variables: {
+            nombreArea: this.nombreArea,
+          },
+        })
+        .then((response) => {
+          const areaGuardada = response.data.insert_area_one;
+          console.log('Área guardada:', areaGuardada);
+          // Puedes hacer cualquier otra acción aquí, como actualizar la lista de áreas
+          // o mostrar un mensaje de éxito al usuario.
+        })
+        .catch((error) => {
+          console.error('Error al guardar el área:', error);
+          // Puedes mostrar un mensaje de error al usuario si ocurre algún problema.
+        });
+    },
+    eliminarArea(id) {
+      this.$apollo
+        .mutate({
+          mutation: deleteAreaMutation,
+          variables: {
+            id: id,
+          },
+        })
+        .then((response) => {
+          console.log('Área eliminada:', response.data.delete_area_by_pk);
+          // Puedes hacer cualquier otra acción aquí, como actualizar la lista de áreas
+          // o mostrar un mensaje de éxito al usuario.
+        })
+        .catch((error) => {
+          console.error('Error al eliminar el área:', error);
+          // Puedes mostrar un mensaje de error al usuario si ocurre algún problema.
+        });
+    },
+    getAreas() {
+      this.$apollo
+        .query({
+          query: gql`
+            query GetAreas {
+              area {
+                id
+                nombreArea
+              }
+            }
+          `,
+        })
+        .then((response) => {
+          const areas = response.data.area;
+          console.log(areas); // Opcional: puedes mostrar los datos en la consola para verificarlos
+
+          this.areasRegistradas = areas; // Asigna los datos a la variable "areasRegistradas"
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+  created() {
+    this.getAreas();
+  },
+};
 </script>
 
 <style>

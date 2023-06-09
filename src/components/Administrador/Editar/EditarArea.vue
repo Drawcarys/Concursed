@@ -2,48 +2,77 @@
 
 </script>
 <template>
-  <table id="vbmEditarArea">
-    <tr v-for="registro in registros" :key="registro.id">
-      <td>{{ registro.nombre }}</td>
-      <td>
-        <button @click="editarRegistro(registro.id)">Editar</button>
-      </td>
-      <td>
-        <button @click="eliminarRegistro(registro.id)">Eliminar</button>
-      </td>
-    </tr>
-  </table>
+  <div>
+    <button @click="verDatos()">Ver datos</button>
+
+    <v-dialog v-model="mostrarDialogo" max-width="500px">
+      <v-card>
+        <v-card-title>
+          Datos de áreas
+        </v-card-title>
+        <v-card-text>
+          <table id="tablaAreas">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+            </tr>
+            <tr v-for="area in registros" :key="area.id_area">
+              <td>{{ area.id_area }}</td>
+              <td>{{ area.nombreArea }}</td>
+            </tr>
+          </table>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="primary" text @click="mostrarDialogo = false">Cerrar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
+import { gql } from 'graphql-tag';
+
 export default {
   data() {
     return {
-      registros: [], // guardar los registros obtenidos de la base de datos
+      registros: [], // Variable para almacenar los registros de áreas
+      mostrarDialogo: false, // Controla la visibilidad del diálogo
     };
   },
   methods: {
-    cargarRegistros() {
-      // obtener los registros desde la base de datos
-     
-    },
-    editarRegistro(id) {
-      // redireccionar a la página de "EditarRegistro"
-      
-      this.$router.push(`/EditarArea/${id}`);
-    },
-    eliminarRegistro() {
-      //  eliminar el registro desde la base de datos
-      
+    getAreas() {
+      this.$apollo
+        .query({
+          query: gql`
+            query MyQuery {
+              area {
+                id_area
+                nombreArea
+              }
+            }
+          `,
+        })
+        .then((response) => {
+          const areas = response.data.area;
+          console.log(areas); // Opcional: puedes mostrar los datos en la consola para verificarlos
 
+          this.registros = areas; // Asigna los datos a la variable "registros"
+          this.mostrarDialogo = true; // Muestra el diálogo con los datos
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
-  },
-  mounted() {
-    // Cargamos los registros al montar el componente
-    this.cargarRegistros();
+    verDatos() {
+      this.getAreas();
+    },
   },
 };
 </script>
+
+
+
 
 
 <style>
