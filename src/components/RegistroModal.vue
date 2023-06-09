@@ -7,61 +7,22 @@
                     <h1 id="tituloALRL">Registrarse</h1>
                     <p id="text1ALRL">Es rápido y fácil
                     </p>
-                    <p id="text2ALRL">Nombre</p>
-                    <input id="input1" type="Nombre" placeholder="Nombre" v-model="nombre">
-                    <p id="text3ALRL">Apellido Paterno</p>
-                    <input id="input2" placeholder="Paterno" v-model="apellido1">
-                    <p id="text3ALRL">Apellido Materno</p>
-                    <input id="input2" placeholder="Materno" v-model="apellido2">
 
-                    <p id="text4ALRL">Correo Electrónico</p>
-                    <input id="input3" placeholder="Correo electrónico" v-model="correo">
-                    <p id="text5ALRL">Confirma tu correo electrónico</p>
-                    <input id="input4" placeholder="Confirma tu correo electrónico" v-model="c_correo">
+                    <div class="contenido-vbm">
 
-                    <p id="text6ALRL">Contraseña</p>
-                    <input id="input5" placeholder="Contraseña" type="password" v-model="password">
-                    <p id="text7ALRL">Confirma tu contraseña</p>
-                    <input id="input6" placeholder="Confirma tu contraseña" type="password" v-model="c_password">
+                        <p id="text4ALRL">Correo Electrónico</p>
+                        <input id="input3" placeholder="Correo electrónico" v-model="correo">
+                        <p id="text5ALRL">Confirma tu correo electrónico</p>
+                        <input id="input4" placeholder="Confirma tu correo electrónico" v-model="c_correo">
 
-                    <div id="circuloALRL">
-                        <img id="imgALRL" src="@/assets/Designer.png">
+                        <p id="text6ALRL">Contraseña</p>
+                        <input id="input5" placeholder="Contraseña" type="password" v-model="password">
+                        <p id="text7ALRL">Confirma tu contraseña</p>
+                        <input id="input6" placeholder="Confirma tu contraseña" type="password" v-model="c_password">
                     </div>
-
-                    <p id="text8ALRL">Fecha de nacimiento</p>
-
-                    <select name="dia" id="diaALRL" v-model="dia">
-                        <option value="" v-for="(categorias, index) in 31" :key="index">
-                            {{ 31 - index }}
-                        </option>
-                    </select>
-
-                    <select name="meses" id="mesesALRL" v-model="mes">
-                        <option value="" v-for="(categorias, index) in 12" :key="index">
-                            {{ 12 - index }}
-                        </option>
-                    </select>
-
-                    <select name="years" id="yearsALRL" v-model="año">
-                        <option value="" v-for="(item, index) in 2023" :key="index">
-                            {{ 2023 - index }}
-                        </option>
-                    </select>
-
-
-                    <p id="text9ALRL">Sexo</p>
-                    <select name="sexo" id="sexoALRL" v-model="sexo">
-                        <option value=true>
-                            Masculino
-                        </option>
-                        <option value=false>
-                            Femenino
-                        </option>
-                        <option value=false>
-                            Otro
-                        </option>
-                    </select>
-
+                        <div id="circuloALRL">
+                            <img id="imgALRL" src="@/assets/Designer.png">
+                        </div>
                     <button class="buttonregistrerALRL"
                         @click="RegistrarPersona(apellido1, apellido2, fecha, nombre, sexo, correo, password)">Registrarse</button>
 
@@ -175,6 +136,10 @@ export default {
     height: 90%;
 }
 
+.contenido-vbm {
+    margin-top: 3%;
+}
+
 #tituloALRL {
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
@@ -199,6 +164,10 @@ export default {
     top: 5%;
 }
 
+input {
+    margin-bottom: 1%;
+}
+
 #input1 {
     border: 2px solid #D9D9D9;
     border-radius: 10px;
@@ -208,24 +177,6 @@ export default {
     position: relative;
     left: -40%;
     top: 5%;
-}
-
-#text3ALRL {
-    font-family: 'Roboto', sans-serif;
-    position: relative;
-    left: -20%;
-    top: -8%;
-}
-
-#input2 {
-    border: 2px solid #D9D9D9;
-    border-radius: 10px;
-    width: 150px;
-    height: 30px;
-    font-size: 15px;
-    position: relative;
-    left: -20%;
-    top: -7%;
 }
 
 #text4ALRL {
@@ -301,13 +252,15 @@ export default {
 }
 
 #circuloALRL {
-    width: 410px;
-    height: 400px;
+    width: 200px;
+    height: 190px;
     border-radius: 50%;
     background-color: #77B1FF;
     position: relative;
-    left: 55%;
-    top: -90%;
+    left: 50%;
+    top: -80%;
+    
+    margin-top:17%;
 }
 
 #imgALRL {
@@ -315,7 +268,9 @@ export default {
     left: -5%;
     top: -10%;
     width: 450px;
+
 }
+
 
 #text8ALRL {
     font-family: 'Roboto', sans-serif;
@@ -324,55 +279,8 @@ export default {
     top: -85%;
 }
 
-#diaALRL {
-    position: relative;
-    left: 15%;
-    top: -85%;
-    width: 150px;
-    height: 30px;
-    border-radius: 10px;
-    border: 2px solid #D9D9D9;
-}
-
-#mesesALRL {
-    position: relative;
-    left: 20%;
-    top: -84.5%;
-    width: 150px;
-    height: 30px;
-    border-radius: 10px;
-    border: 2px solid #D9D9D9;
-}
-
-#yearsALRL {
-    position: relative;
-    left: 25%;
-    top: -84.5%;
-    width: 150px;
-    height: 30px;
-    border-radius: 10px;
-    border: 2px solid #D9D9D9;
-}
-
-#text9ALRL {
-    position: relative;
-    top: -83%;
-    left: 1%;
-    font-family: 'Roboto', sans-serif;
-}
-
-#sexoALRL {
-    position: relative;
-    left: 12%;
-    top: -83%;
-    width: 150px;
-    height: 30px;
-    border-radius: 10px;
-    border: 2px solid #D9D9D9;
-}
-
 .buttonregistrerALRL {
-    position: relative;
+    position: absolute;
     border: 0px;
     color: white;
     font-size: 18px;
@@ -382,6 +290,8 @@ export default {
     top: -85%;
     left: 20%;
     border-radius: 10px;
+    margin-right:25%;
+    margin-top:4%;
 }
 
 @media (min-width: 700px) {
@@ -433,25 +343,6 @@ export default {
         position: relative;
         left: 10%;
         top: -6%;
-    }
-
-    #text3ALRL {
-        font-family: 'Roboto', sans-serif;
-        font-size: 18px;
-        position: relative;
-        left: -28%;
-        top: -5%;
-    }
-
-    #input2 {
-        border: 2px solid #D9D9D9;
-        border-radius: 10px;
-        width: 150px;
-        height: 30px;
-        font-size: 15px;
-        position: relative;
-        left: 10%;
-        top: -7%;
     }
 
     #circuloALRL {
@@ -555,54 +446,6 @@ export default {
         top: -40%;
     }
 
-    #diaALRL {
-        position: relative;
-        left: 0%;
-        top: -42%;
-        width: 150px;
-        height: 30px;
-        border-radius: 10px;
-        border: 2px solid #D9D9D9;
-    }
-
-    #mesesALRL {
-        position: relative;
-        left: 1%;
-        top: -42%;
-        width: 150px;
-        height: 30px;
-        border-radius: 10px;
-        border: 2px solid #D9D9D9;
-    }
-
-    #yearsALRL {
-        position: relative;
-        left: 2%;
-        top: -42%;
-        width: 150px;
-        height: 30px;
-        border-radius: 10px;
-        border: 2px solid #D9D9D9;
-    }
-
-    #text9ALRL {
-        position: relative;
-        top: -41%;
-        left: -36%;
-        font-family: 'Roboto', sans-serif;
-        font-size: 18px;
-    }
-
-    #sexoALRL {
-        position: relative;
-        font-size: 18px;
-        left: -11%;
-        top: -43%;
-        width: 150px;
-        height: 30px;
-        border-radius: 10px;
-        border: 2px solid #D9D9D9;
-    }
 
     .buttonregistrerALRL {
         position: relative;
@@ -679,13 +522,6 @@ export default {
             position: relative;
             left: -40%;
             top: -4%;
-        }
-
-        #text3ALRL {
-            font-family: 'Roboto', sans-serif;
-            position: relative;
-            left: -20%;
-            top: -16%;
         }
 
         #input2 {
@@ -793,53 +629,6 @@ export default {
             position: relative;
             left: 20%;
             top: -110%;
-        }
-
-        #diaALRL {
-            position: relative;
-            left: 15%;
-            top: -110%;
-            width: 150px;
-            height: 30px;
-            border-radius: 10px;
-            border: 2px solid #D9D9D9;
-        }
-
-        #mesesALRL {
-            position: relative;
-            left: 20%;
-            top: -110%;
-            width: 150px;
-            height: 30px;
-            border-radius: 10px;
-            border: 2px solid #D9D9D9;
-        }
-
-        #yearsALRL {
-            position: relative;
-            left: 25%;
-            top: -110%;
-            width: 150px;
-            height: 30px;
-            border-radius: 10px;
-            border: 2px solid #D9D9D9;
-        }
-
-        #text9ALRL {
-            position: relative;
-            top: -107%;
-            left: 1%;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        #sexoALRL {
-            position: relative;
-            left: 11%;
-            top: -112%;
-            width: 150px;
-            height: 30px;
-            border-radius: 10px;
-            border: 2px solid #D9D9D9;
         }
 
         .buttonregistrerALRL {
