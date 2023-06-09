@@ -1,6 +1,10 @@
-<template> 
-<header>
+<template > 
+<header class="dst-color">
 <nav class="navbar">
+  <a href="#Titulo" @click="scrollToSection">Inicio</a>
+  <a href=".block3" @click="scrollToSection">Convocatoria</a>
+  <a href=".block4" @click="scrollToSection">Acerca</a>
+  <a href=".block5" @click="scrollToSection">Contáctanos</a>
   <div class="dropdown">
     <button @click="openModal()" class="dropbtn">Login 
       <i class="fa fa-caret-down"></i>
@@ -12,10 +16,6 @@
       <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-box-multiple-outline</title><path d="M20 2H8C6.9 2 6 2.9 6 4V16C6 17.11 6.9 18 8 18H20C21.11 18 22 17.11 22 16V4C22 2.9 21.11 2 20 2M20 16H8V4H20V16M4 6V20H18V22H4C2.9 22 2 21.11 2 20V6H4M9.77 12.84L12.6 10L9.77 7.15L11.17 5.75L14 8.6L16.84 5.77L18.24 7.17L15.4 10L18.23 12.84L16.83 14.24L14 11.4L11.17 14.24L9.77 12.84Z" /></svg>Cerrar sesión</a>
     </div>
   </div> 
-  <a href=".block5" @click="scrollToSection">Contáctanos</a>
-  <a href=".block4" @click="scrollToSection">Acerca</a>
-  <a href=".block4" @click="scrollToSection">Acerca</a>
-  <a href="#Titulo" @click="scrollToSection">Inicio</a>
   <!-- <a href="#" @click="goToHome()">Inicio</a> -->
 </nav>
 </header>
@@ -82,7 +82,7 @@ export default{
 <style scoped>
 
   .dst-color{
-    background-color: #BDD9FF;
+    background-color: #BED9FF;
   }
   .navbar {
     overflow: hidden;
@@ -94,8 +94,7 @@ export default{
     float: right;
     font-size: 16px;
     color: black;
-    text-align: right;
-    margin-top: 0%;
+    text-align: center;
     text-decoration: none;
     font-family: 'Ubuntu', sans-serif;
     font-size: 20px;
@@ -104,9 +103,9 @@ export default{
    
   .dropdown {
     padding-top:.02%;
-    padding-right:10%;
+    padding-right:7%;
     float: right ;
-    margin: 0% 2%;
+    margin: 0% 1%;
     overflow: hidden;
   }
   
