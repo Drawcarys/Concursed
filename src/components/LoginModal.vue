@@ -47,6 +47,8 @@ export default {
             nombre: '',
             password: '',
             participante: [],
+            juez: [],
+            admin: [],
             tipoUser: 'Participante'
         }
     },
@@ -54,6 +56,30 @@ export default {
         participante: {
             query: gql`query loginResult($password: String!, $correo: String!) {
                 participante(where: {pswrd: {_eq: $password}, _and: {correo: {_eq: $correo}}}) {
+                    correo
+                }
+            }`,
+            variables() {
+                return {
+                    password: this.password, correo: this.correo
+                }
+            }
+        },
+        juez: {
+            query: gql`query loginResult($password: String!, $correo: String!) {
+                juez(where: {pswrd: {_eq: $password}, _and: {correo: {_eq: $correo}}}) {
+                    correo
+                }
+            }`,
+            variables() {
+                return {
+                    password: this.password, correo: this.correo
+                }
+            }
+        },
+        admin: {
+            query: gql`query loginResult($password: String!, $correo: String!) {
+                admin(where: {pswrd: {_eq: $password}, _and: {correo: {_eq: $correo}}}) {
                     correo
                 }
             }`,
