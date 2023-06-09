@@ -5,69 +5,67 @@
                 <div class="modalRegistro-header"><span @click="hide()" class="modalRegistro-close">&times;</span> </div>
                 <div class="modal-body">
                     <h1 id="tituloALRL">Registrarse</h1>
-                    <p  id="text1ALRL">Es rápido y fácil
+                    <p id="text1ALRL">Es rápido y fácil
                     </p>
-                    <p  id="text2ALRL">Nombre</p>
-                    <input id="input1" type="Nombre"
-                        placeholder="Nombre" v-model="nombre">
+                    <p id="text2ALRL">Nombre</p>
+                    <input id="input1" type="Nombre" placeholder="Nombre" v-model="nombre">
                     <p id="text3ALRL">Apellido Paterno</p>
-                    <input id="input2"
-                        placeholder="Paterno" v-model="apellido1">
+                    <input id="input2" placeholder="Paterno" v-model="apellido1">
                     <p id="text3ALRL">Apellido Materno</p>
-                    <input id="input2"
-                        placeholder="Materno" v-model="apellido2">
+                    <input id="input2" placeholder="Materno" v-model="apellido2">
 
                     <p id="text4ALRL">Correo Electrónico</p>
-                    <input id="input3"  placeholder="Correo electrónico" v-model="correo">
-                    <p id="text5ALRL" >Confirma tu correo electrónico</p>
-                    <input id="input4" placeholder="Confirma tu correo electrónico" v-model="c_correo">    
-                    
-                    <p id="text6ALRL" >Contraseña</p>
-                    <input id="input5"  placeholder="Contraseña" type="password" v-model="password">
-                    <p id="text7ALRL" >Confirma tu contraseña</p>
+                    <input id="input3" placeholder="Correo electrónico" v-model="correo">
+                    <p id="text5ALRL">Confirma tu correo electrónico</p>
+                    <input id="input4" placeholder="Confirma tu correo electrónico" v-model="c_correo">
+
+                    <p id="text6ALRL">Contraseña</p>
+                    <input id="input5" placeholder="Contraseña" type="password" v-model="password">
+                    <p id="text7ALRL">Confirma tu contraseña</p>
                     <input id="input6" placeholder="Confirma tu contraseña" type="password" v-model="c_password">
-                
-                    <div id="circuloALRL" >
-                        <img id="imgALRL" src="@/assets/Designer.png" >
+
+                    <div id="circuloALRL">
+                        <img id="imgALRL" src="@/assets/Designer.png">
                     </div>
-                    
+
                     <p id="text8ALRL">Fecha de nacimiento</p>
-        
+
                     <select name="dia" id="diaALRL" v-model="dia">
-                    <option value="" v-for="(categorias,index) in 31" :key="index">
-                    {{ 31-index }}
-                    </option>
+                        <option value="" v-for="(categorias, index) in 31" :key="index">
+                            {{ 31 - index }}
+                        </option>
                     </select>
 
                     <select name="meses" id="mesesALRL" v-model="mes">
-                    <option value="" v-for="(categorias,index) in 12" :key="index">
-                    {{ 12-index }}
-                    </option>
+                        <option value="" v-for="(categorias, index) in 12" :key="index">
+                            {{ 12 - index }}
+                        </option>
                     </select>
 
                     <select name="years" id="yearsALRL" v-model="año">
-                    <option value="" v-for="(item, index) in 2023" :key="index">
-                    {{2023-index}}
-                    </option>
+                        <option value="" v-for="(item, index) in 2023" :key="index">
+                            {{ 2023 - index }}
+                        </option>
                     </select>
-                    
+
 
                     <p id="text9ALRL">Sexo</p>
                     <select name="sexo" id="sexoALRL" v-model="sexo">
-                    <option value=true>
-                    Masculino
-                    </option>
-                    <option value=false>
-                    Femenino
-                    </option>
-                    <option value=false>
-                    Otro
-                    </option>
+                        <option value=true>
+                            Masculino
+                        </option>
+                        <option value=false>
+                            Femenino
+                        </option>
+                        <option value=false>
+                            Otro
+                        </option>
                     </select>
-                
-                    <button class="buttonregistrerALRL" @click="RegistrarPersona(apellido1, apellido2, fecha, nombre, sexo, correo, password)">Registrarse</button>
-                
-                
+
+                    <button class="buttonregistrerALRL"
+                        @click="RegistrarPersona(apellido1, apellido2, fecha, nombre, sexo, correo, password)">Registrarse</button>
+
+
                 </div>
             </div>
         </div>
@@ -80,18 +78,18 @@ import gql from 'graphql-tag'
 
 export default {
     name: 'RegistroModal',
-    data () {
-      return {
-        email: '',
-        nombre: '',
-        password: '',
-        apellido:'',
-        dia:0,
-        mes:0,
-        año:0,
-        sexo:true,
-        fecha:new Date(2001,2,3)
-      }
+    data() {
+        return {
+            email: '',
+            nombre: '',
+            password: '',
+            apellido: '',
+            dia: 0,
+            mes: 0,
+            año: 0,
+            sexo: true,
+            fecha: new Date(2001, 2, 3)
+        }
     },
     methods: {
         show() {
@@ -103,7 +101,7 @@ export default {
             RegistroModal.classList.remove('show');
         },
 
-        RegistrarPersona(){
+        RegistrarPersona() {
             this.$apollo.mutate({
                 mutation: gql`mutation insert_persona_one($apellido1:String!, $apellido2:String! $fecha:date!, $nombre:String!, $sexo:Boolean!, $correo:String!, $password:String!) {
                     insert_persona(objects: {apellido1: $apellido1, apellido2: $apellido2, fechaNac: $fecha, nombre: $nombre, sexo: $sexo, participantes: {data: {correo: $correo, pswrd: $password, curp: ""}}, domicilio: "", colonia: "", cp: 10, telefono: 10, municipio: "", localidad: "", institucion: ""}) {
@@ -162,216 +160,218 @@ export default {
     transform: scale(0.5);
     transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-, transform 0.4s ease-in-out;
 }
+
 .modalRegistro-header {
     display: flex;
     justify-content: end;
     margin: 0px 10px;
 }
+
 .modalRegistro-close {
     cursor: pointer;
 }
 
-.modal-body{
+.modal-body {
     height: 90%;
 }
 
-#tituloALRL{
+#tituloALRL {
     font-family: 'Roboto', sans-serif;
-    font-weight: 900;  
-    position: relative; 
-    left: -36%; 
+    font-weight: 900;
+    position: relative;
+    left: -36%;
     top: -3%;
 }
 
 
-#text1ALRL{
+#text1ALRL {
     font-family: 'Roboto', sans-serif;
-    
-    position: relative; 
-    left: -40%; 
+
+    position: relative;
+    left: -40%;
     top: -3%;
 }
 
-#text2ALRL{
+#text2ALRL {
     font-family: 'Roboto', sans-serif;
-     position: relative; 
-     left: -42%; 
-     top: 5%;
+    position: relative;
+    left: -42%;
+    top: 5%;
 }
 
-#input1{
-    border: 2px solid #D9D9D9; 
-    border-radius: 10px; 
-    width: 150px; 
-    height: 30px; 
+#input1 {
+    border: 2px solid #D9D9D9;
+    border-radius: 10px;
+    width: 150px;
+    height: 30px;
     font-size: 15px;
-     position: relative; 
-     left: -40%; 
-     top: 5%;
+    position: relative;
+    left: -40%;
+    top: 5%;
 }
 
-#text3ALRL{
-    font-family: 'Roboto', sans-serif; 
-    position: relative; 
-    left: -20%; 
+#text3ALRL {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    left: -20%;
     top: -8%;
 }
 
-#input2{
-    border: 2px solid #D9D9D9; 
+#input2 {
+    border: 2px solid #D9D9D9;
     border-radius: 10px;
-     width: 150px; 
-     height: 30px; 
-     font-size: 15px; 
-     position: relative; 
-     left: -20%; 
-     top: -7%;
+    width: 150px;
+    height: 30px;
+    font-size: 15px;
+    position: relative;
+    left: -20%;
+    top: -7%;
 }
 
-#text4ALRL{
-    font-family: 'Roboto', sans-serif; 
-    position: relative; 
-    left: -40%; 
+#text4ALRL {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    left: -40%;
     top: -5%;
 }
 
-#input3{
-    border: 2px solid #D9D9D9; 
-    border-radius: 10px; 
-    width: 390px; 
-    height: 30px; 
-    font-size: 15px; 
-    position: relative; 
-    left: -32%; 
+#input3 {
+    border: 2px solid #D9D9D9;
+    border-radius: 10px;
+    width: 390px;
+    height: 30px;
+    font-size: 15px;
+    position: relative;
+    left: -32%;
     top: -5%;
 }
 
-#text5ALRL{
-    font-family: 'Roboto', sans-serif; 
-    position: relative; 
-    left: -36%; 
+#text5ALRL {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    left: -36%;
     top: -4%;
 }
 
-#input4{
-    border: 2px solid #D9D9D9; 
-    border-radius: 10px; 
-    width: 390px; 
-    height: 30px; 
-    font-size: 15px; 
-    position: relative; 
-    left: -32%; 
+#input4 {
+    border: 2px solid #D9D9D9;
+    border-radius: 10px;
+    width: 390px;
+    height: 30px;
+    font-size: 15px;
+    position: relative;
+    left: -32%;
     top: -4%;
 }
 
-#text6ALRL{
-    font-family: 'Roboto', sans-serif; 
-    position: relative; 
-    left: -42%; 
+#text6ALRL {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    left: -42%;
     top: -1%;
 }
 
-#input5{
-    border: 2px solid #D9D9D9; 
-    border-radius: 10px; 
-    width: 390px; 
-    height: 30px; 
-    font-size: 15px; 
-    position: relative; 
-    left: -32%; 
+#input5 {
+    border: 2px solid #D9D9D9;
+    border-radius: 10px;
+    width: 390px;
+    height: 30px;
+    font-size: 15px;
+    position: relative;
+    left: -32%;
     top: -2%;
 }
 
-#text7ALRL{
-    font-family: 'Roboto', sans-serif; 
-    position: relative; 
-    left: -38.5%; 
+#text7ALRL {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    left: -38.5%;
     top: 1%;
 }
 
-#input6{
-    border: 2px solid #D9D9D9; 
-    border-radius: 10px; 
-    width: 390px; 
-    height: 30px; 
-    font-size: 15px; 
-    position: relative; 
-    left: -32%; 
+#input6 {
+    border: 2px solid #D9D9D9;
+    border-radius: 10px;
+    width: 390px;
+    height: 30px;
+    font-size: 15px;
+    position: relative;
+    left: -32%;
     top: 0%;
 }
 
-#circuloALRL{
-    width: 410px; 
-    height: 400px; 
-    border-radius: 50%; 
-    background-color: #77B1FF; 
-    position: relative; 
-    left: 55%; 
+#circuloALRL {
+    width: 410px;
+    height: 400px;
+    border-radius: 50%;
+    background-color: #77B1FF;
+    position: relative;
+    left: 55%;
     top: -90%;
 }
 
-#imgALRL{
-    position: relative; 
+#imgALRL {
+    position: relative;
     left: -5%;
-    top: -10%; 
+    top: -10%;
     width: 450px;
 }
 
-#text8ALRL{
-    font-family: 'Roboto', sans-serif; 
-    position: relative; 
-    left: 21%; 
+#text8ALRL {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    left: 21%;
     top: -85%;
 }
 
-#diaALRL{
-    position: relative; 
-    left: 15%; 
-    top: -85%; 
-    width: 150px; 
-    height:30px; 
+#diaALRL {
+    position: relative;
+    left: 15%;
+    top: -85%;
+    width: 150px;
+    height: 30px;
     border-radius: 10px;
     border: 2px solid #D9D9D9;
 }
 
-#mesesALRL{
-    position: relative; 
-    left: 20%; 
-    top: -84.5%; 
-    width: 150px; 
-    height:30px; 
+#mesesALRL {
+    position: relative;
+    left: 20%;
+    top: -84.5%;
+    width: 150px;
+    height: 30px;
     border-radius: 10px;
     border: 2px solid #D9D9D9;
 }
 
-#yearsALRL{
-    position: relative; 
-    left: 25%; 
-    top: -84.5%; 
-    width: 150px; 
-    height:30px; 
+#yearsALRL {
+    position: relative;
+    left: 25%;
+    top: -84.5%;
+    width: 150px;
+    height: 30px;
     border-radius: 10px;
     border: 2px solid #D9D9D9;
 }
 
-#text9ALRL{
-    position: relative; 
-    top: -83%; 
-    left: 1%; 
+#text9ALRL {
+    position: relative;
+    top: -83%;
+    left: 1%;
     font-family: 'Roboto', sans-serif;
 }
 
-#sexoALRL{
-    position: relative; 
-    left: 12%; 
-    top: -83%; 
+#sexoALRL {
+    position: relative;
+    left: 12%;
+    top: -83%;
     width: 150px;
-    height:30px; 
+    height: 30px;
     border-radius: 10px;
     border: 2px solid #D9D9D9;
 }
 
-.buttonregistrerALRL{
+.buttonregistrerALRL {
     position: relative;
     border: 0px;
     color: white;
@@ -380,7 +380,481 @@ export default {
     height: 50px;
     width: 200px;
     top: -85%;
-    left:20%;
+    left: 20%;
     border-radius: 10px;
- } 
+}
+
+@media (min-width: 700px) {
+
+    .registro-content {
+        min-width: 50%;
+        width: 80%;
+        height: 90%;
+        background: white;
+        margin: auto;
+        border-radius: 5px;
+        visibility: hidden;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-, transform 0.4s ease-in-out;
+    }
+
+    #tituloALRL {
+        font-family: 'Roboto', sans-serif;
+        font-size: 25px;
+        font-weight: 900;
+        position: relative;
+        left: 0%;
+        top: -3%;
+    }
+
+    #text1ALRL {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        position: relative;
+        left: 0%;
+        top: -3%;
+    }
+
+    #text2ALRL {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        position: relative;
+        left: -33%;
+        top: -4%;
+    }
+
+    #input1 {
+        border: 2px solid #D9D9D9;
+        border-radius: 10px;
+        width: 150px;
+        height: 30px;
+        font-size: 15px;
+        position: relative;
+        left: 10%;
+        top: -6%;
+    }
+
+    #text3ALRL {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        position: relative;
+        left: -28%;
+        top: -5%;
+    }
+
+    #input2 {
+        border: 2px solid #D9D9D9;
+        border-radius: 10px;
+        width: 150px;
+        height: 30px;
+        font-size: 15px;
+        position: relative;
+        left: 10%;
+        top: -7%;
+    }
+
+    #circuloALRL {
+        width: 200px;
+        height: 190px;
+        border-radius: 50%;
+        background-color: #77B1FF;
+        position: relative;
+        left: 50%;
+        top: -80%;
+    }
+
+    #imgALRL {
+        position: relative;
+        left: -15%;
+        top: -20%;
+        width: 250px;
+    }
+
+    #text4ALRL {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        position: relative;
+        left: -27%;
+        top: -6%;
+    }
+
+    #input3 {
+        border: 2px solid #D9D9D9;
+        border-radius: 10px;
+        width: 390px;
+        height: 30px;
+        font-size: 15px;
+        position: relative;
+        left: 10%;
+        top: -8%;
+    }
+
+    #text5ALRL {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        position: relative;
+        left: -19%;
+        top: -7%;
+    }
+
+    #input4 {
+        border: 2px solid #D9D9D9;
+        border-radius: 10px;
+        width: 390px;
+        height: 30px;
+        font-size: 15px;
+        position: relative;
+        left: 10%;
+        top: -9%;
+    }
+
+    #text6ALRL {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        position: relative;
+        left: -32%;
+        top: -8%;
+    }
+
+    #input5 {
+        border: 2px solid #D9D9D9;
+        border-radius: 10px;
+        width: 390px;
+        height: 30px;
+        font-size: 15px;
+        position: relative;
+        left: 10%;
+        top: -10%;
+    }
+
+    #text7ALRL {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        position: relative;
+        left: -23%;
+        top: -9%;
+    }
+
+    #input6 {
+        border: 2px solid #D9D9D9;
+        border-radius: 10px;
+        width: 390px;
+        height: 30px;
+        font-size: 15px;
+        position: relative;
+        left: 10%;
+        top: -11%;
+    }
+
+    #text8ALRL {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        position: relative;
+        left: -25%;
+        top: -40%;
+    }
+
+    #diaALRL {
+        position: relative;
+        left: 0%;
+        top: -42%;
+        width: 150px;
+        height: 30px;
+        border-radius: 10px;
+        border: 2px solid #D9D9D9;
+    }
+
+    #mesesALRL {
+        position: relative;
+        left: 1%;
+        top: -42%;
+        width: 150px;
+        height: 30px;
+        border-radius: 10px;
+        border: 2px solid #D9D9D9;
+    }
+
+    #yearsALRL {
+        position: relative;
+        left: 2%;
+        top: -42%;
+        width: 150px;
+        height: 30px;
+        border-radius: 10px;
+        border: 2px solid #D9D9D9;
+    }
+
+    #text9ALRL {
+        position: relative;
+        top: -41%;
+        left: -36%;
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+    }
+
+    #sexoALRL {
+        position: relative;
+        font-size: 18px;
+        left: -11%;
+        top: -43%;
+        width: 150px;
+        height: 30px;
+        border-radius: 10px;
+        border: 2px solid #D9D9D9;
+    }
+
+    .buttonregistrerALRL {
+        position: relative;
+        border: 0px;
+        color: white;
+        font-size: 16px;
+        background-color: #19376D;
+        height: 35px;
+        width: 180px;
+        top: -43%;
+        left: 10%;
+        border-radius: 10px;
+    }
+
+    @media (min-width: 1000px) {
+        .registro-content {
+            min-width: 50%;
+            width: 70%;
+            height: 70%;
+            background: white;
+            margin: auto;
+            border-radius: 5px;
+            visibility: hidden;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-, transform 0.4s ease-in-out;
+        }
+
+        .modalRegistro-header {
+            display: flex;
+            justify-content: end;
+            margin: 0px 10px;
+        }
+
+        .modalRegistro-close {
+            cursor: pointer;
+        }
+
+        .modal-body {
+            height: 90%;
+        }
+
+        #tituloALRL {
+            font-family: 'Roboto', sans-serif;
+            font-size: 40px;
+            font-weight: 900;
+            position: relative;
+            left: -36%;
+            top: -3%;
+        }
+
+
+        #text1ALRL {
+            font-family: 'Roboto', sans-serif;
+            font-size: 20px;
+            position: relative;
+            left: -40%;
+            top: -3%;
+        }
+
+        #text2ALRL {
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            left: -43%;
+            top: -2%;
+        }
+
+        #input1 {
+            border: 2px solid #D9D9D9;
+            border-radius: 10px;
+            width: 150px;
+            height: 30px;
+            font-size: 15px;
+            position: relative;
+            left: -40%;
+            top: -4%;
+        }
+
+        #text3ALRL {
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            left: -20%;
+            top: -16%;
+        }
+
+        #input2 {
+            border: 2px solid #D9D9D9;
+            border-radius: 10px;
+            width: 150px;
+            height: 30px;
+            font-size: 15px;
+            position: relative;
+            left: -20%;
+            top: -18.5%;
+        }
+
+        #text4ALRL {
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            left: -39.5%;
+            top: -18%;
+        }
+
+        #input3 {
+            border: 2px solid #D9D9D9;
+            border-radius: 10px;
+            width: 390px;
+            height: 30px;
+            font-size: 15px;
+            position: relative;
+            left: -30%;
+            top: -20%;
+        }
+
+        #text5ALRL {
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            left: -35.5%;
+            top: -19%;
+        }
+
+        #input4 {
+            border: 2px solid #D9D9D9;
+            border-radius: 10px;
+            width: 390px;
+            height: 30px;
+            font-size: 15px;
+            position: relative;
+            left: -30%;
+            top: -21%;
+        }
+
+        #text6ALRL {
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            left: -42%;
+            top: -20%;
+        }
+
+        #input5 {
+            border: 2px solid #D9D9D9;
+            border-radius: 10px;
+            width: 390px;
+            height: 30px;
+            font-size: 15px;
+            position: relative;
+            left: -30%;
+            top: -22%;
+        }
+
+        #text7ALRL {
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            left: -38%;
+            top: -20%;
+        }
+
+        #input6 {
+            border: 2px solid #D9D9D9;
+            border-radius: 10px;
+            width: 390px;
+            height: 30px;
+            font-size: 15px;
+            position: relative;
+            left: -30%;
+            top: -23%;
+        }
+
+        #circuloALRL {
+            width: 310px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: #77B1FF;
+            position: relative;
+            left: 55%;
+            top: -115%;
+        }
+
+        #imgALRL {
+            position: relative;
+            left: -5%;
+            top: -10%;
+            width: 350px;
+        }
+
+        #text8ALRL {
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            left: 20%;
+            top: -110%;
+        }
+
+        #diaALRL {
+            position: relative;
+            left: 15%;
+            top: -110%;
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+            border: 2px solid #D9D9D9;
+        }
+
+        #mesesALRL {
+            position: relative;
+            left: 20%;
+            top: -110%;
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+            border: 2px solid #D9D9D9;
+        }
+
+        #yearsALRL {
+            position: relative;
+            left: 25%;
+            top: -110%;
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+            border: 2px solid #D9D9D9;
+        }
+
+        #text9ALRL {
+            position: relative;
+            top: -107%;
+            left: 1%;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        #sexoALRL {
+            position: relative;
+            left: 11%;
+            top: -112%;
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+            border: 2px solid #D9D9D9;
+        }
+
+        .buttonregistrerALRL {
+            position: relative;
+            border: 0px;
+            color: white;
+            font-size: 18px;
+            background-color: #19376D;
+            height: 50px;
+            width: 200px;
+            top: -112%;
+            left: 30%;
+            border-radius: 10px;
+        }
+    }
+
+}
 </style>
