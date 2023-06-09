@@ -19,7 +19,7 @@
                     <p>
                         Tipo de usuario:
                         <select class="dst-campo-us" name="dst-tipoususario" id="dst-tipoususario" v-model="tipoUser">
-                            <option value='Participante'>Participante</option>
+                            <option value='usuario'>usuario</option>
                             <option value='Juez'>Juez</option>
                             <option value='Administrador'>Administrador</option> 
                         </select>
@@ -46,16 +46,16 @@ export default {
             login: false,
             nombre: '',
             password: '',
-            participante: [],
+            usuario: [],
             juez: [],
             admin: [],
-            tipoUser: 'Participante'
+            tipoUser: 'usuario'
         }
     },
     apollo: {
-        participante: {
+        usuario: {
             query: gql`query loginResult($password: String!, $correo: String!) {
-                participante(where: {pswrd: {_eq: $password}, _and: {correo: {_eq: $correo}}}) {
+                usuarios(where: {pswrd: {_eq: $password}, _and: {correo: {_eq: $correo}}}) {
                     correo
                 }
             }`,
@@ -112,40 +112,43 @@ export default {
             registro.classList.add('show');
         },
         AuthUsuario() {
-            if (this.participante.length > 0) {
+            if (this.usuario.length > 0) {
                 this.$router.push('/RegistrarProyecto');
             }
             else {
-                console.log(this.participante.length);
+                console.log(this.usuario.length);
             }
         },
         AuthJuez() {
-            if (this.participante.length > 0) {
+            if (this.juez.length > 0) {
                 this.$router.push('/JuezPantalla');
             }
             else {
-                console.log(this.participante.length);
+                console.log(this.usuario.length);
             }
         },
         AuthAdmin() {
-            if (this.participante.length > 0) {
+            if (this.admin.length > 0) {
                 this.$router.push('/PantallaAdministrador');
             }
             else {
-                console.log(this.participante.length);
+                console.log(this.usuario.length);
             }
         },
         AuthChose(op){
             switch(op){
-                case 'Participante':
+                case 'usuario':
+                console.log(this.usuario.length);
                     this.AuthUsuario()
                     console.log(op);
                     break;
                 case 'Juez':
+                console.log(this.usuario.length);
                     this.AuthJuez()
                     console.log(op);
                     break;
                 case 'Administrador':
+                console.log(this.usuario.length);
                     this.AuthAdmin()
                     console.log(op);
                     break;
