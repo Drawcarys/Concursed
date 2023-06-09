@@ -69,13 +69,13 @@ export default{
     }
 }
 
-function abrir() {
+/*function abrir() {
     document.getElementById("elementsALRL").style.display="block";
 }
 
 function cerrar() {
     document.getElementById("elementsALRL").style.display="none";
-}
+}*/
 
 </script>
 
