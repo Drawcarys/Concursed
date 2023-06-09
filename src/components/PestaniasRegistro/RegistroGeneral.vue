@@ -49,7 +49,7 @@
           <input type="file" name="dst-proyecto" placeholder="proyecto" @change="adjuntarArchivo" /><br>
         </p>
 
-        <button class="dst-button-format" id="dst-guardar" type="submit">Guardar avance</button>
+        <button class="dst-button-format" id="dst-guardar" type="button" @click="sendGeneralData({'nombreProyecto':this.nombreProyecto,'sede':this.sede,'categoria':this.categoria,'autores':this.autores,'area':this.area,'asesor':this.asesor,'archivoAdjunto':this.archivoAdjunto})">Guardar avance</button>
       </form>
     </div>
   </div>
@@ -59,10 +59,11 @@
 export default {
   data() {
     return {
-      nombreProyecto: '',
-      sede: '',
+      //args:[],
+      nombreProyecto: 'sas',
+      sede: 'ssss',
       categoria: '',
-      autores: '',
+      autores: [],
       area: '',
       asesor: '',
       archivoAdjunto: null,
@@ -72,7 +73,11 @@ export default {
     adjuntarArchivo(event) {
       this.archivoAdjunto = event.target.files[0];
     },
+    sendGeneralData(args) {
+      this.$emit('argsGeneral',args)
+    },
   },
+  //props:['nombreProyecto','sede','categoria','autores','area','asesor','archivoAdjunto']
 };
 </script>
 

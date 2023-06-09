@@ -63,7 +63,7 @@
           <br />
         </p>
 
-        <button class="dst-button-format" id="dst-guardar" type="submit">Guardar avance</button>
+        <button class="dst-button-format" id="dst-guardar" type="button" @click="sendAutorUnoData({'nombreAutor1':this.nombreAutor1,'primerApellidoAutor1':this.primerApellidoAutor1,'segundoApellidoAutor1':this.segundoApellidoAutor1,'coloniaAutor1':this.coloniaAutor1,'cpAutor1':this.cpAutor1,'fechaNacimientoAutor1':this.fechaNacimientoAutor1,'correoAutor1':this.correoAutor1,'escuelaAutor1':this.escuelaAutor1,'telefonoAutor1':this.telefonoAutor1,'municipioAutor1':this.municipioAutor1,'localidadAutor1':this.localidadAutor1,'sexoAutor1':this.sexoAutor1,'constanciaAutor2':this.constanciaAutor2,'identificacionAutor2':this.identificacionAutor2,'fotoAutor2':this.fotoAutor2})">Guardar avance</button>
       </form>
     </div>
   </div>
@@ -103,7 +103,11 @@ export default {
     CargarFoto(event) {
       const file = event.target.files[0];
       this.fotoAutor2 = file;
-    }
+    },
+
+    sendAutorUnoData(args) {
+      this.$emit('argsAutorUno',args)
+    },
   }
 }
 </script>

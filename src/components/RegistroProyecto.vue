@@ -21,6 +21,8 @@ export default {
     name: 'RegistroProyecto',
     data(){
         return{
+        argsGeneral:[],
+        argsAutorUno:[],
         currentTab: null,
         activeTabName: null,
         admin: [],
@@ -40,9 +42,16 @@ export default {
         sexo: true, 
         telefono: 0, 
         rfc: "",
-        id_categoria:0,
-        id_sede:0,
+        id_categoria:1,
+        id_sede:1,
         tabNames,
+        nombreProyecto: '',
+        sede: '',
+        categoria: '',
+        autores: [],
+        area: '',
+        asesor: '',
+        archivoAdjunto: null,
         tabs: {
             [tabNames.GENERAlES]: RegistroGeneral,
             [tabNames.AUTORUNO]: RegistroAutorUno,
@@ -70,6 +79,11 @@ export default {
         handleTabClick: function (tabNames) {
             this.activeTabName = tabNames;
             this.currentTab = this.tabs[tabNames];
+        },
+
+        getGeneralData (value) {
+            this.args = value
+            console.log(value)
         },
 
         InsertAdmin() {
@@ -275,10 +289,9 @@ export default {
         </tbody>
     </table> 
     {{InsertAdmin(correo, nombre, pswrd) }} --> 
-    {{ InsertJuez(nombre,apellido1, colonia, cp, domicilio, fechaNac, institucion, localidad, municipio, sexo, telefono, correo, pswrd, id_categoria, id_sede) }}
     <hr/>
     <div class="dst-container dst-div">
-        <component :is="currentTab" />
+        <component :is="currentTab" @argsGeneral="getGeneralData" @argsAutorUno="getGeneralData" />
         <div class="dst-tabs-container">
             <div class="dst-tabs-item" @click="handleTabClick(tabNames.GENERAlES)"
                 :class="{ 'dst-tabs-item-active': activeTabName === tabNames.GENERAlES }">

@@ -16,7 +16,7 @@ export default {
     apollo: {
 
     },
-    components: {  }
+    components: {  },
 }
 
 </script>
