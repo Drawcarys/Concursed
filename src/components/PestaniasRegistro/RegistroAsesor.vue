@@ -61,7 +61,7 @@
 
         </p>
 
-        <button class="dst-button-format" id="dst-guardar" type="submit">Guardar avance</button>
+        <button class="dst-button-format" id="dst-guardar" type="button" @click="sendAsesorData({'nombreAsesor':this.nombreAsesor,'primerApellidoAsesor':this.primerApellidoAsesor,'segundoApellidoAsesor':this.segundoApellidoAsesor,'domicilioAsesor':this.domicilioAsesor,'coloniaAsesor':this.coloniaAsesor,'cpAsesor':this.cpAsesor,'fechaNacimientoAsesor':this.fechaNacimientoAsesor,'correoAsesor':this.correoAsesor,'telefonoAsesor':this.telefonoAsesor,'municipioAsesor':this.municipioAsesor,'localidadAsesor':this.localidadAsesor,'sexoAsesor':this.sexoAsesor,'participacionAsesor':this.participacionAsesor,'comprobanteAsesor':this.comprobanteAsesor})">Guardar avance</button>
       </form>
     </div>
   </div>
@@ -92,7 +92,10 @@ export default {
     onComprobanteChange(event) {
       const file = event.target.files[0];
       this.comprobanteAsesor = file;
-    }
+    },
+    sendAsesorData(args) {
+      this.$emit('argsAsesor',args)
+    },
   }
 }
 

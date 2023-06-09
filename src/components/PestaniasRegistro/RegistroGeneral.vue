@@ -10,28 +10,28 @@
         <p class="dst-p-general">
           Sede:
           <select class="dst-select" name="dst-sede" id="dst-sede" v-model="sede">
-            <option value="sede1">Sede 1</option>
+            <option value=1>Sede 1</option>
           </select>
         </p>
 
         <p class="dst-p-general">
           Categoría:
           <select class="dst-select" name="dst-categoria" id="dst-categoria" v-model="categoria">
-            <option value="categoria1">Categoría 1</option>
+            <option value=1>Categoría 1</option>
           </select>
         </p>
 
         <p class="p-general">
           Autores del proyecto:
           <select class="dst-select" name="dst-autores" id="dst-autores" v-model="autores">
-            <option value="autores1">Autores 1</option>
+            <option value=1>Autores 1</option>
           </select>
         </p>
 
         <p class="dst-p-general">
           Área:
           <select class="dst-select" name="dst-area" id="dst-area" v-model="area">
-            <option value="area1">Área 1</option>
+            <option value=1>Área 1</option>
           </select>
         </p>
 
