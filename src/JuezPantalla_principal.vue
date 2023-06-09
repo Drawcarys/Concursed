@@ -1,5 +1,5 @@
-<script setup>
-const arrayCat = ["Nombre1", "Nombre2", "Nombre3", "Nombre4", "Nombre5"];
+<script>
+import gql from 'graphql-tag'
 
 export default{
     methods: {
