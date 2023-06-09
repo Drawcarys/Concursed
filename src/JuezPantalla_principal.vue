@@ -1,5 +1,73 @@
-<script setup>
-const arrayCat = ["Nombre1", "Nombre2", "Nombre3", "Nombre4", "Nombre5"];
+<script>
+import gql from 'graphql-tag'
+
+export default{
+    methods: {
+        VerProyectosJuez() {
+            this.$apollo.mutate({
+                mutation: gql`query mostrar_proyectos_juez {
+                mostrar_proyectos_juez(where: {sedeProyecto: {_eq: $sedeProyecto}, categoriaProyecto: {_eq: $categoriaProyecto}}) {
+                folio
+                nombreProyecto
+                }
+            }`,
+
+        })
+        this.refreshCount++;
+        },
+
+        CalificarPostgradoSuperiorMedio() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insertar_calificacion_juez {
+                insert_calificacion_one(object: {calidad_resumen: $calidad_resumen, definicion_mercado: $definicion_mercado, elemento_creativo: $elemento_creativo, elemento_innovacion: $elemento_innovacion, factibilidad: $factibilidad, identificacion_problema: $identificacion_problema, presentacion_prototipo: $presentacion_prototipo, propuesta_solucion: $propuesta_solucion, total: $total, juez_proy_calis: {data: {id_juezFJPC: $id_juez, id_proyectoFJPC: $id_proyecto}}}) {
+                total
+                juez_proy_calis {
+                    id_calificacionFJPC
+                    id_juezFJPC
+                    id_proyectoFJPC
+                    }
+                }
+            }`,
+
+        })
+        this.refreshCount++;
+        },
+
+        CalificarJuvenil() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insertar_calificacion_juez {
+                insert_calificacion_one(object: {calidad_resumen: $calidad_resumen, elemento_creativo: $elemento_creativo, elemento_innovacion: $elemento_innovacion, identificacion_problema: $identificacion_problema, presentacion_prototipo: $presentacion_prototipo, propuesta_solucion: $propuesta_solucion, total: $total, juez_proy_calis: {data: {id_juezFJPC: $id_juez, id_proyectoFJPC: $id_proyecto}}}) {
+                total
+                juez_proy_calis {
+                    id_calificacionFJPC
+                    id_juezFJPC
+                    id_proyectoFJPC
+                    }
+                }
+            }`,
+
+        })
+        this.refreshCount++;
+        },
+
+        CalificarKids() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insertar_calificacion_juez {
+                insert_calificacion_one(object: {calidad_resumen: $calidad_resumen, elemento_creativo: $elemento_creativo, identificacion_problema: $identificacion_problema, presentacion_prototipo: $presentacion_prototipo, propuesta_solucion: $propuesta_solucion, total: $total, juez_proy_calis: {data: {id_juezFJPC: $id_juez, id_proyectoFJPC: $id_proyecto}}}) {
+                total
+                juez_proy_calis {
+                    id_calificacionFJPC
+                    id_juezFJPC
+                    id_proyectoFJPC
+                    }
+                }
+            }`,
+
+        })
+        this.refreshCount++;
+        },
+    }
+}
 
 function abrir() {
     document.getElementById("elementsALRL").style.display="block";

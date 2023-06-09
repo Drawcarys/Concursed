@@ -5,7 +5,7 @@ import RegistroAutorDos from './PestaniasRegistro/RegistroAutorDos.vue';
 import RegistroAsesor from './PestaniasRegistro/RegistroAsesor.vue';
 import RegistroPdf from './PestaniasRegistro/RegistroPdf.vue';
 import Barnav from './BarNav.vue';
-import { ALL_ADMINS, ALL_AREAS, ALL_CATEGORIAS, ALL_JUECES, ALL_PARTICIPANTES, ALL_PROYECTOS} from '../graphql'
+import { ALL_ADMINS, ALL_AREAS, ALL_CATEGORIAS, ALL_JUECES, ALL_PARTICIPANTES, ALL_PROYECTOS, ALL_SEDES} from '../graphql'
 import gql from 'graphql-tag'
 
 // eslint-disable-next-line no-unused-vars
@@ -76,7 +76,8 @@ export default {
         categoria:ALL_CATEGORIAS,
         juez:ALL_JUECES,
         participante:ALL_PARTICIPANTES,
-        proyecto:ALL_PROYECTOS
+        proyecto:ALL_PROYECTOS,
+        sede:ALL_SEDES
     },
     methods: {
         handleTabClick: function (tabNames) {

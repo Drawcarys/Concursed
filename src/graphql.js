@@ -10,12 +10,14 @@ export const ALL_ADMINS = gql`query admins {
 
   export const ALL_AREAS = gql`query areas {
     area {
+      id_area
       nombreArea
     }
   }`
 
   export const ALL_CATEGORIAS = gql`query categorias {
     categoria {
+      id_categoria
       nombreCategoria
     }
   }`
@@ -49,8 +51,10 @@ export const ALL_ADMINS = gql`query admins {
       proy_parts {
         proyecto {
           nombreProyecto
+          folio
         }
       }
+      id_participante
     }
   }`
 
@@ -62,7 +66,7 @@ export const ALL_ADMINS = gql`query admins {
     }
   }`
 
-  export const ALL_PROYECTOS = gql`query proyectos {
+  export const ALL_PROYECTOS = gql`query proyectos { 
     proyecto {
       nombreProyecto
       areaProyecto
@@ -72,7 +76,7 @@ export const ALL_ADMINS = gql`query admins {
       sedeProyecto
     }
   }`
-
+  
   export const CHECK_USER = gql`query usuarios($password: String!) {
     participante(where: {pswrd: {_eq: $password}}) {
       correo
