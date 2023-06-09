@@ -1,29 +1,38 @@
 <template>
-   <form action="javascript:void(0);" id="form">
-    <div class="modal dst-div" id="modal">
-        <div class="modal-content">
-            <div class="modal-header"><span @click="hide()" class="modal-close">&times;</span> </div>
-            <div class="modal-body">
-                <img class="dst-img-log" src="../assets/imgLogin.png">
-                <h1 style="padding-top: 1%">Inicia Sesión</h1>
-                <img src="../assets/logoLogin.png">
-                <h4>¡Solo imagina lo que puedes lograr!</h4>
-                <br>
-                <h5>Correo Electronico</h5>
-                <input class="dst-campo-login" type="email" id="dst-email" pattern=".+@globex\.com" size="30" v-model="correo" required>
-                <h5>Contraseña</h5>
-                <input class="dst-campo-login" type="password" id="dst-pass" pattern=".+@globex\.com" size="30" v-model="password" required>
-                <br>
-                <button class="dst-button-entrar" type="submit" @click="AuthUsuario()">Entrar</button>
-                <h5 class="modal-close" @click="AbrirRegistro()"  style="padding-top: 1% ">¿No tienes cuenta? Crea una</h5>
-            
+    <form action="javascript:void(0);" id="form">
+        <div class="modal dst-div" id="modal">
+            <div class="modal-content">
+                <div class="modal-header"><span @click="hide()" class="modal-close">&times;</span> </div>
+                <div class="modal-body">
+                    <img class="dst-img-log" src="../assets/imgLogin.png">
+                    <h1 style="padding-top: 1%">Inicia Sesión</h1>
+                    <img src="../assets/logoLogin.png">
+                    <h4>¡Solo imagina lo que puedes lograr!</h4>
+                    <br>
+                    <h5>Correo Electronico</h5>
+                    <input class="dst-campo-login" type="email" id="dst-email" pattern=".+@globex\.com" size="30"
+                        v-model="correo" required>
+                    <h5>Contraseña</h5>
+                    <input class="dst-campo-login" type="password" id="dst-pass" pattern=".+@globex\.com" size="30"
+                        v-model="password" required>
+                    <br>
+                    <p>
+                        Tipo de usuario:
+                        <select class="dst-campo-us" name="dst-tipoususario" id="dst-tipoususario" >
+                            <option value="administrador">Administrador</option>
+                            <option value="participante">Participante</option>
+                            <option value="juez">Juez</option>
+                        </select>
+                    </p>
+                    <button class="dst-button-entrar" type="submit" @click="AuthUsuario()">Entrar</button>
+                    <h5 class="modal-close" @click="AbrirRegistro()" style="padding-top: 1% ">¿No tienes cuenta? Crea una
+                    </h5>
+                </div>
             </div>
         </div>
-    </div>
-   </form>
-   <RegistroModal ref="RegistroModal">
-   </RegistroModal>
-
+    </form>
+    <RegistroModal ref="RegistroModal">
+    </RegistroModal>
 </template>
 
 <script>
@@ -31,18 +40,18 @@ import gql from 'graphql-tag'
 import RegistroModal from './RegistroModal.vue'
 export default {
     name: 'LoginModal',
-    data () {
-      return {
-        correo: '',
-        login: false,
-        nombre: '',
-        password: '',
-        participante:[]
-      }
+    data() {
+        return {
+            correo: '',
+            login: false,
+            nombre: '',
+            password: '',
+            participante: []
+        }
     },
     apollo: {
-        participante:{
-            query:gql`query loginResult($password: String!, $correo: String!) {
+        participante: {
+            query: gql`query loginResult($password: String!, $correo: String!) {
                 participante(where: {pswrd: {_eq: $password}, _and: {correo: {_eq: $correo}}}) {
                     correo
                 }
@@ -51,11 +60,11 @@ export default {
                 return {
                     password: this.password, correo: this.correo
                 }
-            } 
+            }
         }
     },
-    components:{
-    RegistroModal
+    components: {
+        RegistroModal
     },
     methods: {
         show() {
@@ -67,22 +76,22 @@ export default {
             modal.classList.remove('show');
         },
         redireccionarRegistrarUsuario() {
-      this.$router.push('/RegistroModal');
-    },
+            this.$router.push('/RegistroModal');
+        },
 
-        AbrirRegistro(){
+        AbrirRegistro() {
             this.hide();
             const registro = document.getElementById('RegistroModal');
             registro.classList.add('show');
         },
-        AuthUsuario(){
-        if(this.participante.length>0){
-            this.$router.push('/RegistrarProyecto');
+        AuthUsuario() {
+            if (this.participante.length > 0) {
+                this.$router.push('/RegistrarProyecto');
+            }
+            else {
+                console.log(this.participante.length);
+            }
         }
-        else{
-            console.log(this.participante.length);
-        }
-    }
 
 
     },
@@ -94,6 +103,18 @@ export default {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+.dst-campo-us {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 15px;
+  background: #f7f7ff;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  padding: 0 3px 0 3px;
+  width: 15%;
+  height: 25px;
+  margin-left: 1%;
+  margin-right: 1%;
 }
 
 .dst-img-log {
@@ -163,18 +184,18 @@ export default {
     border-radius: 6px;
     background: #f7f7ff;
     border: 1px solid rgba(0, 0, 0, 0.17);
-    padding: 0 4px 0px 4px;
+    padding: 0 0px 0px 0px;
     width: 25%;
     height: 30px;
     margin-left: 1%;
     margin-right: 1%;
-    margin: 2%;
+    margin: 1%;
 }
 
 .dst-button-entrar {
     width: 20%;
     height: 42px;
-
+    margin-top: 1%;
     color: white;
     background: #0B2447;
     border-radius: 10px;
