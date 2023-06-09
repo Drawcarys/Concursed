@@ -1,8 +1,11 @@
 <script>
 import Barnav from './components/BarNav.vue';
-
+const categorias = ["Petit y Kids", "Juvenil", "Media", "Superior", "Posgrado"];
 export default {
   name: 'App',
+  data: () => ({
+    categorias
+  }),
     methods: {
         handleTabClick: function (tabNames) {
             this.activeTabName = tabNames;
@@ -18,14 +21,14 @@ export default {
 <template>
   <Barnav/>
 <div class="block1">
-  <p id="Titulo" class="Titulo2">Desarrollo de   <br>aprendizaje en línea<br>para la enseñanza de<br>habilidades técnicas</p>
-  <button class="Boton1">nuestra convocatoria</button>
+  <p id="Titulo" class="Titulo2">Desarrollo de <br>aprendizaje en línea<br>para la enseñanza de<br>habilidades técnicas</p>
+ <button class="Boton1">Nuestra convocatoria</button>
 <p id="Parrafo1">
   ¡Bienvenido a Concursed! La plataforma donde la creatividad y la <br>competencia se unen para brindarte la oportunidad de demostrar tus <br>habilidades y ganar grandes premios. Participa en nuestros concursos de <br>proyectos de creatividad, donde podrás presentar tus ideas y proyectos <br>para que sean evaluados por nuestros jueces expertos.</p>
     <img src="./assets/camp1.png" class="camp1">
   
 </div>
-
+<a href="@/assets/documento.pdf" download>a</a>
 <div class="block2">
   <div id="plan1">
     <h3 id="titulotecALRL">Tecnología</h3>
@@ -60,12 +63,12 @@ export default {
   ¡Es hora de dejar volar tu imaginación! En nuestro próximo <br> concurso de proyectos de creatividad, buscamos ideas <br>innovadoras y originales en el tema de [tema del concurso]. Si <br>eres un creador, emprendedor o simplemente alguien<br> apasionado por la creatividad, ¡este es tu momento de brillar!</p>
   <h6 id="text-cat">Categorias</h6>
   <ul id="list-cat">
-  <li v-for="(categorias,index) in arrayCat" :key="index">
+  <li v-for="(categorias,index) in categorias" :key="index">
       {{ categorias }}
   </li>
 </ul>
 
-<button class="Boton2">Descarga la aquí!</button>
+<button class="Boton2">¡Descargala aquí!</button>
 
     <img src="./assets/camp3.png" class="camp2">
   
@@ -111,6 +114,7 @@ export default {
       {{ categorias }}
   </li>
   </ul>
+  
   <h5 style="color: white; position: relative; left: 77%; top: -112%;">Soporte</h5>
   <ul style="list-style: none; color: white; position: relative; left: 77%; top: -112%;">
     <li v-for="(categorias,index) in soporte" :key="index" >
@@ -126,6 +130,12 @@ body{
 	margin: 0 ;
 	padding: 0 ;
 
+}
+
+ul{
+  position:absolute;
+  padding-left:10%;
+ padding-top:2%;
 }
 
 @media (min-width: 250px) {
@@ -633,6 +643,7 @@ body{
   @media (min-width: 250px) {
     #Titulo2{
     position: relative;
+    text-align:left;
     color: #577399;
     font-size: 50px;
     font-family: 'Roboto', sans-serif;
@@ -708,7 +719,7 @@ body{
     .img1{
       position: relative;
       top: 1%;
-      left: 15%;
+      left: 0%;
       width: 200px;
      }
     #seguALRL{
@@ -775,7 +786,6 @@ body{
   .img1{
     position: relative;
     top: 1%;
-    left: -25%;
     width: 250px;
    }
 
@@ -785,6 +795,8 @@ body{
     #Titulo2{
     position: relative;
     color: #577399;
+    
+    text-align:left;
     font-size: 70px;
     font-family: 'Roboto', sans-serif;
     top: 20px;
@@ -1006,6 +1018,8 @@ body{
   @media (min-width: 1300px) {
     #Titulo2{
     position: relative;
+    
+    text-align:left;
     color: #577399;
     font-size: 94px;
     font-family: 'Roboto', sans-serif;
@@ -1313,7 +1327,6 @@ body{
    .img1{
     position: relative;
     top: 1%;
-    left: 5%;
     width: 250px;
    }
 
