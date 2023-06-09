@@ -2,29 +2,152 @@
 
 </script>
 <template>
+  <div class="vbmCol2">
+    <form @submit.prevent="guardarCategoria" v-if="!editarCategoria">
+      <p>Nombre de la categoría:</p>
+      <input type="text" name="nombreCategoria" id="vbmNombreCategoria" v-model="nombreCategoria" />
+      <button type="submit" id="vbmIniciar">Guardar cambios</button>
+    </form>
 
-<table id="vbmtablaCategoria">
- 
-  <tr>
-    <td>John Doe</td>
-    <td><button id="botonesTabla">Editar</button></td>
-    <td><button id="botonesTabla">Eliminar</button></td>
-  </tr>
-  <tr>
-    <td>John Doe</td>
-    <td><button id="botonesTabla">Editar</button></td>
-    <td><button id="botonesTabla">Eliminar</button></td>
-  </tr>
-  <tr>
-    <td>John Doe</td>
-    <td><button id="botonesTabla">Editar</button></td>
-    <td><button id="botonesTabla">Eliminar</button></td>
-  </tr>
+    <form @submit.prevent="actualizarCategoria" v-else>
+      <p>Nombre de la categoría:</p>
+      <input type="text" name="nombreCategoria" id="vbmNombreCategoria" v-model="categoriaSeleccionada.nombreCategoria" />
+      <button type="submit" id="vbmEditar">Guardar cambios</button>
+      <button type="button" @click="eliminarCategoria">Eliminar</button>
+    </form>
 
-
-</table>
-
+    <ul v-if="categorias.length > 0">
+      <li v-for="categoria in categorias" :key="categoria.id">
+        {{ categoria.nombreCategoria }}
+        <button @click="editarCategoria(categoria)">Editar</button>
+      </li>
+    </ul>
+    <p v-else>No hay categorías guardadas.</p>
+  </div>
 </template>
+
+<script>
+import { gql } from 'graphql-tag';
+
+const obtenerCategoriasQuery = gql`
+  query obtenerCategorias {
+    categorias {
+      id
+      nombreCategoria
+    }
+  }
+`;
+
+const guardarCategoriaMutation = gql`
+  mutation guardarCategoria($nombreCategoria: String!) {
+    guardarCategoria(nombreCategoria: $nombreCategoria) {
+      id
+      nombreCategoria
+    }
+  }
+`;
+
+const actualizarCategoriaMutation = gql`
+  mutation actualizarCategoria($id: ID!, $nombreCategoria: String!) {
+    actualizarCategoria(id: $id, nombreCategoria: $nombreCategoria) {
+      id
+      nombreCategoria
+    }
+  }
+`;
+
+const eliminarCategoriaMutation = gql`
+  mutation eliminarCategoria($id: ID!) {
+    eliminarCategoria(id: $id)
+  }
+`;
+
+export default {
+  data() {
+    return {
+      nombreCategoria: '',
+      categorias: [],
+      editar: false,
+      categoriaSeleccionada: null
+    };
+  },
+  created() {
+    this.obtenerCategorias();
+  },
+  methods: {
+    obtenerCategorias() {
+      this.$apollo.query({
+        query: obtenerCategoriasQuery
+      })
+      .then(response => {
+        this.categorias = response.data.categorias;
+      })
+      .catch(error => {
+        console.error('Error al obtener las categorías:', error);
+      });
+    },
+    guardarCategoria() {
+      this.$apollo.mutate({
+        mutation: guardarCategoriaMutation,
+        variables: {
+          nombreCategoria: this.nombreCategoria
+        }
+      })
+      .then(response => {
+        console.log('Categoría guardada:', response.data.guardarCategoria);
+        this.nombreCategoria = '';
+        this.obtenerCategorias();
+      })
+      .catch(error => {
+        console.error('Error al guardar la categoría:', error);
+      });
+    },
+    editarCategoria(categoria) {
+      this.editar = true;
+      this.categoriaSeleccionada = { ...categoria };
+    },
+    actualizarCategoria() {
+      this.$apollo.mutate({
+        mutation: actualizarCategoriaMutation,
+        variables: {
+          id: this.categoriaSeleccionada.id,
+          nombreCategoria: this.categoriaSeleccionada.nombreCategoria
+        }
+      })
+      .then(response => {
+        console.log('Categoría actualizada:', response.data.actualizarCategoria);
+        this.editar = false;
+        this.categoriaSeleccionada = null;
+        this.obtenerCategorias();
+      })
+      .catch(error => {
+        console.error('Error al actualizar la categoría:', error);
+      });
+    },
+    eliminarCategoria() {
+      if (confirm('¿Estás seguro de que quieres eliminar esta categoría?')) {
+        this.$apollo.mutate({
+          mutation: eliminarCategoriaMutation,
+          variables: {
+            id: this.categoriaSeleccionada.id
+          }
+        })
+        .then(() => {
+          console.log('Categoría eliminada');
+          this.editar = false;
+          this.categoriaSeleccionada = null;
+          this.obtenerCategorias();
+        })
+        .catch(error => {
+          console.error('Error al eliminar la categoría:', error);
+        });
+      }
+    }
+  }
+}
+</script>
+
+
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');

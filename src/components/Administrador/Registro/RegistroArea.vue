@@ -3,17 +3,25 @@
 </script>
 <template>
   <div class="vbmcol2">
-    <form action="javascript:void(0);">
-      <p>
-        Nombre del área: <br> </p><input id="nombreArea" type="text" name="registroArea" v-model="nombreArea"/>
-        
+    <form @submit.prevent="guardarArea">
+      <p>Nombre del área:</p>
+      <input id="nombreArea" type="text" name="registroArea" v-model="nombreArea" />
       <button type="submit" id="vbminiciar">Guardar cambios</button>
     </form>
   </div>
 </template>
 
 <script>
-//import { gql } from 'apollo-boost';
+import { gql } from 'graphql-tag';
+
+const guardarAreaMutation = gql`
+  mutation guardarArea($nombreArea: String!) {
+    guardarArea(nombreArea: $nombreArea) {
+      id
+      nombreArea
+    }
+  }
+`;
 
 export default {
   data() {
@@ -21,9 +29,27 @@ export default {
       nombreArea: '',
     };
   },
-  
-};
+  methods: {
+    guardarArea() {
+      this.$apollo.mutate({
+        mutation: guardarAreaMutation,
+        variables: {
+          nombreArea: this.nombreArea
+        }
+      })
+      .then(response => {
+        console.log('Área guardada:', response.data.guardarArea);
+        // Restablecer el campo de nombre del área después de guardar
+        this.nombreArea = '';
+      })
+      .catch(error => {
+        console.error('Error al guardar el área:', error);
+      });
+    }
+  }
+}
 </script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap');

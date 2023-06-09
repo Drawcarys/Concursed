@@ -13,13 +13,44 @@
 
 
 <script>
+import { gql } from 'graphql-tag';
+
+const guardarCategoriaMutation = gql`
+  mutation guardarCategoria($nombreCategoria: String!) {
+    guardarCategoria(nombreCategoria: $nombre) {
+      id
+      nombreCategoria
+    }
+  }
+`;
+
 export default {
   data() {
     return {
       nombreCategoria: ''
     };
+  },
+  methods: {
+    guardarCategoria() {
+      
+      this.$apollo.mutate({
+        mutation: guardarCategoriaMutation,
+        variables: {
+          nombre: this.nombreCategoria
+        }
+      })
+      .then(response => {
+        // El registro de la categoría se guardó exitosamente
+        console.log('Categoría guardada:', response.data.guardarCategoria);
+      })
+      .catch(error => {
+        // Manejo de errores en caso de que la llamada a GraphQL falle
+        console.error('Error al guardar la categoría:', error);
+      });
+    }
   }
 }
+
 </script>
 
 
