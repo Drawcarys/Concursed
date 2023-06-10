@@ -3,14 +3,45 @@ import gql from 'graphql-tag'
 
 export default{
     methods: {
+
+        data(){
+            return{
+                argsProyectos: [],
+                sedeProyecto: 1,
+                categoriaProyecto: 1,
+                calidad_resumen: 0,
+                definicion_mercado: 0,
+                elemento_creativo: 0,
+                elemento_innovacion: 0,
+                factibilidad: 0,
+                identificacion_problema: 0,
+                presentacion_prototipo: 0,
+                propuesta_solucion: 0,
+                total: 0, 
+                id_juez:0,
+                id_proyecto:0
+            }
+        },
+
+        abrir() {
+            document.getElementById("elementsALRL").style.display="block";
+        },
+
+        cerrar() {
+            document.getElementById("elementsALRL").style.display="none";
+        },
+
         VerProyectosJuez() {
             this.$apollo.mutate({
-                mutation: gql`query mostrar_proyectos_juez {
-                mostrar_proyectos_juez(where: {sedeProyecto: {_eq: $sedeProyecto}, categoriaProyecto: {_eq: $categoriaProyecto}}) {
+                mutation: gql`query mostrar_proyectos_juez($sedeProyecto:Int!, $categoriaProyecto:Int!){
+                proyecto(where: {sedeProyecto: {_eq: $sedeProyecto}, categoriaProyecto: {_eq: $categoriaProyecto}}) {
                 folio
                 nombreProyecto
                 }
             }`,
+            variables: {
+                sedeProyecto: this.sedeProyecto, categoriaProyecto: this.categoriaProyecto
+            },
 
         })
         this.refreshCount++;
@@ -18,16 +49,13 @@ export default{
 
         CalificarPostgradoSuperiorMedio() {
             this.$apollo.mutate({
-                mutation: gql`mutation insertar_calificacion_juez {
+                mutation: gql`mutation insertar_calificacion_juez($calidad_resumen:Int!, $definicion_mercado:Int!, $elemento_creativo:Int!, $elemento_innovacion:Int!, $factibilidad:Int!, $identificacion_problema:Int!, $presentacion_prototipo:Int!, $propuesta_solucion:Int!, $total:Int!, $id_juez:Int!, $id_proyecto:Int!) {
                 insert_calificacion_one(object: {calidad_resumen: $calidad_resumen, definicion_mercado: $definicion_mercado, elemento_creativo: $elemento_creativo, elemento_innovacion: $elemento_innovacion, factibilidad: $factibilidad, identificacion_problema: $identificacion_problema, presentacion_prototipo: $presentacion_prototipo, propuesta_solucion: $propuesta_solucion, total: $total, juez_proy_calis: {data: {id_juezFJPC: $id_juez, id_proyectoFJPC: $id_proyecto}}}) {
-                total
-                juez_proy_calis {
-                    id_calificacionFJPC
-                    id_juezFJPC
-                    id_proyectoFJPC
-                    }
-                }
+                id_calificacion
             }`,
+            variables: {
+                calidad_resumen: this.calidad_resumen, definicion_mercado: this.definicion_mercado, elemento_creativo: this.elemento_creativo, elemento_innovacion: this.elemento_innovacion, factibilidad: this.factibilidad, identificacion_problema: this.identificacion_problema, presentacion_prototipo: this.presentacion_prototipo, propuesta_solucion: this.propuesta_solucion, total: this.total, id_juez: this.id_juez, id_proyecto: this.id_proyecto
+            },
 
         })
         this.refreshCount++;
@@ -35,16 +63,13 @@ export default{
 
         CalificarJuvenil() {
             this.$apollo.mutate({
-                mutation: gql`mutation insertar_calificacion_juez {
+                mutation: gql`mutation insertar_calificacion_juez($calidad_resumen:Int!, $elemento_creativo:Int!, $elemento_innovacion:Int!, $identificacion_problema:Int!, $presentacion_prototipo:Int!, $propuesta_solucion:Int!, $total:Int!, $id_juez:Int!, $id_proyecto:Int!) {
                 insert_calificacion_one(object: {calidad_resumen: $calidad_resumen, elemento_creativo: $elemento_creativo, elemento_innovacion: $elemento_innovacion, identificacion_problema: $identificacion_problema, presentacion_prototipo: $presentacion_prototipo, propuesta_solucion: $propuesta_solucion, total: $total, juez_proy_calis: {data: {id_juezFJPC: $id_juez, id_proyectoFJPC: $id_proyecto}}}) {
-                total
-                juez_proy_calis {
-                    id_calificacionFJPC
-                    id_juezFJPC
-                    id_proyectoFJPC
-                    }
-                }
+                id_calificacion
             }`,
+            variables: {
+                calidad_resumen: this.calidad_resumen, elemento_creativo: this.elemento_creativo, elemento_innovacion: this.elemento_innovacion, identificacion_problema: this.identificacion_problema, presentacion_prototipo: this.presentacion_prototipo, propuesta_solucion: this.propuesta_solucion, total: this.total, id_juez: this.id_juez, id_proyecto: this.id_proyecto
+            },
 
         })
         this.refreshCount++;
@@ -52,16 +77,13 @@ export default{
 
         CalificarKids() {
             this.$apollo.mutate({
-                mutation: gql`mutation insertar_calificacion_juez {
+                mutation: gql`mutation insertar_calificacion_juez ($calidad_resumen:Int!, $elemento_creativo:Int!, $identificacion_problema:Int!, $presentacion_prototipo:Int!, $propuesta_solucion:Int!, $total:Int!, $id_juez:Int!, $id_proyecto:Int!) {
                 insert_calificacion_one(object: {calidad_resumen: $calidad_resumen, elemento_creativo: $elemento_creativo, identificacion_problema: $identificacion_problema, presentacion_prototipo: $presentacion_prototipo, propuesta_solucion: $propuesta_solucion, total: $total, juez_proy_calis: {data: {id_juezFJPC: $id_juez, id_proyectoFJPC: $id_proyecto}}}) {
-                total
-                juez_proy_calis {
-                    id_calificacionFJPC
-                    id_juezFJPC
-                    id_proyectoFJPC
-                    }
-                }
+                id_calificacion
             }`,
+            variables: {
+                calidad_resumen: this.calidad_resumen, elemento_creativo: this.elemento_creativo, identificacion_problema: this.identificacion_problema, presentacion_prototipo: this.presentacion_prototipo, propuesta_solucion: this.propuesta_solucion, total: this.total, id_juez: this.id_juez, id_proyecto: this.id_proyecto
+            },
 
         })
         this.refreshCount++;
@@ -69,25 +91,29 @@ export default{
     }
 }
 
-/*function abrir() {
-    document.getElementById("elementsALRL").style.display="block";
-}
-
-function cerrar() {
-    document.getElementById("elementsALRL").style.display="none";
-}*/
-
 </script>
 
 
 <template>
     <div class="fondo">
         <h1 id="evaALRL" >Evaluación</h1>
-        <h1 id="cateALRL" >Categoría:</h1>
+        <h1 id="cateALRL" >Areas:</h1>
         <h1 id="nombALRL" >Nombre_categoria</h1>
         <ul id="listALRL">
-            <li v-for="(categorias,index) in arrayCat" :key="index">
-               {{ categorias }} <button class="button1ALRL" @mousedown="abrir">Calificar</button> <div id="sepaALRL"></div>
+            <li>
+               Ciencias <button class="button1ALRL" @mousedown="abrir">Calificar</button> <div id="sepaALRL"></div>
+            </li>
+            <li>
+               Tecnología <button class="button1ALRL" @mousedown="abrir">Calificar</button> <div id="sepaALRL"></div>
+            </li>
+            <li>
+               Alimentos <button class="button1ALRL" @mousedown="abrir">Calificar</button> <div id="sepaALRL"></div>
+            </li>
+            <li>
+               Sociedad <button class="button1ALRL" @mousedown="abrir">Calificar</button> <div id="sepaALRL"></div>
+            </li>
+            <li>
+               Salud <button class="button1ALRL" @mousedown="abrir">Calificar</button> <div id="sepaALRL"></div>
             </li>
         </ul>
 
