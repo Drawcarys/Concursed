@@ -1,10 +1,24 @@
 <script>
 import gql from "graphql-tag";
-const categorias = ["Petit y Kids", "Juvenil", "Media", "Superior", "Posgrado"];
+const areas = ["Ciencias", "Salud", "Tecnologia", "Sociedad", "Alimentos"];
 
 export default {
   data: () => ({
-    categorias,
+    areas,
+    argsProyectos: [],
+    sedeProyecto: 1,
+    categoriaProyecto: 1,
+    calidad_resumen: 0,
+    definicion_mercado: 0,
+    elemento_creativo: 0,
+    elemento_innovacion: 0,
+    factibilidad: 0,
+    identificacion_problema: 0,
+    presentacion_prototipo: 0,
+    propuesta_solucion: 0,
+    total: 0, 
+    id_juez:0,
+    id_proyecto:0
   }),
   methods: {
     VerProyectosJuez() {
@@ -22,7 +36,10 @@ export default {
             }
           }
         `,
-      });
+        variables: {
+                sedeProyecto: this.sedeProyecto, categoriaProyecto: this.categoriaProyecto
+            },
+      })
       this.refreshCount++;
     },
 
@@ -55,7 +72,10 @@ export default {
             }
           }
         `,
-      });
+        variables: {
+                calidad_resumen: this.calidad_resumen, definicion_mercado: this.definicion_mercado, elemento_creativo: this.elemento_creativo, elemento_innovacion: this.elemento_innovacion, factibilidad: this.factibilidad, identificacion_problema: this.identificacion_problema, presentacion_prototipo: this.presentacion_prototipo, propuesta_solucion: this.propuesta_solucion, total: this.total, id_juez: this.id_juez, id_proyecto: this.id_proyecto
+            },
+      })
       this.refreshCount++;
     },
 
@@ -86,8 +106,6 @@ export default {
         })
         this.refreshCount++;
         },
-    }
-}
 
     abrir() {
       document.getElementById("elementsALRL").style.display = "block";
@@ -103,11 +121,11 @@ export default {
 <template>
   <div class="fondo">
     <h1 id="evaALRL">Evaluación</h1>
-    <h1 id="cateALRL">Categoría:</h1>
+    <h1 id="cateALRL">Área:</h1>
     <h1 id="nombALRL">Nombre_categoria</h1>
     <ul id="listALRL">
-      <li v-for="(categorias, index) in categorias" :key="index">
-        {{ categorias }}
+      <li v-for="(areas, index) in areas" :key="index">
+        {{ areas }}
         <button class="button1ALRL" @mousedown="abrir">Calificar</button>
         <div id="sepaALRL"></div>
       </li>
