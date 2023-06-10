@@ -22,13 +22,12 @@ export default {
   <Barnav/>
 <div class="block1">
   <p id="Titulo" class="Titulo2">Desarrollo de <br>aprendizaje en línea<br>para la enseñanza de<br>habilidades técnicas</p>
- <button class="Boton1">Nuestra convocatoria</button>
+ <a href="https://drive.google.com/u/0/uc?id=1s0bLDmY-xMR_WnMnU8jTfUjIPaKj9LX1&export=download" download><button class="Boton1">Nuestra convocatoria</button></a>
 <p id="Parrafo1">
   ¡Bienvenido a Concursed! La plataforma donde la creatividad y la <br>competencia se unen para brindarte la oportunidad de demostrar tus <br>habilidades y ganar grandes premios. Participa en nuestros concursos de <br>proyectos de creatividad, donde podrás presentar tus ideas y proyectos <br>para que sean evaluados por nuestros jueces expertos.</p>
     <img src="./assets/camp1.png" class="camp1">
   
 </div>
-<a href="@/assets/documento.pdf" download>a</a>
 <div class="block2">
   <div id="plan1">
     <h3 id="titulotecALRL">Tecnología</h3>
@@ -68,7 +67,7 @@ export default {
   </li>
 </ul>
 
-<button class="Boton2">¡Descargala aquí!</button>
+<a href="https://drive.google.com/u/0/uc?id=1s0bLDmY-xMR_WnMnU8jTfUjIPaKj9LX1&export=download" download><button class="Boton2">¡Descargala aquí!</button></a>
 
     <img src="./assets/camp3.png" class="camp2">
   
@@ -85,9 +84,9 @@ export default {
   
   <p id="text1ALRL">El objetivo general es impulsar la <br> creatividad y la innovación, <br>mediante la organización de un <br>concurso de proyectos de <br>creatividad que fomente la <br>presentación de ideas originales <br>e innovadoras en diferentes <br>áreas. </p>
   
-  <p id="text2ALRL"> la gestión de acceso a la <br>información, la vigilancia de la red y <br>la formación de los empleados sobre<br> la importancia de la seguridad de la <br>información. Al asegurar la <br>confidencialidad de los datos, se <br> protege la información sensible de la <br>empresa de accesos no autorizados, <br>lo que puede reducir el riesgo de <br>pérdida financiera o de reputación <br>para la organización.</p>
+  <p id="text2ALRL">La gestión de acceso a la <br>información, la vigilancia de la red y <br>la formación de los empleados sobre<br> la importancia de la seguridad de la <br>información. Al asegurar la <br>confidencialidad de los datos, se <br> protege la información sensible de la <br>empresa de accesos no autorizados, <br>lo que puede reducir el riesgo de <br>pérdida financiera o de reputación <br>para la organización.</p>
  
-  <p id="text3ALRL">completar un proyecto antes de la <br>fecha límite establecida. Para lograr <br>este objetivo, se pueden establecer<br> plazos intermedios y objetivos <br>específicos a lo largo del proyecto <br>para garantizar que se esté <br>avanzando de manera constante y <br>que se cumpla con la fecha límite <br>final. Además, se puede asignar <br>recursos adecuados, identificar y <br>abordar problemas de manera <br>oportuna, y tener un plan de <br>contingencia en caso de que surjan <br>problemas imprevistos.</p>
+  <p id="text3ALRL">Completar un proyecto antes de la <br>fecha límite establecida. Para lograr <br>este objetivo, se pueden establecer<br> plazos intermedios y objetivos <br>específicos a lo largo del proyecto <br>para garantizar que se esté <br>avanzando de manera constante y <br>que se cumpla con la fecha límite <br>final. Además, se puede asignar <br>recursos adecuados, identificar y <br>abordar problemas de manera <br>oportuna, y tener un plan de <br>contingencia en caso de que surjan <br>problemas imprevistos.</p>
  
     <div id="lineALRL">
       <p>.</p>
@@ -95,10 +94,10 @@ export default {
 </div>
 
 <div class="block5">
-  <h1 id="cont">Contactanos</h1>
+  <h1 id="cont">Contáctanos</h1>
   <input id="input1" type="Nombre" placeholder="Nombre" >
   <input id="input2" type="Nombre" placeholder="Apellidos" >
-  <input id="input3" type="Nombre" placeholder="Correo electronico" >
+  <input id="input3" type="Nombre" placeholder="Correo electrónico" >
   <input id="input4" type="Nombre" placeholder="Escribe tu mensaje ..." >
   <img src="./assets/Notifications_Isometric.png" class="camp3">
   <button id="boton2">Enviar</button>
