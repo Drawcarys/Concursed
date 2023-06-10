@@ -55,7 +55,7 @@ export default {
     apollo: {
         usuario: {
             query: gql`query loginResult($password: String!, $correo: String!) {
-                usuarios(where: {pswrd: {_eq: $password}, _and: {correo: {_eq: $correo}}}) {
+                usuario(where: {pswrd: {_eq: $password}, _and: {correo: {_eq: $correo}}}) {
                     correo
                 }
             }`,

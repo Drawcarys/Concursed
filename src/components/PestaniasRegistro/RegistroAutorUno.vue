@@ -19,7 +19,7 @@
           Colonia:
           <input class="dst-campo-autor" type="text" name="dst-ColAutor1" id="dst-ColAutor1" v-model="coloniaAutor1" />
           Código postal:
-          <input class="dst-campo-autor" type="text" name="dst-CPAutor1" id="dst-CPAutor1" v-model="cpAutor1" />
+          <input class="dst-campo-autor" type="number" name="dst-CPAutor1" id="dst-CPAutor1" v-model="cpAutor1" />
         </p>
         <p class="dst-p-autor">
           Fecha de nacimiento:
@@ -33,7 +33,7 @@
 
         <p class="dst-p-autor">
           Teléfono:
-          <input class="dst-campo-autor" type="text" name="dst-TelAutor1" id="dst-TelAutor1" v-model="telefonoAutor1" />
+          <input class="dst-campo-autor" type="number" name="dst-TelAutor1" id="dst-TelAutor1" v-model="telefonoAutor1" />
 
           Municipio:
           <input class="dst-campo-autor" type="text" name="dst-MunAutor1" id="dst-MunAutor1" v-model="municipioAutor1" />
@@ -44,9 +44,9 @@
         <p class="dst-p-autor">
           Sexo:
           <select class="dst-campo-autor" name="dst-sexoAutor1" id="dst-sexoAutor1" v-model="sexoAutor1">
-            <option value="hombre">Hombre</option>
-            <option value="mujer">Mujer</option>
-            <option value="otro">Otro</option>
+            <option value=true>Hombre</option>
+            <option value=false>Mujer</option>
+            <option value=false>Otro</option>
           </select>
         </p>
 
@@ -63,7 +63,7 @@
           <br />
         </p>
 
-        <button class="dst-button-format" id="dst-guardar" type="button" @click="sendAutorUnoData({'nombreAutor1':this.nombreAutor1,'primerApellidoAutor1':this.primerApellidoAutor1,'segundoApellidoAutor1':this.segundoApellidoAutor1,'coloniaAutor1':this.coloniaAutor1,'cpAutor1':this.cpAutor1,'fechaNacimientoAutor1':this.fechaNacimientoAutor1,'correoAutor1':this.correoAutor1,'escuelaAutor1':this.escuelaAutor1,'telefonoAutor1':this.telefonoAutor1,'municipioAutor1':this.municipioAutor1,'localidadAutor1':this.localidadAutor1,'sexoAutor1':this.sexoAutor1,'constanciaAutor2':this.constanciaAutor2,'identificacionAutor2':this.identificacionAutor2,'fotoAutor2':this.fotoAutor2})">Guardar avance</button>
+        <button class="dst-button-format" id="dst-guardar" type="button" @click="sendAutorUnoData({'nombreAutor1':this.nombreAutor1,'primerApellidoAutor1':this.primerApellidoAutor1,'segundoApellidoAutor1':this.segundoApellidoAutor1, 'domicilioAutor1':this.domicilioAutor1,'coloniaAutor1':this.coloniaAutor1,'cpAutor1':this.cpAutor1,'fechaNacimientoAutor1':this.fechaNacimientoAutor1,'correoAutor1':this.correoAutor1,'escuelaAutor1':this.escuelaAutor1,'telefonoAutor1':this.telefonoAutor1,'municipioAutor1':this.municipioAutor1,'localidadAutor1':this.localidadAutor1,'sexoAutor1':this.sexoAutor1,'constanciaAutor2':this.constanciaAutor2,'identificacionAutor2':this.identificacionAutor2,'fotoAutor2':this.fotoAutor2})">Guardar avance</button>
       </form>
     </div>
   </div>

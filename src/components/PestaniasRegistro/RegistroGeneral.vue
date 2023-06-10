@@ -60,8 +60,8 @@ export default {
   data() {
     return {
       //args:[],
-      nombreProyecto: 'sas',
-      sede: 'ssss',
+      nombreProyecto: '',
+      sede: '',
       categoria: '',
       autores: [],
       area: '',
