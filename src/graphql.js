@@ -82,3 +82,16 @@ export const ALL_ADMINS = gql`query admins {
       correo
     }
   }`
+
+  export const VIEW_PROYECTOS = gql`
+  query mostrar_proyectos($sedeProyecto:Int!, $categoriaProyecto:Int!) {
+    proyecto(
+      where: {
+        sedeProyecto: { _eq: $sedeProyecto }
+        categoriaProyecto: { _eq: $categoriaProyecto }
+      }
+    ) {
+      nombreProyecto
+    }
+  }
+`

@@ -1,11 +1,9 @@
 <script>
 import gql from "graphql-tag";
-const areas = ["Ciencias", "Salud", "Tecnologia", "Sociedad", "Alimentos"];
+//import {VIEW_PROYECTOS} from './graphql';
 
 export default {
   data: () => ({
-    areas,
-    argsProyectos: [],
     sedeProyecto: 1,
     categoriaProyecto: 1,
     calidad_resumen: 0,
@@ -17,27 +15,49 @@ export default {
     presentacion_prototipo: 0,
     propuesta_solucion: 0,
     total: 0, 
-    id_juez:0,
+    id_juez:87,
     id_proyecto:0
   }),
+
+  apollo: {
+    proyectos: {
+        query: gql`
+        query mostrar_proyectos($sedeProyecto:Int!, $categoriaProyecto:Int!) {
+        proyecto(
+        where: {
+        sedeProyecto: { _eq: $sedeProyecto }
+        categoriaProyecto: { _eq: $categoriaProyecto }
+        }
+            )   {
+            nombreProyecto
+            }
+        }
+    `,
+    variables() {
+        return{
+            sedeProyecto: this.sedeProyecto, categoriaProyecto: this.categoriaProyecto
+        }
+     },
+    } 
+    },
+
   methods: {
     VerProyectosJuez() {
       this.$apollo.mutate({
         mutation: gql`
-          query mostrar_proyectos_juez {
-            mostrar_proyectos_juez(
+          query mostrar_proyectos_juez($sedeProyecto:Int!, $categoriaProyecto:Int!) {
+            proyecto(
               where: {
                 sedeProyecto: { _eq: $sedeProyecto }
                 categoriaProyecto: { _eq: $categoriaProyecto }
               }
             ) {
-              folio
               nombreProyecto
             }
           }
         `,
         variables: {
-                sedeProyecto: this.sedeProyecto, categoriaProyecto: this.categoriaProyecto
+                sedeProyecto: 1, categoriaProyecto: 1
             },
       })
       this.refreshCount++;
@@ -115,17 +135,18 @@ export default {
       document.getElementById("elementsALRL").style.display = "none";
     },
   },
+
 };
 </script>
 
 <template>
   <div class="fondo">
     <h1 id="evaALRL">Evaluación</h1>
-    <h1 id="cateALRL">Área:</h1>
-    <h1 id="nombALRL">Nombre_categoria</h1>
+    <h1 id="cateALRL">Proyectos</h1>
+    <h1 id="nombALRL">Nombre Proyectos</h1>
     <ul id="listALRL">
-      <li v-for="(areas, index) in areas" :key="index">
-        {{ areas }}
+      <li v-for='item in proyectos' v-bind:key="item">
+        {{ item }}
         <button class="button1ALRL" @mousedown="abrir">Calificar</button>
         <div id="sepaALRL"></div>
       </li>
@@ -173,7 +194,7 @@ export default {
           <p>Total: </p>
           <p>100</p>
         </div>
-        <button class="button2ALRL">Calificar</button>
+        <button @click="CalificarPostgradoSuperiorMedio(calidad_resumen, definicion_mercado, elemento_creativo,  elemento_innovacion, factibilidad, identificacion_problema, presentacion_prototipo, propuesta_solucion, total, id_juez, id_proyecto)" class="button2ALRL">Calificar</button>
       </div>
     </div>
   </div>
