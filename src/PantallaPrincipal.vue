@@ -28,7 +28,6 @@ export default {
     <img src="./assets/camp1.png" class="camp1">
   
 </div>
-
 <div class="block2">
   <div id="plan1">
     <h3 id="titulotecALRL">Tecnología</h3>

@@ -43,8 +43,20 @@ export default {
         localidad: "", 
         municipio: "", 
         sexo: true, 
-        telefono: 0, 
-        rfc: "",
+        telefono: 0,
+        nombreA:"",
+        correoA:"",
+        apellido1A: "" , 
+        apellido2A: "" , 
+        coloniaA: "", 
+        cpA: 0, 
+        domicilioA: "", 
+        fechaNacA: new Date(2001,2,3), 
+        institucionA: "", 
+        localidadA: "", 
+        municipioA: "", 
+        sexoA: true, 
+        telefonoA: 0,
         id_categoria:1,
         id_sede:1,
         tabNames,
@@ -140,8 +152,8 @@ export default {
 
         InsertAsesor() {
             this.$apollo.mutate({
-                mutation: gql`mutation insert_asesor_one($nombre:String!,$apellido1:String!, $apellido2:String!, $colonia:String!, $cp:Int!, $domicilio:String!, $institucion:String!, $localidad:String!, $municipio:String!, $sexo:Boolean!, $telefono:Int!, $rfc:String!) {
-                insert_asesor_one(object: {persona: {data: {nombre: $nombre, apellido1: $apellido1, apellido2: $apellido2, colonia: $colonia, cp: $cp, domicilio: $domicilio, fechaNac: $fechaNac, institucion: $institucion, localidad: $localidad, municipio: $municipio, sexo: $sexo, telefono: $telefono}}, rfc: $rfc}) {
+                mutation: gql`mutation insert_asesor_one($nombre:String!,$apellido1:String!, $apellido2:String!, $colonia:String!, $cp:Int!, $domicilio:String!, $institucion:String!, $localidad:String!, $municipio:String!, $sexo:Boolean!, $telefono:Int!) {
+                insert_asesor_one(object: {persona: {data: {nombre: $nombre, apellido1: $apellido1, apellido2: $apellido2, colonia: $colonia, cp: $cp, domicilio: $domicilio, fechaNac: $fechaNac, institucion: $institucion, localidad: $localidad, municipio: $municipio, sexo: $sexo, telefono: $telefono}}, correo: $correo}) {
                 persona {
                     nombre
                     apellido1
@@ -156,11 +168,11 @@ export default {
                     sexo
                     telefono
                 }
-                rfc
+                correo
             }
         }`,
         variables: {
-            nombre: this.nombre, apellido1: this.apellido1 , apellido2: this.apellido2 , colonia: this.colonia, cp: this.cp, domicilio: this.domicilio, fechaNac: this.fechaNac, institucion: this.institucion, localidad: this.localidad, municipio: this.municipio, sexo: this.sexo, telefono: this.telefono, rfc: this.rfc
+            nombre: this.nombre, apellido1: this.apellido1 , apellido2: this.apellido2 , colonia: this.colonia, cp: this.cp, domicilio: this.domicilio, fechaNac: this.fechaNac, institucion: this.institucion, localidad: this.localidad, municipio: this.municipio, sexo: this.sexo, telefono: this.telefono, correo: this.correo
         },
 
     })
@@ -219,7 +231,7 @@ export default {
         InsertParticipante() {
             this.$apollo.mutate({
                 mutation: gql`mutation insert_participante_one($nombre:String!,$apellido1:String!, $apellido2:String!, $colonia:String!, $cp:Int!, $domicilio:String!, $institucion:String!, $localidad:String!, $municipio:String!, $sexo:Boolean!, $telefono:Int!, $curp:String!) {
-                insert_participante_one(object: {persona: {data: {nombre: $nombre, apellido1: $apellido1, apellido2: $apellido2, colonia: $colonia, cp: $cp, domicilio: $domicilio, fechaNac: $fechaNac, institucion: $institucion, localidad: $localidad, municipio: $municipio, sexo: $sexo, telefono: $telefono}}, correo: $correo, curp: $curp, pswrd: $pswrd}) {
+                insert_participante_one(object: {persona: {data: {nombre: $nombre, apellido1: $apellido1, apellido2: $apellido2, colonia: $colonia, cp: $cp, domicilio: $domicilio, fechaNac: $fechaNac, institucion: $institucion, localidad: $localidad, municipio: $municipio, sexo: $sexo, telefono: $telefono}}, correo: $correo, curp: $curp}) {
                 persona {
                     nombre
                     apellido1
@@ -236,11 +248,10 @@ export default {
                 }
                 correo
                 curp
-                pswrd
             }
         }`,
         variables: {
-            nombre: this.nombre, apellido1: this.apellido1, apellido2: this.apellido2, colonia: this.colonia, cp: this.cp, domicilio: this.domicilio, fechaNac: this.fechaNac, institucion: this.institucion, localidad: this.localidad, municipio: this.municipio, sexo: this.sexo, telefono: this.telefono, correo: this.correo ,curp: this.curp, pswrd: this.pswrd
+            nombre: this.nombre, apellido1: this.apellido1, apellido2: this.apellido2, colonia: this.colonia, cp: this.cp, domicilio: this.domicilio, fechaNac: this.fechaNac, institucion: this.institucion, localidad: this.localidad, municipio: this.municipio, sexo: this.sexo, telefono: this.telefono, correo: this.correo ,curp: this.curp
         },
 
     })
@@ -260,6 +271,30 @@ export default {
         }`,
         variables: {
             nombreProyecto: this.nombreProyecto, areaProyecto: this.areaProyecto, categoriaProyecto: this.categoriaProyecto, modalidad: this.modalidad, sedeProyecto: this.sedeProyecto
+        },
+
+    })
+      this.refreshCount++;
+    },
+
+
+    InsertProyectoParticipanteAsesor() {
+            this.$apollo.mutate({
+                mutation: gql`mutation insert_proyecto_participante_asesor($nombreProyecto:String!, $areaProyecto:Int!, $categoriaProyecto:Int!, $modalidad:Int!, $sedeProyecto:Int!) {
+                insert_proyecto_participante_asesor(object: {nombreProyecto: $nombreProyecto, sedeProyecto: $sedeProyecto, categoriaProyecto: $categoriaProyecto, areaProyecto: $areaProyecto, proy_parts: {data: {participante: {data: {persona: {data: {nombre: $nombre, apellido1: $apellido1, apellido2: $apellido2, domicilio: $domicilio, colonia: $colonia, cp: $cp, fechaNac: $fechaNac, institucion: $institucion, telefono: $telefono, municipio: $municipio, localidad: $localidad, sexo: $sexo}}, correo: $correo}}}}, asesors: {data: {persona: {data: {nombre: $nombreA, apellido1: $apellido1A, apellido2: $apellido2A, domicilio: $domicilioA, colonia: $coloniaA, cp: $cpA, fechaNac: $fechaNacA, institucion: $institucionA, telefono: $telefonoA, municipio: $municipioA, localidad: $localidadA, sexo: $sexoA}}, correo: $correoA}}, modalidad: $modalidad}) {
+                folio
+                proy_parts {
+                    participante {
+                        id_participante
+                    }
+                }
+                asesors {
+                    id_asesor
+                }
+            }
+        }`,
+        variables: {
+            nombreProyecto: this.nombreProyecto, areaProyecto: this.areaProyecto, categoriaProyecto: this.categoriaProyecto, modalidad: this.modalidad, sedeProyecto: this.sedeProyecto, nombre: this.nombre, apellido1: this.apellido1, apellido2: this.apellido2, colonia: this.colonia, cp: this.cp, domicilio: this.domicilio, fechaNac: this.fechaNac, institucion: this.institucion, localidad: this.localidad, municipio: this.municipio, sexo: this.sexo, telefono: this.telefono, correo: this.correo ,curp: this.curp, nombreA: this.nombreA, apellido1A: this.apellido1A , apellido2A: this.apellido2A , coloniaA: this.coloniaA, cpA: this.cpA, domicilioA: this.domicilioA, fechaNacA: this.fechaNacA, institucionA: this.institucionA, localidadA: this.localidadA, municipioA: this.municipioA, sexoA: this.sexoA, telefonoA: this.telefonoA, correoA: this.correoA
         },
 
     })

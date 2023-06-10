@@ -18,7 +18,7 @@ const routes = [
   },
   {
     path: '/JuezPantalla',
-    name: 'JuezPantalla_principal',
+    name: 'JuezPantalla',
     component: () => import(/* webpackChunkName: "about" */ '../JuezPantalla_principal.vue')
   },
    
