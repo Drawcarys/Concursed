@@ -63,6 +63,7 @@ export default {
         },
 
         RegistrarPersona() {
+            this.hide()
             this.$apollo.mutate({
                 mutation: gql`mutation insert_usuario($correo:String!, $password:String!) {
                     insert_usuario(objects: {correo: $correo, pswrd: $password}) {
