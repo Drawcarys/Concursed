@@ -19,7 +19,7 @@
           Colonia:
           <input class="dst-campo-autor" type="text" name="dst-colAsesor" id="dst-colAsesor" v-model="coloniaAsesor" />
           Código postal:
-          <input class="dst-campo-autor" type="text" name="dst-cpAsesor" id="dst-cpAsesor" v-model="cpAsesor" />
+          <input class="dst-campo-autor" type="number" name="dst-cpAsesor" id="dst-cpAsesor" v-model="cpAsesor" />
         </p>
         <p class="dst-p-autor">
           Fecha de nacimiento:
@@ -33,7 +33,7 @@
 
         <p class="dst-p-autor">
           Teléfono:
-          <input class="dst-campo-autor" type="text" name="dst-telAsesor" id="dst-telAsesor" v-model="telefonoAsesor" />
+          <input class="dst-campo-autor" type="number" name="dst-telAsesor" id="dst-telAsesor" v-model="telefonoAsesor" />
 
           Municipio:
           <input class="dst-campo-autor" type="text" name="dst-munAsesor" id="dst-munAsesor" v-model="municipioAsesor" />
@@ -44,9 +44,9 @@
         <p class="dst-p-autor">
           Sexo:
           <select class="dst-campo-autor" name="dst-sexoAsesor" id="dst-sexoAsesor" v-model="sexoAsesor">
-            <option value="hombre">Hombre</option>
-            <option value="mujer">Mujer</option>
-            <option value="otro">Otro</option>
+            <option value=true>Hombre</option>
+            <option value=false>Mujer</option>
+            <option value=false>Otro</option>
           </select>
         </p>
         <p class="dst-p-autor">
@@ -61,7 +61,7 @@
 
         </p>
 
-        <button class="dst-button-format" id="dst-guardar" type="button" @click="sendAsesorData({'nombreAsesor':this.nombreAsesor,'primerApellidoAsesor':this.primerApellidoAsesor,'segundoApellidoAsesor':this.segundoApellidoAsesor,'domicilioAsesor':this.domicilioAsesor,'coloniaAsesor':this.coloniaAsesor,'cpAsesor':this.cpAsesor,'fechaNacimientoAsesor':this.fechaNacimientoAsesor,'correoAsesor':this.correoAsesor,'telefonoAsesor':this.telefonoAsesor,'municipioAsesor':this.municipioAsesor,'localidadAsesor':this.localidadAsesor,'sexoAsesor':this.sexoAsesor,'participacionAsesor':this.participacionAsesor,'comprobanteAsesor':this.comprobanteAsesor})">Guardar avance</button>
+        <button class="dst-button-format" id="dst-guardar" type="button" @click="sendAsesorData({'nombreAsesor':this.nombreAsesor,'primerApellidoAsesor':this.primerApellidoAsesor,'segundoApellidoAsesor':this.segundoApellidoAsesor,'domicilioAsesor':this.domicilioAsesor,'coloniaAsesor':this.coloniaAsesor,'cpAsesor':this.cpAsesor,'fechaNacimientoAsesor':this.fechaNacimientoAsesor,'correoAsesor':this.correoAsesor,'telefonoAsesor':this.telefonoAsesor,'municipioAsesor':this.municipioAsesor,'localidadAsesor':this.localidadAsesor,'sexoAsesor':this.sexoAsesor,'participacionAsesor':this.participacionAsesor, 'escuelaAsesor':this.escuelaAsesor, 'comprobanteAsesor':this.comprobanteAsesor})">Guardar avance</button>
       </form>
     </div>
   </div>

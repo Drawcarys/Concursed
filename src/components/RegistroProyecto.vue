@@ -21,11 +21,14 @@ export default {
     name: 'RegistroProyecto',
     data(){
         return{
-        argsGeneral:[],
+        argsGeneral:{
+            
+        },
         argsAutorUno:[],
         argsAutorDos:[],
         argsAsesor:[],
         argsRegistroPDF:[],
+        argsProyecto:[],
         currentTab: null,
         activeTabName: null,
         admin: [],
@@ -38,7 +41,7 @@ export default {
         colonia: "", 
         cp: 0, 
         domicilio: "", 
-        fechaNac: new Date(2001,2,3), 
+        fechaNac: new Date("2016-07-20T17:30:15+05:30"), 
         institucion: "", 
         localidad: "", 
         municipio: "", 
@@ -51,7 +54,7 @@ export default {
         coloniaA: "", 
         cpA: 0, 
         domicilioA: "", 
-        fechaNacA: new Date(2001,2,3), 
+        fechaNacA: new Date("2016-07-20T17:30:15+05:30"), 
         institucionA: "", 
         localidadA: "", 
         municipioA: "", 
@@ -99,23 +102,23 @@ export default {
 
         getGeneralData (value) {
             this.argsGeneral = value
-            console.log(value)
+            //console.log(value)
         },
         getAutorUnoData (value) {
             this.argsAutorUno = value
-            console.log(value)
+            //console.log(value)
         },
         getAutorDosData (value) {
             this.argsAutorDos = value
-            console.log(value)
+            //console.log(value)
         },
         getAsesorData (value) {
             this.argsAsesor = value
-            console.log(value)
+            //console.log(value)
         },
         getRegistroPDFData (value) {
             this.argsRegistroPDF = value
-            console.log(value)
+            //console.log(value)
         },
 
         InsertAdmin() {
@@ -325,7 +328,7 @@ export default {
 <template>
     <Barnav/>
     <div class="dst-container dst-div">
-        <component :datosGeneral="argsGeneral" :datosAutorUno="argsAutorUno" :datosAutorDos="argsAutorDos" :datosAsesor="argsAsesor" :is="currentTab" @argsGeneral="getGeneralData" @argsAutorUno="getAutorUnoData" @argsAutorDos="getAutorDosData" @argsAsesor="getAsesorData" @argsRegistroPDF="getRegistroPDFData"/>
+        <component :datosGeneral="argsGeneral" :datosAutorUno="argsAutorUno"  :datosAutorDos="argsAutorDos" :datosAsesor="argsAsesor" :is="currentTab" @argsGeneral="getGeneralData" @argsAutorUno="getAutorUnoData" @argsAutorDos="getAutorDosData" @argsAsesor="getAsesorData" @argsRegistroPDF="getRegistroPDFData"/>
         <div class="dst-tabs-container">
             <div class="dst-tabs-item" @click="handleTabClick(tabNames.GENERAlES)"
                 :class="{ 'dst-tabs-item-active': activeTabName === tabNames.GENERAlES }">
