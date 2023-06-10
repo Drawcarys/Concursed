@@ -20,7 +20,7 @@ export default {
   }),
 
   apollo: {
-    proyectos: {
+    proyecto: {
         query: gql`
         query mostrar_proyectos($sedeProyecto:Int!, $categoriaProyecto:Int!) {
         proyecto(
@@ -145,8 +145,8 @@ export default {
     <h1 id="cateALRL">Proyectos</h1>
     <h1 id="nombALRL">Nombre Proyectos</h1>
     <ul id="listALRL">
-      <li v-for='item in proyectos' v-bind:key="item">
-        {{ item }}
+      <li v-for='item in proyecto' v-bind:key="item">
+        {{ item.nombreProyecto }}
         <button class="button1ALRL" @mousedown="abrir">Calificar</button>
         <div id="sepaALRL"></div>
       </li>
@@ -160,41 +160,41 @@ export default {
             resumen <br />
             documental
           </p>
-          <input class="dst-input" type="number" />
+          <input class="dst-input" type="number" v-model="calidad_resumen"/>
         </div>
         <div>
           <p>
             Presentación <br />
             del prototipo
           </p>
-          <input class="dst-input" type="number" />
+          <input class="dst-input" type="number" v-model="presentacion_prototipo" />
         </div>
         <div>
           <p>
             Identificación <br />
             del problema
           </p>
-          <input class="dst-input" type="number" />
+          <input class="dst-input" type="number" v-model="identificacion_problema" />
         </div>
         <div>
           <p>Propuesta de <br />solución</p>
-          <input class="dst-input" type="number" />
+          <input class="dst-input" type="number" v-model="propuesta_solucion"/>
         </div>
         <div>
           <p>
             Elemento <br />
             creativo
           </p>
-          <input class="dst-input" type="number" />
+          <input class="dst-input" type="number" v-model="elemento_creativo"/>
         </div>
       </div>
 
       <div>
         <div class="dst-total">
           <p>Total: </p>
-          <p>100</p>
+          <p>{{total}}</p>
         </div>
-        <button @click="CalificarPostgradoSuperiorMedio(calidad_resumen, definicion_mercado, elemento_creativo,  elemento_innovacion, factibilidad, identificacion_problema, presentacion_prototipo, propuesta_solucion, total, id_juez, id_proyecto)" class="button2ALRL">Calificar</button>
+        <button @click="CalificarKids(calidad_resumen, elemento_creativo, identificacion_problema, presentacion_prototipo, propuesta_solucion, total, id_juez, id_proyecto)" class="button2ALRL">Calificar</button>
       </div>
     </div>
   </div>
