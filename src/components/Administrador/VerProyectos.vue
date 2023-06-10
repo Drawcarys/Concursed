@@ -1,46 +1,102 @@
-<script setup>
+<template>
+  <table id="tablaCalificaciones">
+    <thead>
+      <tr>
+        <th>Proyecto</th>
+        <th>Calificación Total</th>
+        <th>Promedio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="proyecto in proyectos" :key="proyecto.id_calificacion">
+        <td>{{ proyecto.id_calificacion }}</td>
+        <td>{{ proyecto.total }}</td>
+        <td>{{ proyecto.promedio }}</td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+
+<script>
+import { gql } from 'apollo-boost';
+
+export default {
+  data() {
+    return {
+      proyectos: [],
+    };
+  },
+  created() {
+    this.obtenerCalificaciones();
+  },
+  methods: {
+    obtenerCalificaciones() {
+      this.$apollo.query({
+        query: gql`
+          query {
+            calificaciones {
+              id_calificacion
+              calidad_resumen
+              presentacion_prototipo
+              identificacion_problema
+              propuesta_solucion
+              elemento_creativo
+              elemento_innovacion
+              definicion_mercado
+              factibilidad
+            }
+          }
+        `,
+      })
+        .then(response => {
+          const calificaciones = response.data.calificaciones;
+
+          // Calcular la calificación total y el promedio para cada proyecto
+          const proyectosCalculados = calificaciones.map(calificacion => {
+            const {
+              calidad_resumen,
+              presentacion_prototipo,
+              identificacion_problema,
+              propuesta_solucion,
+              elemento_creativo,
+              elemento_innovacion = 0,
+              definicion_mercado,
+              factibilidad,
+            } = calificacion;
+
+            const total = (
+              calidad_resumen +
+              presentacion_prototipo +
+              identificacion_problema +
+              propuesta_solucion +
+              elemento_creativo +
+              elemento_innovacion +
+              definicion_mercado +
+              factibilidad
+            );
+
+            const promedio = total / 8; // Dividir entre el número de criterios de calificación
+
+            return {
+              ...calificacion,
+              total,
+              promedio,
+            };
+          });
+
+          this.proyectos = proyectosCalculados;
+        })
+        .catch(error => {
+          console.error('Error al obtener las calificaciones:', error);
+        });
+    },
+  },
+}
 
 </script>
-<template>
-
-<table id="vbmverProyectos">
-  <tr>
-    <th>Nombre</th>
-    <th>Calificación General</th>
-    <th>Área</th>
-    <th>Categoría</th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>John Doe</td>
-    <td>9.3</td>
-    <td>Medicina y Salud</td>
-    <td>Preescolar</td>
-    <td><button id="botonesTabla">Ver</button></td>
-    <td><button id="botonesTabla">Gestionar</button></td>
-  </tr>
-  <tr>
-    <td>John Doe</td>
-    <td>9.3</td>
-    <td>Medicina y Salud</td>
-    <td>Preescolar</td>
-    <td><button id="botonesTabla">Ver</button></td>
-    <td><button id="botonesTabla">Gestionar</button></td>
-  </tr>
-  <tr>
-    <td>John Doe</td>
-    <td>9.3</td>
-    <td>Medicina y Salud</td>
-    <td>Preescolar</td>
-    <td><button id="botonesTabla">Ver</button></td>
-    <td><button id="botonesTabla">Gestionar</button></td>
-  </tr>
 
 
-</table>
 
-</template>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');

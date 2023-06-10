@@ -3,24 +3,57 @@
 </script>
 <template>
   <div class="vbmCol2">
-    <form action="javascript:void(0);">
-      <p>
-        Nombre de la categoría: <br> </p><input type="text" name="nombreCategoria" id="vbmNombreCategoria" v-model="nombreCategoria" />
+    <form @submit.prevent="guardarCategoria">
+      <p>Nombre de la categoría:</p>
+      <input type="text" name="nombreCategoria" id="vbmNombreCategoria" v-model="nombreCategoria" />
       <button type="submit" id="vbmIniciar">Guardar cambios</button>
     </form>
   </div>
 </template>
 
-
 <script>
+import { gql } from 'graphql-tag';
+
+const guardarCategoriaMutation = gql`
+  mutation GuardarCategoria($nombreCategoria: String!) {
+    insert_categoria_one(object: { nombreCategoria: $nombreCategoria }) {
+      id_categoria
+      nombreCategoria
+    }
+  }
+`;
+
 export default {
   data() {
     return {
       nombreCategoria: ''
     };
+  },
+  methods: {
+    guardarCategoria() {
+      this.$apollo
+        .mutate({
+          mutation: guardarCategoriaMutation,
+          variables: {
+            nombreCategoria: this.nombreCategoria
+          }
+        })
+        .then(response => {
+          const categoriaGuardada = response.data.insert_categoria_one;
+          console.log('Categoría guardada:', categoriaGuardada);
+          // Puedes hacer cualquier otra acción aquí, como actualizar la lista de categorías
+          // o mostrar un mensaje de éxito al usuario.
+        })
+        .catch(error => {
+          console.error('Error al guardar la categoría:', error);
+          // Puedes mostrar un mensaje de error al usuario si ocurre algún problema.
+        });
+    }
   }
-}
+};
 </script>
+
+
 
 
 

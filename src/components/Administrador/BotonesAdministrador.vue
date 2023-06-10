@@ -1,5 +1,4 @@
 <script>
-import DatosConcurso from './DatosConcurso.vue';
 import RegistroCategoria from './Registro/RegistroCategoria.vue';
 import RegistroJuez from './Registro/RegistroJuez.vue';
 import RegistroSede from './Registro/RegistroSede.vue';
@@ -12,7 +11,7 @@ import EditarSede from './Editar/EditarSede.vue';
 import EditarArea from './Editar/EditarArea.vue';
 
 
-const arrayBotones = ["Iniciar concurso", "Editar concurso", "Registrar categoría", "Editar categoría",
+const arrayBotones = ["Registrar categoría", "Editar categoría",
   "Registrar sede", "Editar sede", "Registrar área", "Editar área", "Registrar juez", "Editar juez", "Ver proyectos", "Ver resultados"];
 const botonesNombre = [1, 2, 3, 4, 5];
 export default {
@@ -57,7 +56,7 @@ export default {
       }
     },
   },
-  components: { DatosConcurso, RegistroCategoria, RegistroJuez, RegistroSede, RegistroArea, 
+  components: { RegistroCategoria, RegistroJuez, RegistroSede, RegistroArea, 
     VerProyectos, VerResultados, 
     EditarJueces, EditarCategoria, EditarSede, EditarArea }
 }
@@ -70,39 +69,33 @@ export default {
       </button>
     </div>
     <div id="vbmregistroCat" v-if="indice==0">
-      <DatosConcurso />
-    </div>
-    <div id="vbmregistroCat" v-if="indice==1">
-      <DatosConcurso />
-    </div>
-    <div id="vbmregistroCat" v-if="indice==2">
       <RegistroCategoria id="vbmregistroCategoria" />
       </div>
-    <div id="vbmeditarCat" v-if="indice===3">
+    <div id="vbmeditarCat" v-if="indice===1">
       <EditarCategoria/>
     </div>
-    <div id="vbmregistroCat" v-if="indice==4">
+    <div id="vbmregistroCat" v-if="indice==2">
       <RegistroSede id="vbmregistroCategoria" />
       </div>
-    <div id="vbmeditarCat" v-if="indice===5">
+    <div id="vbmeditarCat" v-if="indice===3">
       <EditarSede />
     </div>
-    <div id="vbmregistroCat" v-if="indice==6">
+    <div id="vbmregistroCat" v-if="indice==4">
       <RegistroArea id="vbmregistroCategoria" />
       </div>
-    <div id="vbmeditarCat" v-if="indice===7">
+    <div id="vbmeditarCat" v-if="indice===5">
       <EditarArea />
     </div>
-    <div id="vbmregistroCat" v-if="indice===8">
+    <div id="vbmregistroCat" v-if="indice===6">
       <RegistroJuez />
     </div>
-    <div id="vbmregistroJuez" v-if="indice===9">
+    <div id="vbmregistroJuez" v-if="indice===7">
       <EditarJueces />
     </div>
-    <div id="vbmregistroJuez" v-if="indice===10">
+    <div id="vbmregistroJuez" v-if="indice===8">
       <VerProyectos />
     </div>
-    <div id="vbmregistroJuez" v-if="indice===11">
+    <div id="vbmregistroJuez" v-if="indice===9">
       <VerResultados />
     </div>
   </div>
@@ -170,11 +163,7 @@ export default {
 }
 
 #vbmeditarCat{
-    justify-content: center;
-    border-style: solid;
-    box-sizing: border-box;
-    border: 1px solid #333d48;
-    border-radius: 17px;
+   
 }
 
 #vbmregistroCategoria{

@@ -2,48 +2,168 @@
 
 </script>
 <template>
-  <table id="vbmEditarArea">
-    <tr v-for="registro in registros" :key="registro.id">
-      <td>{{ registro.nombre }}</td>
-      <td>
-        <button @click="editarRegistro(registro.id)">Editar</button>
-      </td>
-      <td>
-        <button @click="eliminarRegistro(registro.id)">Eliminar</button>
-      </td>
-    </tr>
-  </table>
+  <div class="vbmCol2">
+    <form @submit.prevent="guardararea" v-if="!editar">
+
+    
+      <button type="submit" id="vbmIniciar">Guardar cambios</button>
+    </form>
+
+    <form @submit.prevent="actualizararea" v-else>
+      <p>Nombre de la categoría:</p>
+      <input type="text" name="nombrearea" id="vbmNombrearea" v-model="areaSeleccionada.nombreArea" />
+      <button type="submit" id="vbmEditar">Guardar cambios</button>
+      <button type="button" @click="eliminararea">Eliminar</button>
+    </form>
+
+    <table v-if="areas.length > 0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre de la categoría</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="area in areas" :key="area.id_area">
+          <td>{{ area.id_area }}</td>
+          <td>{{ area.nombreArea }}</td>
+          <td>
+            <button @click="editararea(area)" id="vbmbotonesTabla">Editar</button>
+            <button @click="eliminararea(area.id_area)" id="vbmbotonesTabla">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p v-else>No hay categorías guardadas.</p>
+  </div>
 </template>
 
 <script>
+import { gql } from 'graphql-tag';
+
+const obtenerareasQuery = gql`
+  query obtenerareas {
+    area {
+      id_area
+      nombreArea
+    }
+  }
+`;
+
+const guardarareaMutation = gql`
+  mutation guardararea($nombreArea: String!) {
+    insert_area_one(object: { nombreArea: $nombreArea }) {
+      id_area
+      nombreArea
+    }
+  }
+`;
+
+const actualizarareaMutation = gql`
+  mutation actualizararea($id: Int!, $nombreArea: String!) {
+    update_area_by_pk(pk_columns: { id_area: $id }, _set: { nombreArea: $nombreArea }) {
+      id_area
+      nombreArea
+    }
+  }
+`;
+
+const eliminarareaMutation = gql`
+  mutation eliminararea($id: Int!) {
+    delete_area_by_pk(id_area: $id) {
+      id_area
+    }
+  }
+`;
+
 export default {
   data() {
     return {
-      registros: [], // guardar los registros obtenidos de la base de datos
+      nombreArea: '',
+      areas: [],
+      editar: false,
+      areaSeleccionada: null
     };
   },
+  created() {
+    this.obtenerareas();
+  },
   methods: {
-    cargarRegistros() {
-      // obtener los registros desde la base de datos
-     
+    obtenerareas() {
+      this.$apollo.query({
+        query: obtenerareasQuery
+      })
+      .then(response => {
+        this.areas = response.data.area;
+      })
+      .catch(error => {
+        console.error('Error al obtener las categorías:', error);
+      });
     },
-    editarRegistro(id) {
-      // redireccionar a la página de "EditarRegistro"
-      
-      this.$router.push(`/EditarArea/${id}`);
+    guardararea() {
+      this.$apollo.mutate({
+        mutation: guardarareaMutation,
+        variables: {
+          nombreArea: this.nombreArea
+        }
+      })
+      .then(response => {
+        console.log('Categoría guardada:', response.data.insert_area_one);
+        this.nombreArea = '';
+        this.obtenerareas();
+      })
+      .catch(error => {
+        console.error('Error al guardar la categoría:', error);
+      });
     },
-    eliminarRegistro() {
-      //  eliminar el registro desde la base de datos
-      
-
+    editararea(area) {
+      this.editar = true;
+      this.areaSeleccionada = { ...area };
     },
-  },
-  mounted() {
-    // Cargamos los registros al montar el componente
-    this.cargarRegistros();
-  },
-};
+    actualizararea() {
+      this.$apollo.mutate({
+        mutation: actualizarareaMutation,
+        variables: {
+          id: this.areaSeleccionada.id_area,
+          nombreArea: this.areaSeleccionada.nombreArea
+        }
+      })
+      .then(response => {
+        console.log('Categoría actualizada:', response.data.update_area_by_pk);
+        this.editar = false;
+        this.areaSeleccionada = null;
+        this.obtenerareas();
+      })
+      .catch(error => {
+        console.error('Error al actualizar la categoría:', error);
+      });
+    },
+    eliminararea(id) {
+      if (confirm('¿Estás seguro de que quieres eliminar esta categoría?')) {
+        this.$apollo.mutate({
+          mutation: eliminarareaMutation,
+          variables: {
+            id: id
+          }
+        })
+        .then(() => {
+          console.log('Categoría eliminada');
+          this.editar = false;
+          this.areaSeleccionada = null;
+          this.obtenerareas();
+        })
+        .catch(error => {
+          console.error('Error al eliminar la categoría:', error);
+        });
+      }
+    }
+  }
+}
 </script>
+
+
+
 
 
 <style>
