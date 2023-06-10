@@ -28,7 +28,7 @@ export default {
     <img src="./assets/camp1.png" class="camp1">
   
 </div>
-<a href="@/assets/documento.pdf" download>a</a>
+<a href="./assets/documento.pdf" download>a</a>
 <div class="block2">
   <div id="plan1">
     <h3 id="titulotecALRL">Tecnología</h3>
