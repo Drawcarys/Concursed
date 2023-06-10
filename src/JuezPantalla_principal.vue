@@ -16,7 +16,7 @@ export default {
     propuesta_solucion: 0,
     total: 0, 
     id_juez:87,
-    id_proyecto:0
+    id_proyecto:1
   }),
 
   apollo: {
@@ -118,7 +118,7 @@ export default {
                 mutation: gql`mutation insertar_calificacion_juez ($calidad_resumen:Int!, $elemento_creativo:Int!, $identificacion_problema:Int!, $presentacion_prototipo:Int!, $propuesta_solucion:Int!, $total:Int!, $id_juez:Int!, $id_proyecto:Int!) {
                 insert_calificacion_one(object: {calidad_resumen: $calidad_resumen, elemento_creativo: $elemento_creativo, identificacion_problema: $identificacion_problema, presentacion_prototipo: $presentacion_prototipo, propuesta_solucion: $propuesta_solucion, total: $total, juez_proy_calis: {data: {id_juezFJPC: $id_juez, id_proyectoFJPC: $id_proyecto}}}) {
                 id_calificacion
-            }`,
+            }}`,
             variables: {
                 calidad_resumen: this.calidad_resumen, elemento_creativo: this.elemento_creativo, identificacion_problema: this.identificacion_problema, presentacion_prototipo: this.presentacion_prototipo, propuesta_solucion: this.propuesta_solucion, total: this.total, id_juez: this.id_juez, id_proyecto: this.id_proyecto
             },
