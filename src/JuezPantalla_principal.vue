@@ -191,8 +191,6 @@ export default {
 
       <div>
         <div class="dst-total">
-          <p>Total: </p>
-          <p>{{total}}</p>
         </div>
         <button @click="CalificarKids(calidad_resumen, elemento_creativo, identificacion_problema, presentacion_prototipo, propuesta_solucion, total, id_juez, id_proyecto)" class="button2ALRL">Calificar</button>
       </div>
